@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "ETHworker",
+  "risk": "2",
+  "title": "Upgrade Your Solidity Code: Why You Should Use .call{value: _amount}(\"\") Instead of .send() for Ether Transfers",
+  "issueId": 17,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/17"
+}
