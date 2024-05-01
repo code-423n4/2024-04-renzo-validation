@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "BiasedMerc",
+  "risk": "2",
+  "title": "RestakeManager:calculateTVLs() incorrectly calculates totalWithdrawalQueueValue",
+  "issueId": 33,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/33"
+}
