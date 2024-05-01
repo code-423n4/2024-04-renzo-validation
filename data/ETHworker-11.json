@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "ETHworker",
+  "risk": "3",
+  "title": "Unchecked return value of `approve()` function could lead to silent approval failures",
+  "issueId": 11,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/11"
+}
