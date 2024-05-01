@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "TECHFUND",
+  "risk": "2",
+  "title": "TimelockController::schedule() function can potentially schedule for immediate execution",
+  "issueId": 6,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/6"
+}
