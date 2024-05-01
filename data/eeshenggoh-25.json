@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "eeshenggoh",
+  "risk": "3",
+  "title": "Flaw in TVL Calculation: WithdrawQueue:Withdraw() Function Includes Extra Token Assets",
+  "issueId": 25,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/25"
+}
