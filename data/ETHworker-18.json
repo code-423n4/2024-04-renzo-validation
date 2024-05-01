@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "ETHworker",
+  "risk": "2",
+  "title": "Insufficient Gas Allowance and Lack of Error Handling in Ether Transfer",
+  "issueId": 18,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/18"
+}
