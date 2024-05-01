@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "TECHFUND",
+  "risk": "2",
+  "title": "WithdrawQueue::claim() function uses transfer() low level call for native tokens ",
+  "issueId": 5,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/5"
+}
