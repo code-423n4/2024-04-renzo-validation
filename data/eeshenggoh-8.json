@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "eeshenggoh",
+  "risk": "3",
+  "title": "Deposits may be front-run by malicious operator to steal ETH",
+  "issueId": 8,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/8"
+}
