@@ -13,3 +13,7 @@ contract xRenzoBridge is
 
 2) ### EzEthToken::name() & symbol()
 The values should ideally be returned from storage of ERC20Upgradeable, and not from the overrides.
+
+
+3) ### TimelockController::roles should be mutually exclusive
+The proposer and executor are two mutually exclusive roles and hence a single account cannot have both the roles. The check is missing in the constructor. Similar check should be applied through self administration process.
