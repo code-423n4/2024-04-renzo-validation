@@ -10,3 +10,6 @@ contract xRenzoBridge is
 ==> IxRenzoBridge
 {
 ```
+
+2) ### EzEthToken::name() & symbol()
+The values should ideally be returned from storage of ERC20Upgradeable, and not from the overrides.
