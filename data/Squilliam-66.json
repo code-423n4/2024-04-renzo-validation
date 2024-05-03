@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "2",
+  "title": "[M-2] Unchecked Return Value in `DepositQueue.receive` (Unhandled Failure + Inconsistent State)",
+  "issueId": 66,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/66"
+}
