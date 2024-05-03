@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Tigerfrake",
+  "risk": "2",
+  "title": "`onlyMinterBurner` can burn any amount of ezETH tokens from an arbitrary address",
+  "issueId": 87,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/87"
+}
