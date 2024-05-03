@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "BiasedMerc",
+  "risk": "2",
+  "title": "XERC20::mint() is callable by anyone, however comments state otherwise",
+  "issueId": 90,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/90"
+}
