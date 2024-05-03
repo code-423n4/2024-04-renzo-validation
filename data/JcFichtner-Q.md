@@ -30,6 +30,28 @@ This contract presents several points of centralization that could pose risks:
 
 - **EigenLayer Protocol Risks:** The contract's reliance on `EigenLayer` exposes it to any vulnerabilities or governance issues within that protocol.
 
+###### Centralization Score: 8/10 (HIGH)
+
+Given the various points of centralization identified in the `RestakeManager` contract, I would assign a centralization score of 8 out of 10.
+
+###### Rationale:
+
+- **Significant Admin Control:** The presence of powerful admin roles like `RestakeManagerAdmin` and `DepositWithdrawPauserAdmin` grants substantial control over crucial aspects of the system.
+
+- **Limited OD Diversification:** The current mechanism for selecting and allocating funds to ODs creates potential for favoritism and concentration risk.
+
+- **Oracle Dependence:** Reliance on a single oracle introduces vulnerability to manipulation and errors.
+
+- **Single Points of Failure:** The use of single `DepositQueue` and reliance on the `WithdrawQueue` buffer creates `bottlenecks` and potential points of failure.
+
+###### Factors Preventing a Higher Score:
+
+- **Potential for Decentralization:** The contract's design allows for future implementation of more decentralized governance mechanisms and diversification of ODs.
+
+- **Transparency:** Assuming the system's documentation and operations are transparent, it can partially mitigate the risks associated with centralized control.
+
+By addressing these concerns and moving towards a more decentralized structure, the centralization score can be lowered, enhancing the overall security and resilience of the system.
+
 ###### Mitigation Strategies:
 
 - **Decentralize Governance:** Implement a `DAO` or multi-sig mechanism for critical functions currently controlled by admin roles.
@@ -51,28 +73,6 @@ This contract presents several points of centralization that could pose risks:
 - **Auditing:** Regularly conduct security audits of the smart contracts and associated infrastructure.
 
 - **Community Involvement:** Encourage community participation in governance and decision-making processes.
-
-###### Centralization Score: 8
-
-Given the various points of centralization identified in the `RestakeManager` contract, I would assign a centralization score of 8 out of 10.
-
-###### Rationale:
-
-- **Significant Admin Control:** The presence of powerful admin roles like `RestakeManagerAdmin` and `DepositWithdrawPauserAdmin` grants substantial control over crucial aspects of the system.
-
-- **Limited OD Diversification:** The current mechanism for selecting and allocating funds to ODs creates potential for favoritism and concentration risk.
-
-- **Oracle Dependence:** Reliance on a single oracle introduces vulnerability to manipulation and errors.
-
-- **Single Points of Failure:** The use of single `DepositQueue` and reliance on the `WithdrawQueue` buffer creates `bottlenecks` and potential points of failure.
-
-###### Factors Preventing a Higher Score:
-
-- **Potential for Decentralization:** The contract's design allows for future implementation of more decentralized governance mechanisms and diversification of ODs.
-
-- **Transparency:** Assuming the system's documentation and operations are transparent, it can partially mitigate the risks associated with centralized control.
-
-By addressing these concerns and moving towards a more decentralized structure, the centralization score can be lowered, enhancing the overall security and resilience of the system.
 
 ## [C-02] Centralization Risks in TimelockController Contract
 
@@ -98,7 +98,7 @@ The `onlyRoleOrOpenRole` modifier allows anyone to execute proposals if the role
 
 - If proposers and executors collude, they can bypass the timelock's intended purpose by proposing and immediately executing actions, effectively centralizing power.
 
-###### Centralization Score: 7/10
+###### Centralization Score: 7/10 (Medium)
 
 Considering the points mentioned, I would assign a centralization score of 7 out of 10 to the TimelockController contract.
 
@@ -124,7 +124,71 @@ Considering the points mentioned, I would assign a centralization score of 7 out
 
 By addressing these centralization risks, you can create a more secure and community-driven governance system using the TimelockController contract.
 
+## [C-03] Centralization Risks in the WithdrawQueue Contract
 
+https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Withdraw/WithdrawQueue.sol
+
+Here are some centralization risks I found within the provided `WithdrawQueue` contract:
+
+###### 1. Role of WithdrawQueueAdmin:
+
+**Unilateral Control:** The `onlyWithdrawQueueAdmin` modifier grants exclusive control over critical functions like:
+
+- `updateWithdrawBufferTarget`: This allows changing the maximum withdrawal limit for each asset, potentially manipulating user access to funds.
+
+- `updateCoolDownPeriod`: This controls the waiting time for withdrawals, potentially inconveniencing users or delaying access to funds.
+
+- `pause` and `unpause`: This can halt all withdrawals, creating a single point of failure and potential for misuse.
+
+**Single Point of Failure:** If the `WithdrawQueueAdmin's` private keys are compromised, the entire system's security is at risk.
+
+###### 2. Reliance on `RestakeManager` and `DepositQueue`:
+
+- **External Dependencies:** The contract depends on `RestakeManager` and `DepositQueue` for functionalities like filling withdrawal buffers. If these external contracts have vulnerabilities or are compromised, it could impact the `WithdrawQueue's` operation and user funds.
+
+###### 3. Oracle Dependence:
+
+- **Relying on `RenzoOracle`:** The contract uses `RenzoOracle` to calculate redemption amounts and token equivalents. If the oracle is compromised or provides inaccurate data, it could lead to incorrect withdrawals and financial losses for users.
+
+###### 4. Potential for Censorship:
+
+- **Withdraw Request Control:** The `WithdrawQueueAdmin` could potentially censor or delay specific withdrawal requests by manipulating the queue or pausing the contract.
+
+###### 5. Lack of Transparency:
+
+- **Opaque Operations:** The contract doesn't provide mechanisms for users to verify the total amount of assets held in the withdrawal buffers or the status of the queue. This lack of transparency could lead to distrust and concerns about fund mismanagement.
+
+###### Centralization Score: 7/10 (MEDIUM)
+
+Given the identified centralization risks and the current implementation of the `WithdrawQueue` contract, I would assign a centralization score of 7 out of 10.
+
+###### Justification:
+
+- **Significant Admin Control:** The `WithdrawQueueAdmin` holds substantial power over the system, controlling key parameters and functionalities.
+
+- **External Dependencies:** Reliance on external contracts like `RestakeManager` and `RenzoOracle` introduces additional points of centralization.
+
+- **Limited Transparency:** The lack of on-chain data about buffer levels and queue operations further contributes to the centralization concerns.
+
+###### Reasoning for not being a 10:
+
+- **Potential for Improvement:** The contract's code can be modified to implement decentralization mechanisms and enhance transparency.
+
+- **No Evidence of Malicious Intent:** While the centralization risks are present, there is no indication of the current admins misusing their power.
+
+###### Recommendations for Mitigation:
+
+- **Decentralize Admin Role:** Implement a multi-signature scheme for critical admin functions, requiring consensus among multiple trusted parties.
+
+- **Introduce Timelocks:** Implement timelocks for critical changes, allowing users to react and withdraw funds before changes take effect.
+
+- **Open-source External Contracts:** Ensure transparency and allow community audits of the RestakeManager, DepositQueue, and RenzoOracle contracts.
+
+- **Implement Emergency Withdrawal Mechanisms:** Provide alternative withdrawal methods in case of contract pauses or admin key compromise.
+
+- **Increase Transparency:** Publish on-chain data about buffer levels, queue status, and admin actions to build trust and allow for community monitoring.
+
+By implementing these measures, the `WithdrawQueue` contract can become more resilient, transparent, and less susceptible to centralization risks, ultimately enhancing user confidence and security.
 
 
 
