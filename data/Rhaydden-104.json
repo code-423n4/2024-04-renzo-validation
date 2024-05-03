@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Rhaydden",
+  "risk": "2",
+  "title": "Low-level transfer via call() to non-existent account can fail silently",
+  "issueId": 104,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/104"
+}
