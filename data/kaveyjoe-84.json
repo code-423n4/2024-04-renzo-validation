@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "kaveyjoe",
+  "risk": "2",
+  "title": "Incorrect Scaling Leading to Unexpected InvalidOraclePrice Revert",
+  "issueId": 84,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/84"
+}
