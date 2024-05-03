@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "2",
+  "title": "[M-6] Unbounded Loop in `OperatorDelegator::verifyAndProcessWithdrawals` can lead to Denial of Service",
+  "issueId": 75,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/75"
+}
