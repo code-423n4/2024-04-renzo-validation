@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "3",
+  "title": "[H-1] `OperatorDelegator::setDelegateAddress` Lack of Signature Verification (Missing Signature Check + Unauthorized Delegation)",
+  "issueId": 67,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/67"
+}
