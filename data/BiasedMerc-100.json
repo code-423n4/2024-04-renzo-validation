@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "BiasedMerc",
+  "risk": "2",
+  "title": "xRenzoDeposit::getBridgeFeeShare() doesn't calculate correct fee on amounts greater than 32ETH",
+  "issueId": 100,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/100"
+}
