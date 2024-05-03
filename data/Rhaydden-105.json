@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Rhaydden",
+  "risk": "2",
+  "title": "TimelockController's `_minDelay` can be set to an arbitrarily high value, potentially rendering the timelock unusable.",
+  "issueId": 105,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/105"
+}
