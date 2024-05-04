@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Satyam_Sharma",
+  "risk": "3",
+  "title": "Not incrementing `withdrawRequestNonce` under WithdrawQueue.withdraw function can lead to dos.",
+  "issueId": 172,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/172"
+}
