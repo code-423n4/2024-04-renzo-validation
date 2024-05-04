@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "umarkhatab_465",
+  "risk": "2",
+  "title": "Lack of fallback oracle can cause DoS for RenzoDeposit when the sole underlying oracle fetches negative prices",
+  "issueId": 118,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/118"
+}
