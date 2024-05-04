@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "tapir",
+  "risk": "3",
+  "title": "It is not possible to completely remove an operator delegator from restaking manager without changing ezETH exchange rate",
+  "issueId": 137,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/137"
+}
