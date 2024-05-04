@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "3",
+  "title": "[H-5] `xRenzoDeposit::depositETH` - Lack of Replay Attack Protection could lead to significant financial losses",
+  "issueId": 178,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/178"
+}
