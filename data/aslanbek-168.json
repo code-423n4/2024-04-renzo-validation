@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "aslanbek",
+  "risk": "2",
+  "title": "RewardHandler's ETH balance is not accounted in TVL, enabling sandwich attacks on pending rewards",
+  "issueId": 168,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/168"
+}
