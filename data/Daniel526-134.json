@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Daniel526",
+  "risk": "2",
+  "title": "Potential Arithmetic Issues due to unsafe casting from `int256` to `uint256` in `getStakedETHBalance` Function ",
+  "issueId": 134,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/134"
+}
