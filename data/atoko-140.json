@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "atoko",
+  "risk": "2",
+  "title": "Missing Contract Initialization in `OptimismMintableXERC20`  contract",
+  "issueId": 140,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/140"
+}
