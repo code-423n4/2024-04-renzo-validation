@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "atoko",
+  "risk": "2",
+  "title": "Inconsistent use of upgradable versions in oppenzeppelin Imports ",
+  "issueId": 141,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/141"
+}
