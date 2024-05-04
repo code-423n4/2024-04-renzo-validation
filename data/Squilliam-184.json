@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "2",
+  "title": "[M-08] `xRenzoDeposit::deposit` - Lack of Slippage Protection Against Front-running Attacks can lead to Financial Losses for Users",
+  "issueId": 184,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/184"
+}
