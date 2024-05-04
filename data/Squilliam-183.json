@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "3",
+  "title": "[H-10] `xRenzoBridge::recoverERC20` allows admins to Rug-Pull an Arbitrary Amount of ERC20 tokens from Users, leaving the protocol insolvent",
+  "issueId": 183,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/183"
+}
