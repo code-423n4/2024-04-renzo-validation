@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "3",
+  "title": "[H-09] `xRenzoBridge::recoverNative` allows admins to Rug-Pull an Arbitrary Amount of ETH from Users, leaving the protocol insolvent",
+  "issueId": 182,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/182"
+}
