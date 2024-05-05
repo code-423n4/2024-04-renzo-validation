@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "2",
+  "title": "[M-5] `OperatorDelegator::queueWithdrawals` - Unbounded Loop can lead to Denial of Service (reuploaded)",
+  "issueId": 273,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/273"
+}
