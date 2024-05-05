@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "ZanyBonzy",
+  "risk": "2",
+  "title": "`burn` function in  OptimismMintableXERC20 contract should not burn token from `_from` but from `msg.sender`",
+  "issueId": 190,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/190"
+}
