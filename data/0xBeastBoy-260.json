@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "0xBeastBoy",
+  "risk": "3",
+  "title": "No validation of _amount & _to in recoverNative function of xRenzoBridge",
+  "issueId": 260,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/260"
+}
