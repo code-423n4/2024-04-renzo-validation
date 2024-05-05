@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "ZanyBonzy",
+  "risk": "2",
+  "title": "Prototcol uses wbeth `exchangeRate` rate which is not updated frequently",
+  "issueId": 219,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/219"
+}
