@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "2",
+  "title": "[M-12] Front-running `xRenzoBridge::initialize()` allows attackers to rugpull and leave the protocol insolvent.",
+  "issueId": 215,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/215"
+}
