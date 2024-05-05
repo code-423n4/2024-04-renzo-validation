@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "BiasedMerc",
+  "risk": "2",
+  "title": "XERC20Lockbox::withdraw() can withdraw ERC20 or Native, however dev comment state otherwise",
+  "issueId": 223,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/223"
+}
