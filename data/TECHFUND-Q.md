@@ -17,3 +17,25 @@ The values should ideally be returned from storage of ERC20Upgradeable, and not 
 
 3) ### TimelockController::roles should be mutually exclusive
 The proposer and executor are two mutually exclusive roles and hence a single account cannot have both the roles. The check is missing in the constructor. Similar check should be applied through self administration process.
+
+4) ### XERC20::initialize() order of initialisation should be same as order of inheritance.
+
+Below is the order of Inheritance
+
+```
+   contract XERC20 is
+    Initializable,
+    ERC20Upgradeable,
+    OwnableUpgradeable,
+    IXERC20,
+    ERC20PermitUpgradeable
+```
+
+Below is the order of initialization
+```
+        __ERC20_init(_name, _symbol);
+        __ERC20Permit_init(_name);
+        __Ownable_init();
+```
+
+hence permit init should be called after Ownable init()
