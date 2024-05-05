@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "0xSecuri",
+  "risk": "2",
+  "title": "Unsafe `latestRoundData` fetching may result in DoS for oracle-dependent functionalities",
+  "issueId": 199,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/199"
+}
