@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Sancybars",
+  "risk": "2",
+  "title": "`sweep` can be called regardless of the `sweepBatchSize` ",
+  "issueId": 268,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/268"
+}
