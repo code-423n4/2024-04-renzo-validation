@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "2",
+  "title": "[M-13] `RestakeManager::chooseOperatorDelegatorForWithdraw` - Unbounded Loops can lead to Denial of service attacks",
+  "issueId": 270,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/270"
+}
