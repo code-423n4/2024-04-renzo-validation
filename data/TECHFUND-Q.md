@@ -39,3 +39,10 @@ Below is the order of initialization
 ```
 
 hence permit init should be called after Ownable init()
+
+5) ### xRenzoBridge::sendPrice has hardcoded gas limit. 
+sendPrice() function has hard coded limit as below
+
+```
+    Client.EVMExtraArgsV1({ gasLimit: 200_000 })
+```
