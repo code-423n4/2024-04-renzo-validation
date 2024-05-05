@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "0xSecuri",
+  "risk": "2",
+  "title": "Unsafe typecasting may result in various disruptions to protocol operations",
+  "issueId": 212,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/212"
+}
