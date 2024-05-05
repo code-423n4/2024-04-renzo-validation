@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "SBSecurity",
+  "risk": "2",
+  "title": "WithdrawQueue's lack of expiration can be used to force the withdrawal more from EigenLayer",
+  "issueId": 226,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/226"
+}
