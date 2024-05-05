@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Tendency",
+  "risk": "2",
+  "title": "The Invariant That a Token's TVL in the Protocol Be Within the Set Limit Can Be Broken by an Admin Action",
+  "issueId": 236,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/236"
+}
