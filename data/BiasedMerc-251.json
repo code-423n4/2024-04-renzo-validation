@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "BiasedMerc",
+  "risk": "2",
+  "title": "OperatorDelegator::completeQueuedWithdrawal() will revert who call if balanceOf is 0",
+  "issueId": 251,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/251"
+}
