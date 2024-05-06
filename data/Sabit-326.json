@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Sabit",
+  "risk": "2",
+  "title": "setFeeConfig allows setting feeAddress to zero address when feeBasisPoints is 0",
+  "issueId": 326,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/326"
+}
