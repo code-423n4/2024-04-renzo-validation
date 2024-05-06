@@ -128,3 +128,41 @@ function unpause() external onlyDepositWithdrawPauserAdmin {
     _unpause();
 }
 ```
+
+# Q3
+## Impact
+The pausing mechanism defined in the WithdrawQueue contract is not utilized.
+
+## Proof of Concept
+The WithdrawQueue contract contains functions `pause()` and `unpause()` to pause and unpause the contract, respectively. However, these functions are not called anywhere within the protocol. In critical situations such as encountering bugs or potential attacks, where pausing the protocol is necessary, this mechanism is not utilized, leading to potential risks.
+```solidity
+    /**
+     * @notice  Pause the contract
+     * @dev     Permissioned call (onlyWithdrawQueueAdmin)
+     */
+    function pause() external onlyWithdrawQueueAdmin {
+        _pause();
+    }
+
+    /**
+     * @notice  Unpause the contract
+     * @dev     Permissioned call (onlyWithdrawQueueAdmin)
+     */
+    function unpause() external onlyWithdrawQueueAdmin {
+        _unpause();
+    }
+```
+https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Withdraw/WithdrawQueue.sol#L135-L149
+
+
+
+## Tools Used
+
+## Recommended Mitigation Steps
+Define a modifier `notPaused` and apply it to critical functions such as `withdraw` and `claim` to ensure that the protocol cannot be interacted with while paused:
+```solidity
+modifier notPaused() {
+    if (paused) revert ContractPaused();
+    _;
+}
+```
