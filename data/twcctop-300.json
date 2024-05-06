@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "twcctop",
+  "risk": "2",
+  "title": "`RestakeManager` deposit don't have slippage protection ",
+  "issueId": 300,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/300"
+}
