@@ -18,6 +18,7 @@ The absence of a check for the success of ERC20 token transfers using `transfer`
 ### Mitigation:
 To address this vulnerability, it's crucial to replace the usage of transfer with `safeTransfer` from OpenZeppelin's `SafeERC20` library. `safeTransfer` ensures that the ERC20 token transfer is executed securely by reverting the transaction if the transfer fails.
 ## C. Division by Nearly Zero Denominator in `calculateMintAmount` Function
+[RenzoOracle.sol#L123-L149](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Oracle/RenzoOracle.sol#L123-L149)
 In the `calculateMintAmount` function, there is a potential vulnerability arising from the division operation used to calculate the new supply of ezETH tokens after a deposit. The relevant code snippet is as follows:
 ```solidity
 uint256 newEzETHSupply = (_existingEzETHSupply * SCALE_FACTOR) /
@@ -39,3 +40,18 @@ if (inflationPercentaage >= SCALE_FACTOR) {
 uint256 newEzETHSupply = (_existingEzETHSupply * SCALE_FACTOR) /
             (SCALE_FACTOR - inflationPercentaage);
 ```
+## D. Lack of Secure Fee Transfer Mechanism
+[DepositQueue.sol#L163-L183](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Deposits/DepositQueue.sol#L163-L183)
+The code snippet within the `DepositQueue.sol` contract attempts to transfer fees to an external address specified by `feeAddress` using a low-level call:
+```solidity
+(bool success, ) = feeAddress.call{ value: feeAmount }("");
+if (!success) revert TransferFailed();
+
+```
+This mechanism utilizes a low-level call to transfer funds, which can introduce security risks. Low-level calls are susceptible to reentrancy attacks and other vulnerabilities, especially if the `feeAddress` is a smart contract with a fallback function. If the fallback function contains arbitrary or malicious logic, it could exploit vulnerabilities such as reentrancy or unexpected state changes, leading to unauthorized fund transfers or manipulation of contract state.
+
+### Impact:
+The lack of a secure fee transfer mechanism exposes the contract to potential attacks, including reentrancy exploits or unintended state modifications, which could result in loss of funds or manipulation of contract state.
+
+### Mitigation:
+To address this issue, consider using a safer and more robust method for fee transfers. Instead of using low-level calls, implement withdrawal patterns that separate the fee transfer logic from other contract operations. One effective mitigation strategy is to adopt the "Pull over Push" pattern, where external entities initiate the withdrawal process by pulling funds from the contract using a designated withdrawal function.
