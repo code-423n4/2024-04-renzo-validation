@@ -166,3 +166,38 @@ modifier notPaused() {
     _;
 }
 ```
+
+# Q4
+## Impact
+There is a conflict between roles in setting the cooldown period to a large value.
+
+## Proof of Concept
+According to the protocol documentation, only the role `DEPOSIT_WITHDRAW_PAUSER` should be authorized to pause/unpause withdrawals. However, if the role `WITHDRAW_QUEUE_ADMIN` sets the `coolDownPeriod` to the maximum possible value (`type(uint256).max`), it effectively pauses all withdrawals.
+```solidity
+    /**
+     * @notice Updates the coolDownPeriod for withdrawal requests
+     * @dev    It is a permissioned call (onlyWithdrawQueueAdmin)
+     * @param   _newCoolDownPeriod  new coolDownPeriod in seconds
+     */
+    function updateCoolDownPeriod(uint256 _newCoolDownPeriod) external onlyWithdrawQueueAdmin {
+        if (_newCoolDownPeriod == 0) revert InvalidZeroInput();
+        emit CoolDownPeriodUpdated(coolDownPeriod, _newCoolDownPeriod);
+        coolDownPeriod = _newCoolDownPeriod;
+    }
+```
+https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Withdraw/WithdrawQueue.sol#L124-L133
+
+
+
+## Tools Used
+
+## Recommended Mitigation Steps
+Update the `updateCoolDownPeriod()` function to include a maximum acceptable value for the cooldown period:
+```solidity
+function updateCoolDownPeriod(uint256 _newCoolDownPeriod) external onlyWithdrawQueueAdmin {
+    if (_newCoolDownPeriod == 0) revert InvalidZeroInput();
+    require(_newCoolDownPeriod <= 7*24*60*60, "maximum acceptable value is one week");
+    emit CoolDownPeriodUpdated(coolDownPeriod, _newCoolDownPeriod);
+    coolDownPeriod = _newCoolDownPeriod;
+}
+```
