@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "3",
+  "title": "[H-19] `XERC20Factory` - `abi.encodePacked()` should not be used with dynamic types when passing the result to a hash function such as `keccak256()`, this can lead to hash collisions.",
+  "issueId": 307,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/307"
+}
