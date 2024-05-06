@@ -16,4 +16,26 @@ The `claim` function in the `WithdrawQueue` contract currently utilizes the tran
 The absence of a check for the success of ERC20 token transfers using `transfer` in the `claim` function could lead to funds being lost or stuck within the contract, affecting user experience and potentially causing financial losses.
 
 ### Mitigation:
-To address this vulnerability, it's crucial to replace the usage of transfer with `safeTransfer` from OpenZeppelin's `SafeERC20` library. `safeTransfer` ensures that the ERC20 token transfer is executed securely by reverting the transaction if the transfer fails
+To address this vulnerability, it's crucial to replace the usage of transfer with `safeTransfer` from OpenZeppelin's `SafeERC20` library. `safeTransfer` ensures that the ERC20 token transfer is executed securely by reverting the transaction if the transfer fails.
+## C. Division by Nearly Zero Denominator in `calculateMintAmount` Function
+In the `calculateMintAmount` function, there is a potential vulnerability arising from the division operation used to calculate the new supply of ezETH tokens after a deposit. The relevant code snippet is as follows:
+```solidity
+uint256 newEzETHSupply = (_existingEzETHSupply * SCALE_FACTOR) /
+            (SCALE_FACTOR - inflationPercentaage);
+```
+This division operation poses a risk when `inflationPercentaage` approaches or equals 100%. In such cases, the denominator (`SCALE_FACTOR - inflationPercentaage`) tends towards zero. Division by nearly zero can lead to arithmetic overflow or underflow, potentially compromising the integrity and functionality of the contract.
+
+### Impact:
+The impact of this vulnerability is significant as it could result in unexpected behavior or even contract failure. Attackers could potentially exploit this vulnerability to manipulate the minting process or disrupt the stability of the system.
+
+### Mitigation:
+To mitigate this vulnerability, it is crucial to add a safeguard to prevent division by nearly zero. One effective mitigation strategy is to include a check to ensure that the denominator is not close to zero before performing the division operation. This can be achieved by adding an if statement or using a require statement to validate the inflation percentage.
+```solidity
+if (inflationPercentaage >= SCALE_FACTOR) {
+    // Handle the scenario where the inflation percentage is too high
+    revert InflationTooHigh();
+}
+
+uint256 newEzETHSupply = (_existingEzETHSupply * SCALE_FACTOR) /
+            (SCALE_FACTOR - inflationPercentaage);
+```
