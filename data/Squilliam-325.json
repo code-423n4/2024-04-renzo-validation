@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "2",
+  "title": "[M-18] `DepositQueue::sweepERC20`: ignores the return value of the `token.approve` and can lead to failing to deposit rewards",
+  "issueId": 325,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/325"
+}
