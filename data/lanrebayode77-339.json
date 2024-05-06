@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "lanrebayode77",
+  "risk": "2",
+  "title": "OD.stakeEthFromQueue() fails to check and fill withdrawBuffer deficit.",
+  "issueId": 339,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/339"
+}
