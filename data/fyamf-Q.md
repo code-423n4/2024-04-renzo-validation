@@ -60,3 +60,71 @@ function updateAllocations() public {
 }
 ```
 This function makes sure each delegator gets a fair share based on the total sum of allocations.
+
+
+# Q2
+
+## Impact
+The role assigned to pause withdrawals is incorrect.
+
+## Proof of Concept
+The protocol documentation specifies that only the role `DEPOSIT_WITHDRAW_PAUSER` should be allowed to pause/unpause deposits and withdrawals. However, the actual implementation allows only the role `WITHDRAW_QUEUE_ADMIN` to pause withdrawals, not `DEPOSIT_WITHDRAW_PAUSER`.
+```solidity
+    /**
+     * @notice  Pause the contract
+     * @dev     Permissioned call (onlyWithdrawQueueAdmin)
+     */
+    function pause() external onlyWithdrawQueueAdmin {
+        _pause();
+    }
+
+    /**
+     * @notice  Unpause the contract
+     * @dev     Permissioned call (onlyWithdrawQueueAdmin)
+     */
+    function unpause() external onlyWithdrawQueueAdmin {
+        _unpause();
+    }
+```
+https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Withdraw/WithdrawQueue.sol#L135-L149
+
+```solidity
+    /// @dev Allows only Withdraw Queue Admin to configure the contract
+    modifier onlyWithdrawQueueAdmin() {
+        if (!roleManager.isWithdrawQueueAdmin(msg.sender)) revert NotWithdrawQueueAdmin();
+        _;
+    }
+```
+https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Withdraw/WithdrawQueue.sol#L38-L42
+
+```soldity
+    /// @dev Determine if the specified address haas permission to update Withdraw Queue params
+    /// @param potentialAddress Address to check
+    function isWithdrawQueueAdmin(address potentialAddress) external view returns (bool) {
+        return hasRole(WITHDRAW_QUEUE_ADMIN, potentialAddress);
+    }
+```
+https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Permissions/RoleManager.sol#L96-L100
+
+
+
+
+### Simplified Mitigation Steps
+To align the implementation with the documentation, modify the modifier of the `pause()` and `unpause()` functions to `onlyDepositWithdrawPauserAdmin`.
+```solidity
+/**
+ * @notice Pause the contract
+ * @dev Permissioned call (onlyDepositWithdrawPauserAdmin)
+ */
+function pause() external onlyDepositWithdrawPauserAdmin {
+    _pause();
+}
+
+/**
+ * @notice Unpause the contract
+ * @dev Permissioned call (onlyDepositWithdrawPauserAdmin)
+ */
+function unpause() external onlyDepositWithdrawPauserAdmin {
+    _unpause();
+}
+```
