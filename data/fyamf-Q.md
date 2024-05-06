@@ -261,3 +261,7 @@ function _refundGas(uint256 initialGas) internal {
         emit GasRefunded(msg.sender, gasRefund);
     }
 ```
+
+# Q6
+The function `chooseOperatorDelegatorForWithdraw` is defined, but not used anywhere.
+https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/RestakeManager.sol#L400
