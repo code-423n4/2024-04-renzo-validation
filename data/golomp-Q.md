@@ -1,37 +1,26 @@
 Tittle:
-INCREASE OPTIMIZER RUNS
-
-Description:
-Optimizer variable can optimize costs by increasing the number of runs
-to something like 2000 at least in the config. This value is a tuning
-parameter for deploy v/s runtime costs. Higher values optimize for lower
-runtime cost.
-
-hardhat.config.ts
-
-    const config: any = {
-      solidity: {
-        version: "0.8.20",
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 10,
-          },
-        },
-      },
-
-Recommendation:
-It is recommended to increase optimizer runs.
-*********************************************************************************
-Tittle:
 Variables need not be initialized to zero
 
 Description:
 The default value for variables is zero, so initializing them to zero is redundant.
 
-    uint256 totalDepositAmount = 0;
+    uint256 operatorTVL = 0;
 
-https://github.com/code-423n4/2024-04-noya/blob/9c79b332eff82011dcfa1e8fd51bad805159d758/contracts/connectors/SiloConnector.sol#L109
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/RestakeManager.sol#L291
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/RestakeManager.sol#L676
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/xRenzoDeposit.sol#L372
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/xRenzoDeposit.sol#L398
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Delegation/OperatorDelegator.sol#L507
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Deposits/DepositQueue.sol#L164
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Oracle/RenzoOracle.sol#L109
+
+
 
 *********************************************************************************
 Tittle:
