@@ -201,3 +201,63 @@ function updateCoolDownPeriod(uint256 _newCoolDownPeriod) external onlyWithdrawQ
     coolDownPeriod = _newCoolDownPeriod;
 }
 ```
+
+# Q5
+## Impact
+The gas refund mechanism for the admin in the `DepositQueue` contract is not accurate.
+
+## Proof of Concept
+ - In `OperatorDelegator`: Gas refund function accurately calculates the refund considering `baseGasAmountSpent`.
+ - In `DepositQueue`: Gas refund function does not include `baseGasAmountSpent` in the calculation.
+
+```solidity
+    function _recordGas(uint256 initialGas) internal {
+        uint256 gasSpent = (initialGas - gasleft() + baseGasAmountSpent) * tx.gasprice;
+        adminGasSpentInWei[msg.sender] += gasSpent;
+        emit GasSpent(msg.sender, gasSpent);
+    }
+```
+https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Delegation/OperatorDelegator.sol#L470-L474
+
+```solidity
+    function _refundGas() internal returns (uint256) {
+        uint256 gasRefund = address(this).balance >= adminGasSpentInWei[tx.origin]
+            ? adminGasSpentInWei[tx.origin]
+            : address(this).balance;
+        bool success = payable(tx.origin).send(gasRefund);
+        if (!success) revert TransferFailed();
+
+        // reset gas spent by admin
+        adminGasSpentInWei[tx.origin] -= gasRefund;
+
+        emit GasRefunded(tx.origin, gasRefund);
+        return gasRefund;
+    }
+```
+https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Delegation/OperatorDelegator.sol#L481-L493
+
+```solidity
+    function _refundGas(uint256 initialGas) internal {
+        uint256 gasUsed = (initialGas - gasleft()) * tx.gasprice;
+        uint256 gasRefund = address(this).balance >= gasUsed ? gasUsed : address(this).balance;
+        (bool success, ) = payable(msg.sender).call{ value: gasRefund }("");
+        if (!success) revert TransferFailed();
+        emit GasRefunded(msg.sender, gasRefund);
+    }
+```
+https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Deposits/DepositQueue.sol#L283-L289
+
+## Tools Used
+
+## Recommended Mitigation Steps
+It is suggested to update the gas refund function in the `DepositQueue` contract to include `baseGasAmountSpent` in the calculation for better accuracy. This ensures consistency with the gas refund mechanism in the `OperatorDelegator` contract. 
+
+```solidity
+function _refundGas(uint256 initialGas) internal {
+        uint256 gasUsed = (initialGas - gasleft() + baseGasAmountSpent) * tx.gasprice;
+        uint256 gasRefund = address(this).balance >= gasUsed ? gasUsed : address(this).balance;
+        (bool success, ) = payable(msg.sender).call{ value: gasRefund }("");
+        if (!success) revert TransferFailed();
+        emit GasRefunded(msg.sender, gasRefund);
+    }
+```
