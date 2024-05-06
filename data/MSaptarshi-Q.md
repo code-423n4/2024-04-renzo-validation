@@ -12,3 +12,9 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 If the protocol becomes permisionless it might be a big problem
 ## Recommendation
 Validate admin before trusting them properly
+
+# [L-03] Do not use msg.sender as delegatee in connext.xcall
+Although the functions are restricted to admin related, the issue is mostly mitigated, but it's better not to use delegatee as msg.sender
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/xRenzoDeposit.sol#L434
+## Recommendation
+Use the admin configurable address in this cases
