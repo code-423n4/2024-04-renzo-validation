@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Tigerfrake",
+  "risk": "3",
+  "title": "Miscalculation of `totalRewards` earned by the protocol",
+  "issueId": 335,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/335"
+}
