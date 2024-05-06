@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "bareli",
+  "risk": "2",
+  "title": "\"call()\" should be used instead of \"transfer()\"",
+  "issueId": 342,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/342"
+}
