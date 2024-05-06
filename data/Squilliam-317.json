@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "2",
+  "title": "[M-16] `xRenzoBridge::sendPrice()`: Ignoring Return Values can lead to stale data and loss of funds",
+  "issueId": 317,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/317"
+}
