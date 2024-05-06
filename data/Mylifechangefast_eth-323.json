@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Mylifechangefast_eth",
+  "risk": "2",
+  "title": "No handling of WETH when it is been deposited into the bridge",
+  "issueId": 323,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/323"
+}
