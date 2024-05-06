@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "DanielArmstrong",
+  "risk": "3",
+  "title": "`RestakeManager.sol#calculateTVLs` function miscalculates the value of `totalWithdrawalQueueValue`.",
+  "issueId": 341,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/341"
+}
