@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "2",
+  "title": "[M-13] `xRenzoDeposit::_deposit` -  Rounding errors leads to users receiving an incorrect amount of xezETH tokens.",
+  "issueId": 290,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/290"
+}
