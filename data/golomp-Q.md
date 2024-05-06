@@ -27,7 +27,7 @@ Tittle:
 Typographical error in function name
 
 Description:
-The function name checkIfTVLHasDroped() in the AccountingManager.sol contract contains a typographical error, where "Droped" is misspelled as "Dropped". While being non-critical and not impacting the functionality, security, or performance of the contract, the typo could potentially cause mild confusion or readability issues for developers/users reviewing or interacting with the code. Correcting the spelling would enhance code clarity and maintain naming consistency without affecting the contract's execution or behavior.
+The comment in WithdrawQueueStorage.sol contract contains a typographical error, where "mapping" is misspelled as "mapiing". While being non-critical and not impacting the functionality, security, or performance of the contract, the typo could potentially cause mild confusion or readability issues for developers/users reviewing or interacting with the code. Correcting the spelling would enhance code clarity and maintain naming consistency without affecting the contract's execution or behavior.
 
 *********************************************************************************
 Tittle:
