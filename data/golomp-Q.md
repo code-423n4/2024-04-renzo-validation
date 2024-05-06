@@ -3,10 +3,12 @@ Variables need not be initialized to zero
 
 Description:
 The default value for variables is zero, so initializing them to zero is redundant.
-
+Example:
     uint256 operatorTVL = 0;
 
 https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/RestakeManager.sol#L291
+
+Other places:
 
 https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/RestakeManager.sol#L676
 
