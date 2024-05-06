@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "bigtone",
+  "risk": "2",
+  "title": "Missing emitting of `WithdrawBufferTargetUpdated` event in the `initialize` function in the `WithdrawQueue` contract.",
+  "issueId": 310,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/310"
+}
