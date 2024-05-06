@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "bareli",
+  "risk": "2",
+  "title": "\"latestRoundData\"  might return stale or incorrect results",
+  "issueId": 376,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/376"
+}
