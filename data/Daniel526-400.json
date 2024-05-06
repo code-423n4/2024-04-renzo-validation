@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Daniel526",
+  "risk": "2",
+  "title": "Incomplete Handling of Protocol Rewards in DepositQueue Contract",
+  "issueId": 400,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/400"
+}
