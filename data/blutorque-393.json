@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "blutorque",
+  "risk": "2",
+  "title": "OperatorDelegator unable to redelegate their shares to another operator, if the current operators chooses to undelegate themselves",
+  "issueId": 393,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/393"
+}
