@@ -1,5 +1,7 @@
  # [L-01] - EzETHToken initialized with wrong name and symbol 
 
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/token/EzEthToken.sol#L36
+
 ```
     function initialize(IRoleManager _roleManager) public initializer {
         if (address(_roleManager) == address(0x0)) revert InvalidZeroInput();
