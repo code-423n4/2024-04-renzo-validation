@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "3",
+  "title": "[H-16] `RenzoOracleL2::getMintRate` - Lack of Error Handling for Oracle Reverts can lead to a Denial of Service",
+  "issueId": 285,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/285"
+}
