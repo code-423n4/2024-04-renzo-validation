@@ -190,6 +190,77 @@ Given the identified centralization risks and the current implementation of the 
 
 By implementing these measures, the `WithdrawQueue` contract can become more resilient, transparent, and less susceptible to centralization risks, ultimately enhancing user confidence and security.
 
+## [C-04] Centralization Risks in OperatorDelegator Contract
+
+https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Delegation/OperatorDelegator.sol
+
+The `OperatorDelegator` contract exhibits several potential centralization risks that warrant attention:
+
+###### 1. Role-Based Access Control
+
+**`OperatorDelegatorAdmin`** has significant power, including:
+
+- Setting token strategies, potentially directing funds to malicious or inefficient strategies.
+
+- Setting the `delegate` address for `EigenLayer`, potentially compromising the entire pool of staked assets.
+
+- Setting the base gas amount spent, potentially manipulating gas refunds and impacting protocol efficiency.
+
+**`NativeEthRestakeAdmin`** controls key `EigenLayer` interactions:
+
+- Activating restaking, potentially impacting the timing and execution of restaking operations.
+
+- Queuing and completing withdrawals, potentially affecting the liquidity and availability of staked assets.
+
+- Verifying withdrawal credentials, potentially influencing the validation process and reward distribution.
+
+- Withdrawing non-beacon chain ETH, potentially misappropriating funds or impacting protocol stability.
+
+- Recovering tokens, potentially leading to unintended consequences or misuse of recovered assets.
+
+- Starting delayed withdrawals, potentially affecting the timing and efficiency of fund recovery.
+
+###### 2. Single Delegate Address:
+
+- The contract delegates all tokens to a single address in `EigenLayer`. If this address is compromised or becomes malicious, the entire pool of staked assets could be at risk.
+
+###### 3. RestakeManager Dependency:
+
+- The contract heavily relies on the `RestakeManager` for deposit and withdrawal operations. If the `RestakeManager` is compromised or malfunctions, it could disrupt the entire staking and restaking process.
+
+###### 4. EigenPodManager Dependency:
+
+- The contract interacts with the `EigenPodManager` for `ETH` staking and withdrawal operations. Any issues with the `EigenPodManager` could directly impact the security and efficiency of `ETH` staking within the system.
+
+###### Centralization Score: 8/10 (HIGH)
+
+Given the identified centralization risks and their potential impact, I would assign a centralization score of 8 out of 10 to the `OperatorDelegator` contract.
+
+###### Rationale:
+
+- **High-Impact Roles:** The presence of powerful roles like `OperatorDelegatorAdmin` and `NativeEthRestakeAdmin`, controlling critical functions with minimal checks and balances, significantly increases the centralization risk.
+
+- **Single Point of Failure:** Delegating all assets to a single address in `EigenLayer` creates a significant vulnerability, as compromising this address could lead to a catastrophic loss.
+
+- **Dependencies on External Contracts:** The reliance on `RestakeManager` and `EigenPodManager` introduces additional points of failure, further amplifying the centralization risk.
+
+###### Recommendations for Mitigation:
+
+- **Decentralize Governance:** Implement a DAO or multi-sig mechanism for critical operations like setting strategies, changing delegate addresses, and managing EigenLayer interactions.
+
+- **Multi-Delegate Strategy:** Consider delegating to multiple addresses in EigenLayer to diversify risk and avoid single points of failure.
+
+- **Implement Timelocks:** Introduce timelocks for critical actions, allowing for community review and intervention in case of suspicious activity.
+
+- **Enhanced Monitoring and Auditing:** Continuously monitor contract activity and conduct regular audits to detect and prevent potential vulnerabilities or malicious behavior.
+
+- **Transparency and Community Involvement:** Promote transparency by publicly documenting roles, permissions, and decision-making processes. Encourage community involvement in governance and oversight.
+
+`Overall`: The `OperatorDelegator` contract, in its current state, exhibits a high degree of centralization. Implementing the recommended mitigation strategies is crucial to enhance its security, transparency, and resilience.
+
+
+
+
 
 
 
