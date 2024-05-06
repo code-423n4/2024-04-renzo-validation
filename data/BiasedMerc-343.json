@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "BiasedMerc",
+  "risk": "2",
+  "title": "DepositQueue::depositETHFromProtocol() access control doesn't stop anyone from calling _checkAndFillETHWithdrawBuffer()",
+  "issueId": 343,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/343"
+}
