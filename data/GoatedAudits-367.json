@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "GoatedAudits",
+  "risk": "3",
+  "title": "Incorrect token used when calculating WithdrawalQueue's TVL",
+  "issueId": 367,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/367"
+}
