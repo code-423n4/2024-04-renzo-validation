@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "3",
+  "title": "[H-18] `RenzoOracleL2::getMintRate` - Lack of Handling for Flash Crash Inaccuracies could lead to significant financial losses for users",
+  "issueId": 287,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/287"
+}
