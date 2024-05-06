@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "2",
+  "title": "[M-19] `RestakeManager::deposit` and `RestakeManager::depositTokenRewardsFromProtocol`  ignore the return values of the operatorDelegator.deposit() calls, leading to loss of user funds as the protocol will not be able to correctly track the user's deposits or the rewards being deposited.",
+  "issueId": 330,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/330"
+}
