@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "kaveyjoe",
+  "risk": "2",
+  "title": "Lack of Input Validation in sendPrice Function",
+  "issueId": 304,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/304"
+}
