@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "2",
+  "title": "[M-15] `XERC20.sol` and `OptimismMintableXERC20` - Lack of Handling for Zero-Amount Transfers can lead to issues in integrations and operations.",
+  "issueId": 305,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/305"
+}
