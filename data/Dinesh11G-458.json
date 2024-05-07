@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Dinesh11G",
+  "risk": "3",
+  "title": "Storage Collision Between `roleManager` and `_owner` Variables",
+  "issueId": 458,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/458"
+}
