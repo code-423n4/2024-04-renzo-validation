@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "adeolu",
+  "risk": "2",
+  "title": "No sequencer check when using chainlink oracle on \"optimism like\" L2",
+  "issueId": 527,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/527"
+}
