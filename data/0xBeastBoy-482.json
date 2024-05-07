@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "0xBeastBoy",
+  "risk": "2",
+  "title": "Potential 0 Token TVL Limit Set in setTokenTvlLimit Function of RestakeManager contract",
+  "issueId": 482,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/482"
+}
