@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Rhaydden",
+  "risk": "3",
+  "title": "Inactive Operator Delegators Can Have ETH Deposits Leading to Miscalculated TVL",
+  "issueId": 512,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/512"
+}
