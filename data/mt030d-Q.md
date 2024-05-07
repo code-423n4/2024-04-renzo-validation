@@ -26,3 +26,14 @@ The `WithdrawQueue` contract inherits from `PausableUpgradeable` and defines the
 However, the pause mechanism is not utilized in WithdrawQueue's core functionality. 
 
 To improve contract consistency, consider adding the `whenNotPaused` modifier to the `fillEthWithdrawBuffer()` and `fillERC20WithdrawBuffer()` functions. Alternatively, if the pause mechanism is redundant, consider removing it.
+
+# 3. `WithdrawQueue.claim()` may alter the order of `withdrawRequests`, causing the `withdrawRequestIndex` to mismatch the `withdrawRequestID` in `WithdrawRequestCreated` events.
+
+```
+        // delete the withdraw request
+        withdrawRequests[msg.sender][withdrawRequestIndex] = withdrawRequests[msg.sender][
+            withdrawRequests[msg.sender].length - 1
+        ];
+        withdrawRequests[msg.sender].pop();
+```
+The `WithdrawQueue.claim()` function swaps the last element in `withdrawRequests` with the indexed one and then removes the last element. As a result, the element at the `withdrawRequestID` of `WithdrawRequestCreated` events may not match the original element. Users should be aware of this potential issue.
