@@ -668,6 +668,12 @@ The way UniswapV2 prevents this is by requiring a minimum deposit amount and sen
 
 # 16. Steth rebasing property will break approvals, accounting and various protocol limits
 
-## Impact
+### Impact
 
-The contract performs transfers and approvals without checking for token balances before and after. This will lead to issues as the protcol aims to support `stETH` which is a rebasing token. It's increase or decrease as the balance of Eth in certain pools changes to maintain peg can also break the various deposit, tvl and collateral limits. 
+The contract performs transfers and approvals without checking for token balances before and after. This will lead to issues as the protcol aims to support `stETH` which is a rebasing token. It's increase or decrease as the balance of Eth in certain pools changes to maintain peg can also break the various deposit, tvl and collateral limits.
+
+# 17. `stETH`/`ETH` chainlink oracle has too long of heartbeat and deviation threshold
+
+### Impact
+
+Protocol uses `stETH`/`ETH` chainlink oracle to get its price. This can be problematic (due to the possibility of arbitrage) since stETH/ETH has a 24 hour heartbeat and a 2% deviation threshold. This deviation in price could easily cause loss of funds to the user. The large hearbeat and deviation means that the price can move up to 2% or 24 hours before a price update is triggered. The result is that the on-chain price could be much different than the true stETH price. Consider using Use the `stETH`/`USD` oracle instead because it has a 1-hour heartbeat and a 1% deviation threshold.
