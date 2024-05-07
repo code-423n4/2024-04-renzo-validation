@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "bigtone",
+  "risk": "3",
+  "title": "RenzoOracleL2's Chainlink integration doesn't include checks for L2 sequencer downtime, exposing the oracle to stale data during outages",
+  "issueId": 520,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/520"
+}
