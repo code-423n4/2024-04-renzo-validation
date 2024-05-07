@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "ilchovski",
+  "risk": "3",
+  "title": "Usage of transfer instead of call to transfer native currency can cause DOS and permanently locking funds",
+  "issueId": 493,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/493"
+}
