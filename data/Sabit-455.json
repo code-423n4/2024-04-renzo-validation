@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Sabit",
+  "risk": "2",
+  "title": "stakeEthFromQueueMulti does not check for duplicate signatures ",
+  "issueId": 455,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/455"
+}
