@@ -1,5 +1,5 @@
-## Title
-Incorrect Deposit Amount Logged in RestakeManager's Deposit Event
+
+# 1. Incorrect Deposit Amount Logged in RestakeManager's Deposit Event
 
 ## Detail
 
@@ -19,3 +19,10 @@ If `bufferToFill` is not zero, the `_amount` value passed into the Deposit event
 
 ## Impact
 If the deposit amount in the Deposit event is used to determine the user's ezPoints and further rewards (e.g., airdrop of $REZ tokens), this issue is significant. The Deposit event logs a lower deposited amount, which could lead to fewer platform rewards for the user.
+
+# 2. Unused pause mechanism in `WithdrawQueue`
+The `WithdrawQueue` contract inherits from `PausableUpgradeable` and defines the external `pause()` and `unpause()` functions. 
+
+However, the pause mechanism is not utilized in WithdrawQueue's core functionality. 
+
+To improve contract consistency, consider adding the `whenNotPaused` modifier to the `fillEthWithdrawBuffer()` and `fillERC20WithdrawBuffer()` functions. Alternatively, if the pause mechanism is redundant, consider removing it.
