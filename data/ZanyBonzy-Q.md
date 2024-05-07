@@ -250,3 +250,139 @@ Consider removing the check, if price feed has not been updated by the owner in 
             revert OraclePriceExpired();
         }
 ```
+
+***
+
+# 6. Use of a general max mint/burn limit for bridge can introduce possibility of DDOS
+
+Lines of code* 
+
+https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/Bridge/xERC20/contracts/XERC20.sol#L152
+
+https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/Bridge/xERC20/contracts/XERC20.sol#L163
+
+### Impact
+
+In XERC20.sol, there's a max limit introduced on the bridge, which indicates how much can be minted or burned by a bridge at a time. However, the protocol introduces no limit on how much tokens a user can mint/burn at a time.
+
+```solidity
+    function mintingMaxLimitOf(address _bridge) public view returns (uint256 _limit) {
+        _limit = bridges[_bridge].minterParams.maxLimit;
+    }
+```
+
+```solidity
+    function burningMaxLimitOf(address _bridge) public view returns (uint256 _limit) {
+        _limit = bridges[_bridge].burnerParams.maxLimit;
+    }
+
+```
+
+This introduces a consequence in which whale addresses can easily use up the mint and burn limits of bridges, causing a form of DDOS for other users.
+Griefers can also take advantage of this by maliciously frontrunning other users transactions with just enough amount to cause their transaction to exceed bridge limit.
+In a more extreme or coordinated attack, attackers can continously mint and burn tokens (mint and burn limits are independent of each other) to slowly meet the bridge limits causing a problems for the network and bad user experience.
+
+### Recommended Mitigation Steps
+
+A good way is to put a max limit on how much users can mint or burn at a time.
+
+***
+
+# 7. `updateXRenzoBridgeL1` should check if contract is paused
+
+Lines of code* 
+
+https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/Bridge/L2/PriceFeed/CCIPReceiver.sol#L96
+
+### Impact
+
+From the comment in the constructor of ConnextReceiver.sol, the contract is paused so as to be able to setup `xRenzoDeposit` address 
+
+```solidity
+    constructor(
+        address _router,
+        address _xRenzoBridgeL1,
+        uint64 _ccipEthChainSelector
+    ) CCIPReceiver(_router) {
+...
+        // Pause The contract to setup xRenzoDeposit
+        _pause();
+    }
+```
+And the `updateXRenzoBridgeL1` is used to set or potentially update the `xRenzoBridgeL1` address, but it's missing a check for contract's current paused status, meaning that the address can be set up whether the contract is paused or not, which goes against the desired behaviour of the contract. 
+
+```solidity
+    /**
+     * @notice This function updates the xRenzoBridge Contract address deployed on Ethereum L1
+     * @dev This should be a permissioned call (onlyOnwer)
+     * @param _newXRenzoBridgeL1 New address of xRenzoBridge Contract
+     */
+    function updateXRenzoBridgeL1(address _newXRenzoBridgeL1) external onlyOwner {
+        if (_newXRenzoBridgeL1 == address(0)) revert InvalidZeroInput();
+        emit XRenzoBridgeL1Updated(_newXRenzoBridgeL1, xRenzoBridgeL1);
+        xRenzoBridgeL1 = _newXRenzoBridgeL1;
+    }
+```
+
+### Recommended Mitigation Steps
+Consider introducing a `whenPaused` modifier or check if contract is paused before updating the address.
+
+***
+
+# 8. Conflicting function logics in RewardHandler.sol
+
+Lines of code* 
+https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/Rewards/RewardHandler.sol#L52
+
+https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/Rewards/RewardHandler.sol#L58
+
+### Impact
+
+RewardHandler holds the `_forwardETH` function which is responsible transferring `ETH` in the contract to the `rewarddesitnation`. 
+THe function can be triggered through the `receive` and `forwardRewards` functions. `forwardRewards` function is protected by the `onlyNativeEthRestakeAdmin` modifier, hinting that only the Native Eth Restake Admin should be able to call the function, but the receive function can be triggered by anyone. They both perform the same function.
+
+```solidity
+    /// @dev Forwards all native ETH rewards to the DepositQueue contract
+    /// Handle ETH sent to this contract from outside the protocol that trigger contract execution - e.g. rewards
+    receive() external payable nonReentrant {
+        _forwardETH();
+    }
+
+```
+
+```solidity
+    /// @dev Forwards all native ETH rewards to the DepositQueue contract
+    /// Handle ETH sent to this contract from validator nodes that do not trigger contract execution - e.g. rewards
+    function forwardRewards() external nonReentrant onlyNativeEthRestakeAdmin {
+        _forwardETH();
+    }
+```
+
+Important to also note that the `forwardRewards` function is not marked payable, so admin can't directly send ETH through the function. If he desires to send ETH, he has to send it through the receive function which triggers `_forwardETH` anyway.
+
+### Recommended Mitigation Steps
+
+If truly desired that only the admin should be able to forward ETH, consider removing `_forwardETH` from `receive`
+
+```solidity
+    /// @dev Forwards all native ETH rewards to the DepositQueue contract
+    /// Handle ETH sent to this contract from outside the protocol that trigger contract execution - e.g. rewards
+    receive() external payable nonReentrant {
+   //     _forwardETH();
+    }
+
+```
+
+On the contrary, the `onlyNativeEthRestakeAdmin` modifier can be removed from `forwardRewards` so anyone can call it, or removing the function entirely.
+
+
+```solidity
+    /// @dev Forwards all native ETH rewards to the DepositQueue contract
+    /// Handle ETH sent to this contract from validator nodes that do not trigger contract execution - e.g. rewards
+    function forwardRewards() external nonReentrant /**onlyNativeEthRestakeAdmin */{
+        _forwardETH();
+    }
+```
+
+
+***
