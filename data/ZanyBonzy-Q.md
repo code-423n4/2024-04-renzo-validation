@@ -386,3 +386,118 @@ On the contrary, the `onlyNativeEthRestakeAdmin` modifier can be removed from `f
 
 
 ***
+
+# 9. Uncleared collateral token limits will cause issues upon readding tokens
+
+Links to affected code *
+
+https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/RestakeManager.sol#L220
+
+https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/RestakeManager.sol#L244
+
+https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/RestakeManager.sol#L709
+
+https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/RestakeManagerStorage.sol#L65
+
+### Impact
+
+RestakeManagerAdmin can add or remove collateral tokens as its needed. Upon adding collateral token, by default, the Tvl Limit is non existent, meaning users can deposit as much as they want without any restrictions.
+
+```solidity
+    function deposit(
+        IERC20 _collateralToken,
+        uint256 _amount,
+        uint256 _referralId
+    ) public nonReentrant notPaused {
+...
+        // Enforce individual token TVL limit if set, 0 means the check is not enabled
+        if (collateralTokenTvlLimits[_collateralToken] != 0) {
+            // Track the current token's TVL
+            uint256 currentTokenTVL = 0;
+
+            // For each OD, add up the token TVLs
+            uint256 odLength = operatorDelegatorTokenTVLs.length;
+            for (uint256 i = 0; i < odLength; ) {
+                currentTokenTVL += operatorDelegatorTokenTVLs[i][tokenIndex];
+                unchecked {
+                    ++i;
+                }
+            }
+
+            // Check if it is over the limit
+            if (currentTokenTVL + collateralTokenValue > collateralTokenTvlLimits[_collateralToken])
+                revert MaxTokenTVLReached();
+        }
+...
+    }
+```
+
+RestakeManagerAdmin can set a tvl limit for the collateral token which updates the [collateralTokenTvlLimits](https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/RestakeManagerStorage.sol#L65) mapping. 
+
+```solidity
+    function setTokenTvlLimit(IERC20 _token, uint256 _limit) external onlyRestakeManagerAdmin {
+        // Verify collateral token is in the list - call will revert if not found
+        getCollateralTokenIndex(_token);
+
+        // Set the limit
+        collateralTokenTvlLimits[_token] = _limit;
+
+        emit CollateralTokenTvlUpdated(_token, _limit);
+    }
+```
+
+However, upon removing collateral, this mapping is not cleared, the token is only removed.
+
+```solidity
+    function removeCollateralToken(
+        IERC20 _collateralTokenToRemove
+    ) external onlyRestakeManagerAdmin {
+        // Remove it from the list
+        uint256 tokenLength = collateralTokens.length;
+        for (uint256 i = 0; i < tokenLength; ) {
+            if (address(collateralTokens[i]) == address(_collateralTokenToRemove)) {
+                collateralTokens[i] = collateralTokens[collateralTokens.length - 1];
+                collateralTokens.pop();
+                emit CollateralTokenRemoved(_collateralTokenToRemove);
+                return;
+            }
+            unchecked {
+                ++i;
+            }
+        }
+
+        // If the item was not found, throw an error
+        revert NotFound();
+    }
+```
+
+So upon readding the collateral token, the previously set tvllimit will still hold. Depending on how the protocol desires to work with collateral tokens that are readded, this can lead unexpected behaviours and reversions.
+
+### Recommended Mitigation Steps
+
+Unless such a behaviour is desired, its more advisable to remove tvl limits upon collateral token removal.
+
+```solidity
+    function removeCollateralToken(
+        IERC20 _collateralTokenToRemove
+    ) external onlyRestakeManagerAdmin {
+        // Remove it from the list
+        uint256 tokenLength = collateralTokens.length;
+        for (uint256 i = 0; i < tokenLength; ) {
+            if (address(collateralTokens[i]) == address(_collateralTokenToRemove)) {
+                collateralTokenTvlLimits[_collateralTokenToRemove] = 0; ++++
+                collateralTokens[i] = collateralTokens[collateralTokens.length - 1];
+                collateralTokens.pop();
+                emit CollateralTokenRemoved(_collateralTokenToRemove);
+                return;
+            }
+            unchecked {
+                ++i;
+            }
+        }
+
+        // If the item was not found, throw an error
+        revert NotFound();
+    }
+```
+***
