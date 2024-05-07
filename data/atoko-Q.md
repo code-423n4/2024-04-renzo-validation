@@ -11,6 +11,8 @@
 | [L-06] | Lack of Rate Limiting in sendPrice Function      |  1 |
 | [L-07] | NonReentrant modifier should start     |  1 |
 | [L-08] | No deadline check for signatures    |  1 |
+| [L-09] | Unhandled chainlink revert would lock all price oracle access   |  1 |
+| [L-10] | Potential premature exit in `setOperatorDelegatorAllocation` function   |  1 |
 
 ## [L-01] : CCIP Router addresses cannot be updated in `CCIPReceiver`
 
@@ -275,6 +277,65 @@ The stakeEth function uses a signature to ensure only authorized parties can cal
 
 The signature should not be valid forever and therefore the function should consider using deadline for it
 
+## [L-09] : Unhandled chainlink revert would lock all price oracle access
+
+Call to `latestRoundData` could potentially revert and make it impossible to query any prices. Feeds cannot be changed after they are configured
+this would result in a permanent denial of service.
+
+Proof of Concept
+Chainlink's multisigs can immediately block access to price feeds at will. Therefore, to prevent denial of service scenarios, it is recommended to query Chainlink price feeds using a defensive approach with Solidity’s try/catch structure. In this way, if the call to the price feed fails, the caller contract is still in control and can handle any errors safely and explicitly.
+
+```javascript
+
+        (, int256 price, , uint256 timestamp, ) = oracle.latestRoundData();
+        if (timestamp < block.timestamp - MAX_TIME_WINDOW) revert OraclePriceExpired();
+        if (price <= 0) revert InvalidOraclePrice();
+
+        // Price is times 10**18 ensure token amount is scaled
+        return (_value * SCALE_FACTOR) / uint256(price);
+    }
+
+```
+
+
+Tools Used
+Manual Review
+
+Recommended Mitigation Steps
+Surround the call to latestRoundData() with try/catch instead of calling it directly. In a scenario where the call reverts, the catch block can be used to call a fallback oracle or handle the error in any other suitable way. 
+
+***Instances***
+
+https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Oracle/RenzoOracle.sol#L92
+
+## [L-10] : Potential premature exit in `setOperatorDelegatorAllocation` function
+
+ The setOperatorDelegatorAllocation function in the smart contract has a potential issue with the use of the break statement inside the for loop. If the condition for the break statement is met, the loop will exit prematurely without iterating through the entire array of operatorDelegators. This could lead to misconfigurations or missed allocations if there are duplicate entries in the array.
+
+```javascript
+ // Ensure the OD is in the list to prevent mis-configuration
+        bool foundOd = false;
+        uint256 odLength = operatorDelegators.length;
+        for (uint256 i = 0; i < odLength; ) {
+            if (address(operatorDelegators[i]) == address(_operatorDelegator)) {
+                foundOd = true;
+                break;
+            }
+            unchecked {
+                ++i;
+            }
+        }
+        if (!foundOd) revert NotFound();
+
+```
+
+Impact: If there are duplicate entries in the operatorDelegators array, the premature exit of the loop could result in certain items not being checked for, potentially leading to misconfigurations or missed allocations. This could introduce vulnerabilities or unexpected behavior in the contract.
+
+Recommendation: Refactor the function to ensure that all items in the operatorDelegators array are properly checked before proceeding. Instead of using break, use a straightforward iteration through the array without premature exits. This will ensure that all items are properly handled. 
+
+***Instances***
+https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/RestakeManager.sol#L200
+
 
 ## Non-Critical Findings
 
@@ -288,6 +349,7 @@ The signature should not be valid forever and therefore the function should cons
 | [NC-06] | Else block is not required    |  2 |
 | [NC-07] | Missing event for important parameter change     |  1 |
 | [NC-08] | Miss-matching comments could be confusing    |  4 |
+| [NC-09] | Pausable could be bypassed    |  1 |
 
 
 ## [NC-01] : Activate the Optimizer
@@ -449,6 +511,10 @@ https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Bridge/L2/PriceF
 https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Bridge/L2/PriceFeed/ConnextReceiver.sol#L118
 
 https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Bridge/L2/PriceFeed/ConnextReceiver.sol#L110
+
+## [NC-09] : Pausable could be bypassed 
+
+It's generally recommended to use well-tested, audited, and community-reviewed contracts like `OpenZeppelin's Pausable` rather than implementing your own. These contracts have undergone thorough security reviews and are less likely to have vulnerabilities. Moreover, they often provide additional functionality and flexibility, such as pausing only specific functions or providing emergency stop functionalities. 
 
 
 
