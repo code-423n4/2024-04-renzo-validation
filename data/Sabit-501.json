@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Sabit",
+  "risk": "2",
+  "title": "Lack of signature validation in stakeEthFromQueue and stakeEthInOperatorDelegator functions",
+  "issueId": 501,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/501"
+}
