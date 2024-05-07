@@ -501,3 +501,72 @@ Unless such a behaviour is desired, its more advisable to remove tvl limits upon
     }
 ```
 ***
+# 10. Include a check to ensure the set `_rewardDestination` is not the RewardHandler address
+
+Lines of code* 
+
+https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/Rewards/RewardHandler.sol#L77
+
+### Impact
+Setting `RewardHandler` as `_rewardDestination` will trigger an OOG infinte loop scenario whenever the contract recevies ETH. Or when the NativeEthRestakeAdmin tries to forward rewards.
+
+The `_forwardETH` function will send the balance to the `rewardDestination`, in this case, `RewardHandler` which holds a `receive` function.
+```solidity
+    function _forwardETH() internal {
+        uint256 balance = address(this).balance;
+        if (balance == 0) {
+            return;
+        }
+
+        (bool success, ) = rewardDestination.call{ value: balance }("");
+        if (!success) revert TransferFailed();
+    }
+```
+
+The receive function will again trigger the `_forwardETH` function and so the loop will continue, triggerring an out of gas error anytime ETH is deposted into the contract. The same applies for the `forwardRewards` function.
+```solidity
+    receive() external payable nonReentrant {
+        _forwardETH();
+    }
+```
+### Recommended Mitigation Steps
+
+Include a check in `setRewardDestination` function.
+
+```solidity
+    function setRewardDestination(
+        address _rewardDestination
+    ) external nonReentrant onlyRestakeManagerAdmin {
+        if (address(_rewardDestination) == address(0x0) || address(_rewardDestination) == RewardsHandler) revert();  ++++
+
+        rewardDestination = _rewardDestination;
+
+        emit RewardDestinationUpdated(_rewardDestination);
+    }
+}
+```
+***
+# 11. Use of the same staleness window for all assets is not advisable
+
+Lines of code*
+
+https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/Oracle/RenzoOracle.sol#L26
+
+### Impact
+RenzoOracle uses the same a stale window of about a day and 1 minute for all the tokens that are in use.
+
+```solidity
+ uint256 constant MAX_TIME_WINDOW = 86400 + 60;
+```
+
+This value is used in [`lookupTokenValue`](https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/Oracle/RenzoOracle.sol#L71) and [`lookupTokenAmountFromValue`](https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/Oracle/RenzoOracle.sol#L85C14-L85C40) functions to ensure that returned prices are not stale. The returned values are then used to get token prices upon collateral token [deposit](https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/RestakeManager.sol#L507) or [withdrawal](https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/Withdraw/WithdrawQueue.sol#L229) and to calculate [rewards](https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/RestakeManager.sol#L688) and [tvl](https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/RestakeManager.sol#L307-L317).
+
+Currently, the tokens in use have relatively the same heartbeat, so its not really much of a problem.
+https://data.chain.link/feeds/ethereum/mainnet/steth-eth
+https://data.chain.link/feeds/ethereum/mainnet/ezeth-eth
+
+But, considering that collateral tokens can be [added](https://github.com/code-423n4/2024-04-renzo/blob/1c7cc4e632564349b204b4b5e5f494c9b0bc631d/contracts/RestakeManager.sol#L220), some of the added tokens may have shorter heartbeats, which will lead to protocol working with stale prices.
+
+### Recommended Mitigation Steps
+Consider using a mapping to set each collateral token, to its desired heartbeat. That way differences in hearbeats can be properly handled.
+***
