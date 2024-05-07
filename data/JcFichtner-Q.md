@@ -258,7 +258,53 @@ Given the identified centralization risks and their potential impact, I would as
 
 `Overall`: The `OperatorDelegator` contract, in its current state, exhibits a high degree of centralization. Implementing the recommended mitigation strategies is crucial to enhance its security, transparency, and resilience.
 
+## [C-05] Centralization Risks in xRenzoDeposit Contract
 
+https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Bridge/L2/xRenzoDeposit.sol
+
+Here's an analysis of potential centralization risks within the provided contract:
+
+###### 1. Owner Privileges:
+
+- **Updating Price Feed:** The `updatePriceByOwner` function allows the owner to manually set the price of `ezETH`, which could be manipulated for personal gain or to negatively impact users.
+
+- **Setting Allowed Bridge Sweepers:** The owner has sole discretion over which addresses can call the sweep function and bridge funds to L1. This creates a dependency on the owner for transferring funds and could lead to delays or even censorship.
+
+- **Recovering Funds:** The owner can recover both native assets and `ERC20` tokens sent to the contract using `recoverNative` and `recoverERC20`. While this might be intended for recovering accidentally sent funds, it also allows the owner to potentially seize user funds.
+
+- **Setting Oracle and Receiver Price Feeds:** The owner can update the price feed sources, potentially manipulating the price discovery mechanism and impacting user deposits and mint rates.
+
+- **Updating Bridge Fee Share:** The owner can change the bridge fee share, potentially increasing fees for users without their consent.
+
+- **Updating Sweep Batch Size:** The owner can change the minimum amount required for a sweep, potentially delaying the bridging of funds and impacting user experience.
+
+###### 2. Single Point of Failure - Connext Bridge:
+
+- The contract relies solely on the Connext bridge for transferring funds between `L2` and `L1`. If the `Connext` bridge experiences downtime or security issues, it could halt deposits, withdrawals, and overall functionality of the `xRenzoDeposit` contract.
+
+###### Centralization Score: 8/10 (HIGH)
+
+Given the significant control and influence the owner has over critical functions and parameters, along with the reliance on a single bridge, the `xRenzoDeposit` contract exhibits a `high` degree of centralization.
+
+Here's a breakdown of the contributing factors:
+
+- **Owner privileges:** The extensive control the owner has over price feeds, bridge sweepers, and fund recovery contributes significantly to the centralization score.
+
+- **Single bridge dependency:** The reliance on the `Connext` bridge without any backup options further elevates the risk and centralization score.
+
+###### Mitigation Strategies:
+
+- **Decentralized Governance:** Implement a `DAO` or governance token to allow community participation in critical decisions like price feed selection, bridge sweeper whitelisting, and parameter updates.
+
+- **Multi-Sig Ownership:** Replace the single owner with a multi-signature wallet requiring multiple parties to approve sensitive actions, reducing the risk of malicious behavior.
+
+- **Timelocks:** Introduce timelocks for critical functions to allow for community review and intervention before changes are implemented.
+
+- **Multiple Bridge Options:** Integrate additional bridges alongside Connext to provide redundancy and mitigate the risk of a single bridge failure.
+
+- **Transparent Fee Structure:** Clearly define the fee structure and ensure it is reasonable and aligned with the service provided.
+
+By addressing these centralization risks and implementing appropriate mitigation strategies, the xRenzoDeposit contract can become more secure and resilient, fostering trust and confidence among users.
 
 
 
