@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Tigerfrake",
+  "risk": "2",
+  "title": "`_relayerFee` is omitted  in xcall() Invocation",
+  "issueId": 469,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/469"
+}
