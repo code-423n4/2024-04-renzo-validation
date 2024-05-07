@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "0xBeastBoy",
+  "risk": "2",
+  "title": "Redundant Division by BASIS_POINTS in chooseOperatorDelegatorForDeposit Function ",
+  "issueId": 464,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/464"
+}
