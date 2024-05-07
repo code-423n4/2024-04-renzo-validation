@@ -274,13 +274,106 @@ FILE: 2024-04-renzo/contracts/RestakeManager.sol
 ```
 https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/RestakeManager.sol#L360-L393
 
+##
+
+## [L-] Unrestricted maximum value in ``coolDownPeriod()`` 
+
+Currently the cooldown period is 7 days as per docs. If set maximum values uses can't withdraw their tokes. 
+
+```
+ wait the timeout period (7 days on mainnet), 
+
+```
+
+```solidity
+FILE: 2024-04-renzo/contracts/Withdraw/WithdrawQueue.sol
+
+/**
+     * @notice Updates the coolDownPeriod for withdrawal requests
+     * @dev    It is a permissioned call (onlyWithdrawQueueAdmin)
+     * @param   _newCoolDownPeriod  new coolDownPeriod in seconds
+     */
+    function updateCoolDownPeriod(uint256 _newCoolDownPeriod) external onlyWithdrawQueueAdmin {
+        if (_newCoolDownPeriod == 0) revert InvalidZeroInput();
+        emit CoolDownPeriodUpdated(coolDownPeriod, _newCoolDownPeriod);
+        coolDownPeriod = _newCoolDownPeriod;
+    }
+
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Withdraw/WithdrawQueue.sol#L124-L133
+
+##
+
+## [L-] xReceive() become DOS when RestakeManager paused  
+
+When RestakeManager is paused, attempting to call depositETH will lead to a revert, usually triggered by a require statement checking the paused state. This prevents any new funds from being accepted into the system, safeguarding users’ assets from being locked in a potentially compromised or unstable environment.
+
+```solidity
+FILE: 2024-04-renzo/contracts/Bridge/L1/xRenzoBridge.sol
+
+// Deposit it into Renzo RestakeManager
+        restakeManager.depositETH{ value: ethAmount }();
+
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L1/xRenzoBridge.sol#L174-L175
+
+```solidity
+FILE: 2024-04-renzo/contracts/RestakeManager.sol
+
+592: function depositETH(uint256 _referralId) public payable nonReentrant notPaused {
+
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/RestakeManager.sol#L592
+
+##
+
+## [L-] 
 
 
 
 
- 
 
 
+
+
+
+ L-1	approve()/safeApprove() may revert if the current approval is not zero	13
+L-2	Use of tx.origin is unsafe in almost every context	6
+L-3	Use a 2-step ownership transfer pattern	3
+L-4	Some tokens may revert when zero value transfers are made	10
+L-5	Use of tx.origin is unsafe in almost every context	6
+L-6	decimals() is not a part of the ERC-20 standard	15
+L-7	Deprecated approve() function	2
+L-8	Do not use deprecated library functions	16
+L-9	safeApprove() is deprecated	11
+L-10	Deprecated _setupRole() function	5
+L-11	Division by zero not prevented	6
+L-12	Empty receive()/payable fallback() function does not authenticate requests	2
+L-13	External calls in an un-bounded for-loop may result in a DOS	9
+L-14	External call recipient may consume all transaction gas	6
+L-15	Initializers could be front-run	44
+L-16	Signature use at deadlines should be allowed	7
+L-17	Owner can renounce while system is paused	4
+L-18	Possible rounding issue	2
+L-19	Loss of precision	7
+L-20	Solidity version 0.8.20+ may not work on other chains due to PUSH0	18
+L-21	Use Ownable2Step.transferOwnership instead of Ownable.transferOwnership	3
+L-22	Sweeping may break accounting if tokens with multiple addresses are used	26
+L-23	Unsafe ERC20 operation(s)	6
+L-24	Unspecific compiler version pragma	5
+L-25	Upgradeable contract is missing a __gap[50] storage variable to allow for new storage variables in later versions	37
+L-26	Upgradeable contract not initialized	109
+
+M-1	Contracts are vulnerable to fee-on-transfer accounting-related issues	6
+M-2	block.number means different things on different L2s	1
+M-3	Centralization Risk for trusted owners	26
+M-4	call() should be used instead of transfer() on an address payable	3
+M-5	Fees can be set to be greater than 100%.	2
+M-6	Chainlink's latestRoundData might return stale or incorrect results	3
+M-7	Missing checks for whether the L2 Sequencer is active	3
+M-8	Direct supportsInterface() calls may cause caller to revert	2
+M-9	Return values of transfer()/transferFrom() not checked	1
+M-10	Unsafe use of transfer()/transferFrom() with IERC20	1
 
  
 
