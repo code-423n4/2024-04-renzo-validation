@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "jesjupyter",
+  "risk": "2",
+  "title": "`DepositQueue` will quickly run out of money due to lack of restriction on `tx.gasprice`",
+  "issueId": 492,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/492"
+}
