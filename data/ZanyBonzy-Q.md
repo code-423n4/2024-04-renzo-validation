@@ -570,3 +570,104 @@ But, considering that collateral tokens can be [added](https://github.com/code-4
 ### Recommended Mitigation Steps
 Consider using a mapping to set each collateral token, to its desired heartbeat. That way differences in hearbeats can be properly handled.
 ***
+
+# 12. Price updates can be sandwiched
+
+Links to affected code *
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/xRenzoDeposit.sol#L310
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/xRenzoDeposit.sol#L320
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/xRenzoDeposit.sol#L355-L356
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/xRenzoDeposit.sol#L456
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/xRenzoDeposit.sol#L245
+
+### Impact
+
+The protocol uses its own oracle for receiving current prices of ezETH price. The data can be updated by either the receiver or the owner. This opens an opportunity for a sandwich attack as users can monitor the mempool for price update transactions to gain an unfair advantage depending on what direction the price update is going to be. The `updatePriceByOwner` function is more vulnerable to this since the function doesn't exist in an atomic form, unlike the `updatePrice` function.
+
+```solidity
+    function updatePriceByOwner(uint256 price) external onlyOwner {
+        return _updatePrice(price, block.timestamp);
+    }
+```
+
+***
+
+# 13. Inability to change native token status will break XERC20Lockbox
+
+Links to affected code *
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/xERC20/contracts/XERC20Lockbox.sol#L47
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/xERC20/contracts/XERC20Lockbox.sol#L55
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/xERC20/contracts/XERC20Lockbox.sol#L130-L135
+
+### Impact
+
+There are cases where chains have changed their native tokens, although rare. Polygon chain for instance is currently in the process of [changing](https://polygon.technology/blog/polygon-2-0-tokenomics) their native token from [`MATIC`](https://etherscan.io/address/0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0) to [`POL`](https://etherscan.io/address/0x455e53CBB86018Ac2B8092FdCd39d8444aFFC3F6) planning on fully replacing its token status. A change like this on any of the supported chains will break functionality of XERC20Lockbox.sol and possibly force redeployment. Withdrawals will be virtually impossible leading to locked funds.
+
+
+```solidity
+    function _withdraw(address _to, uint256 _amount) internal {
+...
+        if (IS_NATIVE) {
+            (bool _success, ) = payable(_to).call{ value: _amount }(""); //@note will no longer work as token is no longer native on chain.
+            if (!_success) revert IXERC20Lockbox_WithdrawFailed();
+        } else {
+            ERC20.safeTransfer(_to, _amount);
+        }
+    }
+```
+
+### Recommended Mitigation Steps
+
+Consider introducing a function to toggle the native status of the token.
+
+***
+
+# 14. `inflationPercentage` is misspelt
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Oracle/RenzoOracle.sol#L135
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Oracle/RenzoOracle.sol#L140
+
+```solidity
+        uint256 inflationPercentaage = (SCALE_FACTOR * _newValueAdded) /
+        (_currentValueInProtocol + _newValueAdded);
+
+        // Calculate the new supply
+        uint256 newEzETHSupply = (_existingEzETHSupply * SCALE_FACTOR) /
+        (SCALE_FACTOR - inflationPercentaage);
+
+```
+
+# 15. Should introduce a minimum deposit amount to protect from first depositor inflation attacks.
+
+Links to affected code *
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Oracle/RenzoOracle.sol#L123
+
+### Impact
+There's no minimum amount that can be deposited leading to the `inflationPercentaage` risking being forcefully scaled up, to either mint large amount of ezeth or prevent future depositors from being able to deposit.
+
+The [`calculateMintAmount`](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Oracle/RenzoOracle.sol#L123) function is called when users call the `deposit`/`depositETH` function is called in RestakManager.sol.This allows for depositing as little as 1 wei of tokens. A malicious user can use this to his advantage to manipulate the `inflationPercentaage` parameter so as to mint large amount of ezETH or prevent future depositors from being able to deposit.
+
+The function initially checks if the exisiting ezETHSupply is 0, upon which the deposited amount is returned. By depositing 1 wei of token the returned ezETHToMint is 1, and 1 wei of ezETH is minted to the user.
+
+Depending on how much TVL is available in the protocol at this moment, the next deposit by the same user might will result in subsequent user deposits that less than the amount the attacker had initially sent to return them zero tokens or not being able to mint at all.
+
+### Recommended Mitigation Steps
+
+The way UniswapV2 prevents this is by requiring a minimum deposit amount and sending 1000 initial shares to the zero address to make this attack more expensive.
+
+
+# 16. Steth rebasing property will break approvals, accounting and various protocol limits
+
+## Impact
+
+The contract performs transfers and approvals without checking for token balances before and after. This will lead to issues as the protcol aims to support `stETH` which is a rebasing token. It's increase or decrease as the balance of Eth in certain pools changes to maintain peg can also break the various deposit, tvl and collateral limits. 
