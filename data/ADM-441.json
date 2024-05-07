@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "ADM",
+  "risk": "2",
+  "title": "Users will be unable to deposit on L2 if ezETH price > ETH.",
+  "issueId": 441,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/441"
+}
