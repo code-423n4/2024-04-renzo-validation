@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "mtimbol",
+  "risk": "2",
+  "title": "Unchecked input for `_receiver` address",
+  "issueId": 467,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/467"
+}
