@@ -58,3 +58,37 @@ modify the fallback to be like below
         if (msg.sender != address(wETH)) revert();
     }
 ```
+
+
+# [L-03] -  xRenzoBridge ConnextMessageSent events are not distinct, they have no distinct identifier
+
+messages sent via connext's xcall() function all have a `transferID` value which is returned on sucessful execution of a cross chain message send request. This `transferID` is unique for every message sent via connext. The xRenzoBridge event `ConnextMessageSent` is emitted on every sucessful message request via connext but it's parameters are not unique enough. 
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L1/xRenzoBridge.sol#L275C1-L280C15
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L1/xRenzoBridge.sol#L43C1-L48C7
+```
+    event ConnextMessageSent(
+        uint32 indexed destinationChainDomain, // The chain domain Id of the destination chain.
+        address receiver, // The address of the receiver on the destination chain.
+        uint256 exchangeRate, // The exchange rate sent.
+        uint256 fees // The fees paid for sending the Connext message.
+    );
+```
+
+destinationChainDomain, receiver, exchangeRate, fees can be the same for two events. i.e if two transactions are made at the same time, bot events can have same value for timestamp,  destinationChainDomain, receiver, exchangeRate and fees. 
+
+It is better to inclued the `transferID` value which is returned by the [xcall()](https://github.com/connext/monorepo/blob/8338d6506c609f9383d81133c3cb40cfb9e44392/packages/deployments/contracts/contracts/core/connext/facets/BridgeFacet.sol#L299C1-L307C59) fcn in the event parameters as well. This will make each event unique to each connext message and allow for easier identification/relationship between each message and their `ConnextMessageSent` events.
+
+## Recommended Mitigation
+modify the `ConnextMessageSent` event to be like below
+
+```
+    event ConnextMessageSent(
+   bytes32 transferID //id of the connext cross chain message. 
+        uint32 indexed destinationChainDomain, // The chain domain Id of the destination chain.
+        address receiver, // The address of the receiver on the destination chain.
+        uint256 exchangeRate, // The exchange rate sent.
+        uint256 fees // The fees paid for sending the Connext message.
+    );
+```
