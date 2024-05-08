@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Rhaydden",
+  "risk": "2",
+  "title": "TimelockController could be used to allow anyone execute proposals",
+  "issueId": 547,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/547"
+}
