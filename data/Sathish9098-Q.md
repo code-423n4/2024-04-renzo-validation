@@ -19,6 +19,16 @@
 | [L-15] | The ``_allocationBasisPoints `` declaration contradict with actual implementation |
 | [L-16] | Lack of check for ``_transferId`` uniqueness in ``xReceive`` function |
 | [L-17] | Compromised ``WithdrawQueueAdmin`` Could Set Excessive ``coolDownPeriod`` |
+| [L-18] | Lack of Clarity in ``MAX_TIME_WINDOW`` Definition Extending to ``24 Hours and 60 Seconds`` in ``RenzoOracle`` |
+| [L-19] | Allowing ``withdraw()`` and ``claim()`` when contract paused poses unintended consequences |
+| [L-20] | Restrictive Cross-Chain Token Address Validation |
+| [L-21] | ``bridgeTo`` function vulnerable to reentrancy attacks |
+| [L-22] | Immutable Delegate Address Elevates Security Risk |
+| [L-23] | Fund Immobilization Risk Due to Null Strategy Address |
+| [L-24] |Automatic ETH Processing and Fee Deduction Without SenderVerification |
+| [L-25] | Vulnerability to Excessive Gas Cost Refunds Potentially Draining Contract Funds |
+
+##
 
 ## [L-1] ``block.timestamp - _withdrawRequest.createdAt < coolDownPeriod`` check breaks the intended functionality
 
@@ -105,67 +115,6 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 ## [L-4] Risk of Suboptimal Delegator Selection Due to First-Match Approach in ``chooseOperatorDelegatorForDeposit()`` 
 
 Multiple delegators have TVLs (Total Value Locked) below their respective thresholds, the function chooseOperatorDelegatorForDeposit will select and return the first delegator that meets this condition as it iterates through the list of delegators. This means that the function does not compare all delegators to find the one with the lowest TVL relative to their threshold but rather returns the first one it encounters that fits the criteria.
-
-Example Scenario:
-Let's say there are three OperatorDelegators with the following settings:
-
-totalTVL = 10,000 units
-operatorDelegatorAllocations = [200, 300, 500] basis points (2%, 3%, and 5% respectively)
-tvls = [150, 250, 450] units for each delegator
-Calculation and Decision Process:
-Threshold for Delegator 1: 
-200
-×
-10
-,
-000
-100
-×
-100
-=
-200
-100×100
-200×10,000
-​
- =200 units
-Threshold for Delegator 2: 
-300
-×
-10
-,
-000
-100
-×
-100
-=
-300
-100×100
-300×10,000
-​
- =300 units
-Threshold for Delegator 3: 
-500
-×
-10
-,
-000
-100
-×
-100
-=
-500
-100×100
-500×10,000
-​
- =500 units
-Given the actual tvls:
-
-Delegator 1's TVL = 150 units, which is below the threshold of 200 units.
-Delegator 2's TVL = 250 units, which is also below the threshold of 300 units.
-Delegator 3's TVL = 450 units, which is below the threshold of 500 units.
-Outcome:
-As the function iterates, it finds that Delegator 1's TVL of 150 units is below its threshold of 200 units. Since Delegator 1 is the first to meet the criteria of having a TVL below the threshold, the function will return Delegator 1 immediately, without evaluating the remaining delegators.
-Delegators 2 and 3, despite also having TVLs below their respective thresholds, are not considered because the function stops checking once the first qualifying delegator is found.
 
 ### Impact 
 The first-match approach may inadvertently favor certain delegators that are consistently earlier in the list. This could introduce a ``bias in selection``, disadvantaging other ``delegators`` . Without considering the full context of each delegator’s current load and capabilities, there's a risk of creating imbalances where some delegators are overwhelmed while others are underutilized. This can lead to inefficiencies and increased wear on certain parts of the system.
@@ -625,13 +574,225 @@ FILE: 2024-04-renzo/contracts/Oracle/RenzoOracle.sol
 ```
 https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Oracle/RenzoOracle.sol#L25-L26
 
+##
+
+## [L-19] Allowing ``withdraw()`` and ``claim()`` when contract paused poses unintended consequences 
+
+If withdrawal and claim functionalities are allowed during a pause, it could lead to security vulnerabilities being exploited despite the pause, negating the purpose of freezing the contract’s operations. Allowing transactions during a pause can lead to inconsistencies in state, especially if the pause is intended to halt all contract activities for a critical update or fix.
+
+Implement WhenNotPaused Modifier for both withdraw and claim functions
+
+```solidity
+FILE: 2024-04-renzo/contracts/Withdraw/WithdrawQueue.sol
+
+206: function withdraw(uint256 _amount, address _assetOut) external nonReentrant {
+
+279: function claim(uint256 withdrawRequestIndex) external nonReentrant {
+
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Withdraw/WithdrawQueue.sol#L279
+
+##
+
+## [L-20] Restrictive Cross-Chain Token Address Validation
+
+The contract uses the IXERC20Registry interface to fetch the xerc20 address for a given ERC20 token (_erc20). This fetched address is then compared to the _remoteToken parameter, which is intended to represent the token's address on the destination chain.
+
+By requiring that these addresses match, the contract assumes that the same token must have the same address on both chains. This assumption does not accommodate scenarios where a token’s address on the destination chain might differ due to reasons like:
+Different deployment transactions or contexts.
+Different governance or administrative procedures on another chain.
+
+This check prevents the use of the bridge for cases where tokens are represented differently across chains. It restricts users only to scenarios where the token deployment has been mirrored exactly across chains, which is not always feasible or desirable.
+
+```solidity
+FILE: 2024-04-renzo/contracts/Bridge/Connext/integration/LockboxAdapterBlast.sol
+
+ // If using xERC20, the assumption is that the contract should be deployed at same address
+        // on both networks.
+        if (xerc20 != _remoteToken) {
+
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/Connext/integration/LockboxAdapterBlast.sol#L77-L79
+
+##
+
+## [L-21]  ``bridgeTo`` function vulnerable to reentrancy attacks
+
+The function bridgeTo involves multiple state changes and external calls without a reentrancy guard:
+
+This exposes the function to potential reentrancy attacks, especially since it interacts with multiple external contracts (the ERC20 token, the lockbox, and the bridge). Even though the SafeERC20 library mitigates some risks, comprehensive reentrancy protection is advisable.
+
+```solidity
+FILE: 2024-04-renzo/contracts/Bridge/Connext/integration
+/LockboxAdapterBlast.sol
+
+ function bridgeTo(
+        address _to,
+        address _erc20,
+        address _remoteToken,
+        uint256 _amount,
+        uint32 _minGasLimit,
+        bytes calldata _extraData
+    ) external {
+        // Sanity check
+        if (_amount <= 0) {
+            revert AmountLessThanZero();
+        }
+
+        address xerc20 = IXERC20Registry(registry).getXERC20(_erc20);
+        address lockbox = IXERC20Registry(registry).getLockbox(xerc20);
+
+        // Sanity check
+        if (xerc20 == address(0) || lockbox == address(0)) {
+            revert InvalidAddress();
+        }
+
+        // If using xERC20, the assumption is that the contract should be deployed at same address
+        // on both networks.
+        if (xerc20 != _remoteToken) {
+            revert InvalidRemoteToken(_remoteToken);
+        }
+
+        SafeERC20.safeTransferFrom(IERC20(_erc20), msg.sender, address(this), _amount);
+        SafeERC20.safeApprove(IERC20(_erc20), lockbox, _amount);
+        IXERC20Lockbox(lockbox).deposit(_amount);
+        SafeERC20.safeApprove(IERC20(xerc20), blastStandardBridge, _amount);
+        L1StandardBridge(blastStandardBridge).bridgeERC20To(
+            xerc20,
+            _remoteToken,
+            _to,
+            _amount,
+            _minGasLimit,
+            _extraData
+        );
+    }
+
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/Connext/integration/LockboxAdapterBlast.sol#L56-L95
+
+##
+
+## [L-22] Immutable Delegate Address Elevates Security Risk
+
+- If the delegate address becomes compromised (e.g., the private keys are stolen, or the address is otherwise controlled by a malicious actor), the contract has no built-in mechanism to change this address. This immutability could lead to security vulnerabilities, as the compromised delegate might have significant control or influence over the operations intended for delegation.
+
+```solidity
+FILE: 2024-04-renzo/contracts/Delegation/OperatorDelegator.sol
+
+/// @dev Sets the address to delegate tokens to in EigenLayer -- THIS CAN ONLY BE SET ONCE
+    function setDelegateAddress(
+        address _delegateAddress,
+        ISignatureUtils.SignatureWithExpiry memory approverSignatureAndExpiry,
+        bytes32 approverSalt
+    ) external nonReentrant onlyOperatorDelegatorAdmin {
+        if (address(_delegateAddress) == address(0x0)) revert InvalidZeroInput();
+        if (address(delegateAddress) != address(0x0)) revert DelegateAddressAlreadySet();
+
+        delegateAddress = _delegateAddress;
+
+        delegationManager.delegateTo(delegateAddress, approverSignatureAndExpiry, approverSalt);
+
+        emit DelegationAddressUpdated(_delegateAddress);
+    }
+
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Delegation/OperatorDelegator.sol#L116-L130
+
+##
+
+## [L-23] Fund Immobilization Risk Due to Null Strategy Address
+
+The setTokenStrategy function in the OperatorDelegator contract allows for the strategy of a specific ERC20 token to be set to the zero address, effectively disabling the strategy. This operation does not include checks or mechanisms to handle tokens already deposited under the previously active strategy, nor does it facilitate an easy recovery or reactivation path. This can result in tokens being locked within the contract, with no strategy available for managing or withdrawing these assets.
+
+```solidity
+2024-04-renzo/contracts/Delegation/OperatorDelegator.sol
+
+/// @dev Sets the strategy for a given token - setting strategy to 0x0 removes the ability to deposit and withdraw token
+    function setTokenStrategy(
+        IERC20 _token,
+        IStrategy _strategy
+    ) external nonReentrant onlyOperatorDelegatorAdmin {
+        if (address(_token) == address(0x0)) revert InvalidZeroInput();
+
+        tokenStrategyMapping[_token] = _strategy;
+        emit TokenStrategyUpdated(_token, _strategy);
+    }
+
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Delegation/OperatorDelegator.sol#L105-L114
+
+##
+
+## [L-24] Automatic ETH Processing and Fee Deduction Without Sender Verification
+
+The receive() function does not differentiate the source of the incoming ETH. Whether the ETH is sent as intended protocol rewards, or mistakenly sent by an external user, it is processed in the same manner. 
+
+Accidental Deposits: Users who mistakenly send ETH to the contract address will have their funds automatically processed as rewards, with a portion deducted as fees. Since Ethereum transactions are irreversible, once the ETH is sent and processed, recovering it would depend entirely on the actions of the contract administrators, assuming they can identify the transaction as a mistake and choose to return the funds.
+
+Unintended Fee Deductions: In cases of accidental ETH sends, not only is the ETH handled as rewards, but a fee is also deducted and sent to the fee address, further complicating the situation for the unintended sender.
+
+```solidity
+FILE: 2024-04-renzo/contracts/Deposits/DepositQueue.sol
+
+ receive() external payable nonReentrant {
+        uint256 feeAmount = 0;
+        // Take protocol cut of rewards if enabled
+        if (feeAddress != address(0x0) && feeBasisPoints > 0) {
+            feeAmount = (msg.value * feeBasisPoints) / 10000;
+            (bool success, ) = feeAddress.call{ value: feeAmount }("");
+            if (!success) revert TransferFailed();
+
+            emit ProtocolFeesPaid(IERC20(address(0x0)), feeAmount, feeAddress);
+        }
+        // update remaining rewards
+        uint256 remainingRewards = msg.value - feeAmount;
+        // Check and fill ETH withdraw buffer if required
+        _checkAndFillETHWithdrawBuffer(remainingRewards);
+
+        // Add to the total earned
+        totalEarned[address(0x0)] = totalEarned[address(0x0)] + remainingRewards;
+
+        // Emit the rewards event
+        emit RewardsDeposited(IERC20(address(0x0)), remainingRewards);
+    }
 
 
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Deposits/DepositQueue.sol#L163-L183
 
+##
 
+## [L-25] Vulnerability to Excessive Gas Cost Refunds Potentially Draining Contract Funds
 
+The potential vulnerability in the _refundGas function arises from its method of calculating the gas costs for refunding the administrators of the contract. This calculation uses the formula gasUsed * tx.gasprice, where gasUsed is the difference between the gas available at the start of the transaction (initialGas) and the gas left at the point of calculation (gasleft()), and tx.gasprice is the gas price set by the user who initiated the transaction.
 
+Imagine an administrator or a malicious user initiates a transaction interacting with the contract, and deliberately sets a very high tx.gasprice, much higher than the average network gas price.
 
+Calculation:
+
+Suppose the transaction uses 100,000 gas (gasUsed).
+The user sets tx.gasprice to 1,000 gwei, significantly above normal rates.
+The refund amount would be 100,000 * 1,000 gwei = 100,000,000 gwei, or 0.1 ether.
+
+If the _refundGas function does not cap the refund amount or if the transaction's gas price is exceptionally high, there's a risk that a large portion of the contract's ETH balance could be used to cover these gas costs. This is particularly concerning if the function is called with high frequency or during periods of high gas prices.
+
+```solidity
+FILE: 2024-04-renzo/contracts/Deposits/DepositQueue.sol
+
+ /**
+     * @notice Internal function used to refund gas to admin accounts if enough balance
+     * @param initialGas Initial Gas available
+     */
+    function _refundGas(uint256 initialGas) internal {
+        uint256 gasUsed = (initialGas - gasleft()) * tx.gasprice;
+        uint256 gasRefund = address(this).balance >= gasUsed ? gasUsed : address(this).balance;
+        (bool success, ) = payable(msg.sender).call{ value: gasRefund }("");
+        if (!success) revert TransferFailed();
+        emit GasRefunded(msg.sender, gasRefund);
+    }
+
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Deposits/DepositQueue.sol#L279-L289
 
 
 
@@ -652,46 +813,6 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 
 
-
-L-1	approve()/safeApprove() may revert if the current approval is not zero	13
-L-2	Use of tx.origin is unsafe in almost every context	6
-L-3	Use a 2-step ownership transfer pattern	3
-L-4	Some tokens may revert when zero value transfers are made	10
-L-5	Use of tx.origin is unsafe in almost every context	6
-L-6	decimals() is not a part of the ERC-20 standard	15
-L-7	Deprecated approve() function	2
-L-8	Do not use deprecated library functions	16
-L-9	safeApprove() is deprecated	11
-L-10	Deprecated _setupRole() function	5
-L-11	Division by zero not prevented	6
-L-12	Empty receive()/payable fallback() function does not authenticate requests	2
-L-13	External calls in an un-bounded for-loop may result in a DOS	9
-L-14	External call recipient may consume all transaction gas	6
-L-15	Initializers could be front-run	44
-L-16	Signature use at deadlines should be allowed	7
-L-17	Owner can renounce while system is paused	4
-L-18	Possible rounding issue	2
-L-19	Loss of precision	7
-L-20	Solidity version 0.8.20+ may not work on other chains due to PUSH0	18
-L-21	Use Ownable2Step.transferOwnership instead of Ownable.transferOwnership	3
-L-22	Sweeping may break accounting if tokens with multiple addresses are used	26
-L-23	Unsafe ERC20 operation(s)	6
-L-24	Unspecific compiler version pragma	5
-L-25	Upgradeable contract is missing a __gap[50] storage variable to allow for new storage variables in later versions	37
-L-26	Upgradeable contract not initialized	109
-
-M-1	Contracts are vulnerable to fee-on-transfer accounting-related issues	6
-M-2	block.number means different things on different L2s	1
-M-3	Centralization Risk for trusted owners	26
-M-4	call() should be used instead of transfer() on an address payable	3
-M-5	Fees can be set to be greater than 100%.	2
-M-6	Chainlink's latestRoundData might return stale or incorrect results	3
-M-7	Missing checks for whether the L2 Sequencer is active	3
-M-8	Direct supportsInterface() calls may cause caller to revert	2
-M-9	Return values of transfer()/transferFrom() not checked	1
-M-10	Unsafe use of transfer()/transferFrom() with IERC20	1
-
- 
 
 
 
