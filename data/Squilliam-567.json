@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "2",
+  "title": "[M-23] `RenzoOracle::lookupTokenValue` - Lack of validation for rollup sequencer leading to stale prices and indirect fund risk",
+  "issueId": 567,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/567"
+}
