@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "alphacipher",
+  "risk": "3",
+  "title": "Missing accumulation of individual token TVLs for each operator delegator in `RestakeManager::calculateTVLs` Function",
+  "issueId": 664,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/664"
+}
