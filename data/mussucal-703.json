@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "mussucal",
+  "risk": "2",
+  "title": "OperatorDelegator._refundGas() does not refund to the admin i.e. `onlyNativeEthRestakeAdmin`",
+  "issueId": 703,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/703"
+}
