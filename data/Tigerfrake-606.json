@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Tigerfrake",
+  "risk": "3",
+  "title": "`_caller`'s current minting limit is reduced as if tokens were minted, but no tokens are actually minted for the `_user`",
+  "issueId": 606,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/606"
+}
