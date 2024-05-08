@@ -179,7 +179,7 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
     }
 ```
 
-unbounded loop here which will go on for as long for as many iterations  as the token array length. the external call to the chainlink api is in the [lookupTokenValue()](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Oracle/RenzoOracle.sol#L75) call. If array is too long this will revert with OOG. 
+there is an unbounded loop here which will go on for as many iterations as the token array length. the external call to the chainlink api is in the [lookupTokenValue()](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Oracle/RenzoOracle.sol#L75) call. If array is too long this will revert with OOG. 
 
 ## Recommended Mitigation 
 Consider limiting the max length of the parameter arrays supplied to the function. 
