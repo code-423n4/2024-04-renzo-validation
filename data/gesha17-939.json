@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "gesha17",
+  "risk": "3",
+  "title": "Malicios admin can submit transcations with calls to OperatorDelegator with very high gas price, execute transactions with own miner and siphon funds from the protocol.",
+  "issueId": 939,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/939"
+}
