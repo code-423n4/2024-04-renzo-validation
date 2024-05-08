@@ -3,7 +3,7 @@
 
 
 <details>
-  <summary>NOTE</summary>
+  <summary> NOTE</summary>
 
 ---
 
