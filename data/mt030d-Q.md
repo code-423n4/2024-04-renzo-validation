@@ -40,3 +40,7 @@ The `WithdrawQueue.claim()` function swaps the last element in `withdrawRequests
 
 # 4. Incorrect function name in `ConnextReceiver`
 The function `updateCCIPEthChainSelector()` in the `ConnextReceiver` contract is incorrectly named. It interacts with `ConnextEthChainSelector`, not `CCIPEthChainSelector`. Therefore, we should rename this function to reflect its actual operation.
+
+# 5. Inconsistency between role Name and responsibilities for nativeEthRestakeAdmin
+
+From its name, one would assume that the nativeEthRestakeAdmin role is solely responsible for actions related to native ETH. However, this is not the case. The `OperatorDelegator.queueWithdrawals` and `OperatorDelegator.completeQueuedWithdrawal` functions, which are modified by onlyNativeEthRestakeAdmin, handle not just native ETH, but also LST withdrawals. This means that the nativeEthRestakeAdmin role also oversees the withdrawal of LST from EigenLayer using these functions.
