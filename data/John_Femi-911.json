@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "John_Femi",
+  "risk": "2",
+  "title": "no check for erc20 withdraw buffer deficit",
+  "issueId": 911,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/911"
+}
