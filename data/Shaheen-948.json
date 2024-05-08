@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Shaheen",
+  "risk": "2",
+  "title": "Missing call to `__ReentrancyGuard_init` functions of inherited contracts",
+  "issueId": 948,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/948"
+}
