@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "carlitox477",
+  "risk": "2",
+  "title": "`RenzoOracleL2.getMinRate()`: Lack of sequencer check",
+  "issueId": 847,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/847"
+}
