@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "0xBeastBoy",
+  "risk": "2",
+  "title": "No access control on deployOptimismMintableXERC20 function of OptimismMintableXERC20Factory contract",
+  "issueId": 645,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/645"
+}
