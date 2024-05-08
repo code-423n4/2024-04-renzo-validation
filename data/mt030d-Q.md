@@ -20,14 +20,7 @@ If `bufferToFill` is not zero, the `_amount` value passed into the Deposit event
 ## Impact
 If the deposit amount in the Deposit event is used to determine the user's ezPoints and further rewards (e.g., airdrop of $REZ tokens), this issue is significant. The Deposit event logs a lower deposited amount, which could lead to fewer platform rewards for the user.
 
-# 2. Unused pause mechanism in `WithdrawQueue`
-The `WithdrawQueue` contract inherits from `PausableUpgradeable` and defines the external `pause()` and `unpause()` functions. 
-
-However, the pause mechanism is not utilized in WithdrawQueue's core functionality. 
-
-To improve contract consistency, consider adding the `whenNotPaused` modifier to the `fillEthWithdrawBuffer()` and `fillERC20WithdrawBuffer()` functions. Alternatively, if the pause mechanism is redundant, consider removing it.
-
-# 3. `WithdrawQueue.claim()` may alter the order of `withdrawRequests`, causing the `withdrawRequestIndex` to mismatch the `withdrawRequestID` in `WithdrawRequestCreated` events.
+# 2. `WithdrawQueue.claim()` may alter the order of `withdrawRequests`, causing the `withdrawRequestIndex` to mismatch the `withdrawRequestID` in `WithdrawRequestCreated` events.
 
 ```
         // delete the withdraw request
@@ -38,9 +31,9 @@ To improve contract consistency, consider adding the `whenNotPaused` modifier to
 ```
 The `WithdrawQueue.claim()` function swaps the last element in `withdrawRequests` with the indexed one and then removes the last element. As a result, the element at the `withdrawRequestID` of `WithdrawRequestCreated` events may not match the original element. Users should be aware of this potential issue.
 
-# 4. Incorrect function name in `ConnextReceiver`
+# 3. Incorrect function name in `ConnextReceiver`
 The function `updateCCIPEthChainSelector()` in the `ConnextReceiver` contract is incorrectly named. It interacts with `ConnextEthChainSelector`, not `CCIPEthChainSelector`. Therefore, we should rename this function to reflect its actual operation.
 
-# 5. Inconsistency between role Name and responsibilities for nativeEthRestakeAdmin
+# 4. Inconsistency between role Name and responsibilities for nativeEthRestakeAdmin
 
 From its name, one would assume that the nativeEthRestakeAdmin role is solely responsible for actions related to native ETH. However, this is not the case. The `OperatorDelegator.queueWithdrawals` and `OperatorDelegator.completeQueuedWithdrawal` functions, which are modified by onlyNativeEthRestakeAdmin, handle not just native ETH, but also LST withdrawals. This means that the nativeEthRestakeAdmin role also oversees the withdrawal of LST from EigenLayer using these functions.
