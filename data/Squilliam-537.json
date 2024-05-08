@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "2",
+  "title": "[M-20] `withdrawQueue::getAvailableToWithdraw` - Reliance on token balance through `balanceOf` can lead to Donation Attacks",
+  "issueId": 537,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/537"
+}
