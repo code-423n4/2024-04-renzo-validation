@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "mgf15",
+  "risk": "2",
+  "title": "user can lost his tokens if `_to` is contract with no code.",
+  "issueId": 780,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/780"
+}
