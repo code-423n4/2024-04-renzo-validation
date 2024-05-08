@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "hunter_w3b",
+  "risk": "3",
+  "title": "Incorrect index used when calculating withdrawal queue token value in `RestakeManager::calculateTVLs` Function",
+  "issueId": 778,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/778"
+}
