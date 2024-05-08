@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Audinarey",
+  "risk": "3",
+  "title": "Funds can get lost when bridging to L1 with xRenzoDeposit::sweep(...)",
+  "issueId": 671,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/671"
+}
