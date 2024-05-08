@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "ReadyPlayer2",
+  "risk": "2",
+  "title": "Inability to sweep rewards unless they are in multiples of 32 ETH leaves native token locked in DepositQue.sol",
+  "issueId": 835,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/835"
+}
