@@ -183,3 +183,15 @@ there is an unbounded loop here which will go on for as many iterations as the t
 
 ## Recommended Mitigation 
 Consider limiting the max length of the parameter arrays supplied to the function. 
+
+
+# [L-07] - different conditions for price answer expiry in RenzoOracleL2 and xRenzoDeposit can cause confusion
+
+
+[RenzoOracleL2.getMintRate()](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/Oracle/RenzoOracleL2.sol#L50) is used by xRenzoDeposit.getMintRate to get the ezETH price at that time. it checks that the price is not yet stale by comparing the  chainlink answer time with its hardcoded [MAX_TIME_WINDOW](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/Oracle/RenzoOracleL2.sol#L13) which is `86400 + 60`  or  `24 hrs + 60 secs`. 
+
+In xRenzoDeposit.deposit() which also uses RenzoOracleL2.getMintRate() in its [xRenzoDeposit.getMintRate()](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/xRenzoDeposit.sol#L289) logic, it then [compares the result returned by xRenzoDeposit.getMintRate() with `1 days`](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/xRenzoDeposit.sol#L248). `1 days` and `86400 + 60` are not the same and this difference can cause issues for external intgrators which may begin to send in deposits earlier than they should, simply because they believed the staleness check in xRenzoDeposit.getMintRate() and RenzoOracleL2.getMintRate() to be accurate. 
+
+for example, user calls xRenzoDeposit.getMintRate() and gets back data which is checked to be fresh (not stale) by the xRenzoDeposit.getMintRate() logic. User thinks data is okay because there was no reverts and then proceeds to call xRenzoDeposit.deposit(). xRenzoDeposit.deposit() then reverts because its timestamp comparison with `1 days` fails while xRenzoDeposit.getMintRate() is a success because the returned chainlink timestamp is still within the accepted range of `86400 + 60`. 
+
+For clarity sake, it is better to use same conditions for staleness check across all logic, especially logic of contracts with  inter related  functions (functions that call the other). 
