@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "gesha17",
+  "risk": "3",
+  "title": "Admins are not able to receive gas refunds from OperatorDelegator contract because all native token sent to it is forwarded back to the sender",
+  "issueId": 898,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/898"
+}
