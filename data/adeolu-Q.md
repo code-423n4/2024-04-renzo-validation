@@ -92,3 +92,38 @@ modify the `ConnextMessageSent` event to be like below
         uint256 fees // The fees paid for sending the Connext message.
     );
 ```
+
+# [L-04] -  OperatorDelegator.setTokenStrategy()  should check that each strategy address being set is whitelisted for deposit in eigenlayer strategy manager
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Delegation/OperatorDelegator.sol#L106C1-L115C1
+```
+    /// @dev Sets the strategy for a given token - setting strategy to 0x0 removes the ability to deposit and withdraw token
+    function setTokenStrategy(
+        IERC20 _token,
+        IStrategy _strategy
+    ) external nonReentrant onlyOperatorDelegatorAdmin {
+        if (address(_token) == address(0x0)) revert InvalidZeroInput();
+
+        tokenStrategyMapping[_token] = _strategy; `strategyIsWhitelistedForDeposit` mapping first.
+        emit TokenStrategyUpdated(_token, _strategy);
+    }
+```
+`setTokenStrategy()` updateds the `tokenStrategyMapping` for each token to a strategy but it doesnt confirm that the strategy is whitelisted for deposits by the eigenlayer strategy manager. In cases where an unwhitelisted strategy is updated into storage the `deposit()` function will fail because             [strategyManager.depositIntoStrategy(tokenStrategyMapping[_token], _token, _tokenAmount)](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Delegation/OperatorDelegator.sol#L168) will not recognise the strategy address as it is not whitelisted for deposit. 
+
+`setTokenStrategy()` should confirm if a strategy is whitelisted for deposit by calling the eigenlayer public mapping [strategyIsWhitelistedForDeposit](https://github.com/Layr-Labs/eigenlayer-contracts/blob/ef2ea4a7459884f381057aa9bbcd29c7148cfb63/src/contracts/core/StrategyManagerStorage.sol#L60) and checking that it indeed returns true. 
+
+## Recommended Mitigation
+modify the `setTokenStrategy()`fcn to be like below
+
+```
+    function setTokenStrategy(
+        IERC20 _token,
+        IStrategy _strategy
+    ) external nonReentrant onlyOperatorDelegatorAdmin {
+        if (address(_token) == address(0x0)) revert InvalidZeroInput();
+        if(strategyManager.strategyIsWhitelistedForDeposit(_strategy) != true) revert stategyNotWhitelisted()
+
+        tokenStrategyMapping[_token] = _strategy; //@audit this mapping can be updated with a straategy that is not whitelisted for deposit in eigenlayer. it should check if the straegy is whitelisted by calling `strategyIsWhitelistedForDeposit` mapping first.
+        emit TokenStrategyUpdated(_token, _strategy);
+    }
+```
