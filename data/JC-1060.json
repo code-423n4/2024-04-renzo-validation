@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "JC",
+  "risk": "2",
+  "title": "Downgrade Attack Potential Due to Fixed Point Arithmetic",
+  "issueId": 1060,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1060"
+}
