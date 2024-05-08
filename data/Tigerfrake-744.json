@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Tigerfrake",
+  "risk": "2",
+  "title": "Cross-chain replay attacks are possible with `deployXERC20`",
+  "issueId": 744,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/744"
+}
