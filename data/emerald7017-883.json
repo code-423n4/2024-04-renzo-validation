@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "emerald7017",
+  "risk": "2",
+  "title": "`_withdraw` function has an unprotected call to `payable(_to).call{ value: _amount }(\"\")`, which can lead to a reentrancy attack if the `_to` address is a contract.",
+  "issueId": 883,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/883"
+}
