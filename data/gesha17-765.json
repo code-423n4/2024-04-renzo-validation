@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "gesha17",
+  "risk": "2",
+  "title": "During deposit in the RestakeManager, individual token TVL limit check does not take withdrawal queue balance into account, allowing users to deposit over the tvl limit",
+  "issueId": 765,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/765"
+}
