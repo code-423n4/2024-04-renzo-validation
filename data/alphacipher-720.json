@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "alphacipher",
+  "risk": "2",
+  "title": "Use To-Be-Deprecated function of strategy manager `queueWithdrawl()` and `completeQueuedWithdrawl()`",
+  "issueId": 720,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/720"
+}
