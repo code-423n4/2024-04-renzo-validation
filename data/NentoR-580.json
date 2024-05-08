@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "NentoR",
+  "risk": "2",
+  "title": "`RenzoOracle` and `RenzoOracleL2` assume all feeds return prices in 18 decimals",
+  "issueId": 580,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/580"
+}
