@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "ilchovski",
+  "risk": "2",
+  "title": "Withdrawing rebasing tokens can cause revert or loss of funds",
+  "issueId": 873,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/873"
+}
