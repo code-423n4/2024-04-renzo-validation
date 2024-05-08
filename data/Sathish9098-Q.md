@@ -1,40 +1,23 @@
 ##
 
-## [L-1] Misguided Zero-Value Checks for uint256
-
-Since ``uint256`` cannot be negative, the check ``_amount < 0`` is inherently impossible. This leaves only the possibility of _amount being equal to zero as a valid check.
-
-```solidity
-FILE: 2024-04-renzo/contracts/Bridge/Connext/integratio/LockboxAdapterBlast.sol
-
-65: if (_amount <= 0) {
-
-```
-https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/Connext/integration/LockboxAdapterBlast.sol#L65
-
-### Recommended Mitigation
-```solidity
-
-if (_amount == 0) {
-
-```
 
 ##
 
-## [L-] Inconsistency in Timestamp Verification Across ``RenzoOracleL2`` and ``xRenzoDeposit`` Contracts
+## [L-] Timestamp Verification Discrepancies Between ``RenzoOracle`` and ``_deposit()`` Function
 
-There is contradiction in timestamp check in 2 places. One place checks 24 hours + 1 minute and another place check exactly 24 hours. 
+The issue arises from a mismatch in staleness thresholds: the RenzoOracle uses a staleness check of "1 day + 60 seconds," whereas the _deposit function uses exactly "1 day." This inconsistency in timestamp verification can lead to contradictory behaviors between the two components. 
 
 ```solidity
-FILE: 2024-04-renzo/contracts/Bridge/L2/Oracle
-/RenzoOracleL2.sol
+FILE: 2024-04-renzo/contracts/Oracle
+/RenzoOracle.sol
 
-13:  uint256 public constant MAX_TIME_WINDOW = 86400 + 60; // 24 hours + 60 seconds
+ /// @dev The maxmimum staleness allowed for a price feed from chainlink
+26:  uint256 constant MAX_TIME_WINDOW = 86400 + 60; // 24 hours + 60 seconds
 
-52: if (timestamp < block.timestamp - MAX_TIME_WINDOW) revert OraclePriceExpired();
+76: if (timestamp < block.timestamp - MAX_TIME_WINDOW) revert OraclePriceExpired();
 
 ```
-https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/Oracle/RenzoOracleL2.sol#L52
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Oracle/RenzoOracle.sol#L76
 
 ```solidity 
 FILE: 2024-04-renzo/contracts/Bridge/L2/xRenzoDeposit.sol
@@ -464,61 +447,141 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 ##
 
-## [L-] 
+## [L-1] Misguided Zero-Value Checks for uint256
 
-##
-
-## [L-] getMintRate() always reverts if the ``_scaledPrice < 1 ether`` this will fully block the ``deposit()`` become DOS 
-
-Here is the problem is when even oracle is set when _deposit function call the ``getMintRate()`` function . Then that function calls the ``oracle.getMintRate()`` to getting the ``ezETH`` . Here is the problem is if the ``_scaledPrice`` proce is less than 1 ETH the ``oracle.getMintRate()`` function reverts. 
-
-Here problem is there possible to fetch price using lastPrice , lastPriceTimestamp . But the problem is if oracle set and the ``ezETH`` price in oracle goes less than 1 ETH for external reason or hack still we can access the lastPrice , lastPriceTimestamp values because oracle.getMintRate() gets revert always and the deposit function become DOS .
-
+Since ``uint256`` cannot be negative, the check ``_amount < 0`` is inherently impossible. This leaves only the possibility of _amount being equal to zero as a valid check.
 
 ```solidity
-FILE: 2024-04-renzo/contracts/Bridge/L2/Oracle/RenzoOracleL2.sol
+FILE: 2024-04-renzo/contracts/Bridge/Connext/integratio/LockboxAdapterBlast.sol
 
-function getMintRate() public view returns (uint256, uint256) {
-        (, int256 price, , uint256 timestamp, ) = oracle.latestRoundData();
-        if (timestamp < block.timestamp - MAX_TIME_WINDOW) revert OraclePriceExpired();
-        // scale the price to have 18 decimals
-        uint256 _scaledPrice = (uint256(price)) * 10 ** (18 - oracle.decimals());
-        if (_scaledPrice < 1 ether) revert InvalidOraclePrice();
-        return (_scaledPrice, timestamp);
-    }
+65: if (_amount <= 0) {
 
 ```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/Connext/integration/LockboxAdapterBlast.sol#L65
 
+### Recommended Mitigation
 ```solidity
-FILE: 2024-04-renzo/contracts/Bridge/L2/xRenzoDeposit.sol
 
-  // Fetch price and timestamp of ezETH from the configured price feed
-        (uint256 _lastPrice, uint256 _lastPriceTimestamp) = getMintRate();
-
-
-
-/**
-     * @notice Fetch the price of ezETH from configured price feeds
-     */
-    function getMintRate() public view returns (uint256, uint256) {
-        // revert if PriceFeedNotAvailable
-        if (receiver == address(0) && address(oracle) == address(0)) revert PriceFeedNotAvailable();
-        if (address(oracle) != address(0)) {
-            (uint256 oraclePrice, uint256 oracleTimestamp) = oracle.getMintRate();
-            return
-                oracleTimestamp > lastPriceTimestamp
-                    ? (oraclePrice, oracleTimestamp)
-                    : (lastPrice, lastPriceTimestamp);
-        } else {
-            return (lastPrice, lastPriceTimestamp);
-        }
-    }
+if (_amount == 0) {
 
 ```
 
 ##
 
-## 
+## [L-] Division by Zero in calculateRedeemAmount Function for Zero ezETH Supply 
+
+The operation (_currentValueInProtocol * _ezETHBeingBurned) / _existingEzETHSupply can lead to a division by zero if _existingEzETHSupply is zero. 
+
+```solidity
+FILE: 2024-04-renzo/contracts/Oracle/RenzoOracle.sol
+
+ function calculateRedeemAmount(
+        uint256 _ezETHBeingBurned,
+        uint256 _existingEzETHSupply,
+        uint256 _currentValueInProtocol
+    ) external pure returns (uint256) {
+        // This is just returning the percentage of TVL that matches the percentage of ezETH being burned
+        uint256 redeemAmount = (_currentValueInProtocol * _ezETHBeingBurned) / _existingEzETHSupply;
+
+        // Sanity check
+        if (redeemAmount == 0) revert InvalidTokenAmount();
+
+        return redeemAmount;
+    }
+
+``` 
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Oracle/RenzoOracle.sol#L152-L164
+
+##
+
+## [L-] Wrong Comment in ``setPaused()`` function
+
+The comment suggest only restake manager admin to set the paused state. But in actual implementation ``onlyDepositWithdrawPauserAdmin `` set the paused state .
+
+```diff
+FILE: 2024-04-renzo/contracts/RestakeManager.sol
+
+- /// @dev Allows a restake manager admin to set the paused state of the contract
++ /// @dev Allows a DepositWithdrawPauserAdmin to set the paused state of the contract
+    function setPaused(bool _paused) external onlyDepositWithdrawPauserAdmin {
+        paused = _paused;
+    }
+
+```
+
+##
+
+## [L-] The ``_allocationBasisPoints `` declaration contradict with actual implementation
+
+Declaration suggests this will accept uint256 range of the values . But in actual implementations this will revert if the value is greater than 10000.
+
+```solidity
+FILE: 2024-04-renzo/contracts/RestakeManager.sol
+
+133: uint256 _allocationBasisPoints
+
+146: if (_allocationBasisPoints > (100 * BASIS_POINTS)) revert OverMaxBasisPoints();
+
+``` 
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/RestakeManager.sol#L146
+
+##
+
+## [L-] Lack of check for ``_transferId`` uniqueness in ``xReceive`` function
+
+Even though _transferId is generated using Keccak-256—a cryptographic hashing function—it's worth acknowledging that while extremely rare, the possibility of collisions (two distinct input sets producing the same hash output) theoretically exists. Despite the low probability, the possibility of a collision cannot be completely dismissed, especially as computational power increases or through a breakthrough in cryptographic research.
+
+  
+The EzETHMinted event is designed to log instances of minting operations for ezETH. However, if the Connext contract calls the function associated with this event multiple times using the same _transferId for different transactions, the uniqueness and traceability of these events are compromised. Each event emission with the same _transferId but varying other parameters (such as _amount, _origin, or _originSender) could lead to difficulties in accurately tracking each transaction's specifics, potentially confusing event monitoring tools and data consumers.
+
+```solidity
+FILE: 2024-04-renzo/contracts/Bridge/L1/xRenzoBridge.sol
+
+function xReceive(
+        bytes32 _transferId,
+        uint256 _amount,
+        address _asset,
+        address _originSender,
+        uint32 _origin,
+        bytes memory
+    ) external nonReentrant returns (bytes memory) {
+
+// Emit the event
+        emit EzETHMinted(_transferId, _amount, _origin, _originSender, ezETHAmount);
+
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L1/xRenzoBridge.sol#L195-L196
+
+##
+
+## [L-] Compromised ``WithdrawQueueAdmin`` Could Set Excessive ``coolDownPeriod``
+
+The function updateCoolDownPeriod allows a WithdrawQueueAdmin to change the cooldown period, which is a critical parameter affecting the operation of the claim() function. If this period is set to an excessively long duration maliciously or due to a compromise, it can effectively prevent users from claiming their withdrawals, resulting in a Denial of Service (DoS) for all users dependent on this functionality.
+
+```solidity
+FILE: 2024-04-renzo/contracts/Withdraw/WithdrawQueue.sol
+
+ function updateCoolDownPeriod(uint256 _newCoolDownPeriod) external onlyWithdrawQueueAdmin {
+        if (_newCoolDownPeriod == 0) revert InvalidZeroInput();
+        emit CoolDownPeriodUpdated(coolDownPeriod, _newCoolDownPeriod);
+        coolDownPeriod = _newCoolDownPeriod;
+    }
+
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Withdraw/WithdrawQueue.sol#L129-L133
+
+##
+
+## [L-] ``block.timestamp - _withdrawRequest.createdAt < coolDownPeriod`` check is wrong 
+
+This will allow to claim even ``block.timestamp - _withdrawRequest.createdAt`` == coolDownPeriod meaning that the coolDownPeriod is still not fully end. So this will break the intended coolDownPeriod purpose . Claim only allowed the coolDownperiod fully expired.
+
+
+
+
+
+
+
 
  
 
@@ -536,7 +599,7 @@ FILE: 2024-04-renzo/contracts/Bridge/L2/xRenzoDeposit.sol
 
 
 
- L-1	approve()/safeApprove() may revert if the current approval is not zero	13
+L-1	approve()/safeApprove() may revert if the current approval is not zero	13
 L-2	Use of tx.origin is unsafe in almost every context	6
 L-3	Use a 2-step ownership transfer pattern	3
 L-4	Some tokens may revert when zero value transfers are made	10
