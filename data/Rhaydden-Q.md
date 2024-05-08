@@ -3,7 +3,7 @@
 
 
 <details>
-  <summary>DISCLAIMER</summary>
+  <summary>NOTE</summary>
 
 ---
 
