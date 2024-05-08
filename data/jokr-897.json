@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "jokr",
+  "risk": "2",
+  "title": "Lack of slippage control on RestakeManager.deposit function",
+  "issueId": 897,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/897"
+}
