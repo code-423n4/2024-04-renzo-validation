@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "mgf15",
+  "risk": "2",
+  "title": "Underpaying  `_minGasLimit` may lead to loss of funds",
+  "issueId": 909,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/909"
+}
