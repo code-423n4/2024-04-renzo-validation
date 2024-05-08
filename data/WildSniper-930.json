@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "WildSniper",
+  "risk": "2",
+  "title": "`RenzoOracle` contract has improper handling of reverts that may lead to Denial Of Service",
+  "issueId": 930,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/930"
+}
