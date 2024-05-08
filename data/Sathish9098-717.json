@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Sathish9098",
+  "risk": "2",
+  "title": "All sub sequent _deposit() function calls DOS if the ``_scaledPrice `` price goes less than 1ETH ",
+  "issueId": 717,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/717"
+}
