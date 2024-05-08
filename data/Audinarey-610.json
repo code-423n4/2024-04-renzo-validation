@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Audinarey",
+  "risk": "3",
+  "title": "ezETH will not be burned from users after claiming their collateralTokens from the WithdrawalQueue contract",
+  "issueId": 610,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/610"
+}
