@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "JC",
+  "risk": "2",
+  "title": "XERC20Lockbox.sol: Insufficient Input Validation in _withdraw() function",
+  "issueId": 1046,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1046"
+}
