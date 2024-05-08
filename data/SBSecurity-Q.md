@@ -7,8 +7,10 @@
 | [L-03] | Allocation points sum of 100% is not enforced |
 | [L-04] | chooseOperatorDelegatorForWithdraw should fetch the TVL |
 | [L-05] | WithdrawQueue::claim rebasing tokens can block the last claim temporarily |
+| [L-06] | Possible arbitrage due to the long heartbeat of stETH/ETH price feed |
+| [L-07] | Inaccuracy of shares between Eigen withdrawal request and claim |
 
-| Total Low Risk Issues | 5 |
+| Total Low Risk Issues | 7 |
 | --- | --- |
 
 ### Governance Issue
@@ -293,7 +295,92 @@ function claim(uint256 withdrawRequestIndex) external nonReentrant {
 Consider using `wstETH` which is the non-rebasing version of the `stETH`. 
 
 > Usage of rebasing tokens has not been a problem so far because Renzo’s withdrawal functionality is not live yet.
-> 
+>
+
+## [L-06] Possible arbitrage due to the long heartbeat of `stETH/ETH` price feed
+
+**Issue Description:**
+
+Renzo protocol relies on `stETH/ETH` price feed to convert `stETH` when used for deposit, withdrawal, etc. But this price feed has too long heartbeat - **24 hours**, which can open arbitrage opportunities if the price is not updated accurately.
+
+This is the price feed: [stETH/ETH](https://data.chain.link/feeds/ethereum/mainnet/steth-eth)
+
+![Untitled](https://i.imgur.com/I1uy7hg.png)
+
+The 24-hour heartbeat and 0.5% deviation threshold means that price can move up to 0.5% or stay flat for 24 hours before triggering a price update, which is unlikely to be reached, but historically it is not impossible, you can check this graph for example:
+
+![287544459-d64c81e0-0e8a-4fe9-8063-166d9c5d9bcd.png](https://i.imgur.com/9nrNWBT.png)
+
+This allows you to deposit at these times to mint more `ezETH` or withdraw at a better rate.
+
+The same issue was reported here and I used it as a guide - you can check it out as it has many more diagrams and explanations of possible situations.
+https://github.com/code-423n4/2023-11-kelp-findings/issues/584
+
+**Recommendation:** 
+
+It's hard to give a proper solution, one of them we also pointed out in our Kelp issue was to use multiple oracles, like this `stETH/USD`, but that will certainly make the system more complex, so can't suggest anything exactly.
+
+## [L-07] Inaccuracy of shares between Eigen withdrawal request and claim
+
+**Issue Description:**
+
+Withdrawals from EigenLayer will not be up to date, because the shares for the given amount are calculated upon request and various price changes may occur until they are claimed.
+
+When a withdrawal is queued, it calculates how many shares to withdraw based on the `underlyingToShare` exchange rate at the time of the request.
+
+[OperatorDelegator.sol#L193-L256](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Delegation/OperatorDelegator.sol#L193-L256)
+
+```solidity
+function queueWithdrawals(
+    IERC20[] calldata tokens,
+    uint256[] calldata tokenAmounts
+) external nonReentrant onlyNativeEthRestakeAdmin returns (bytes32) {
+    ..
+          if (address(tokenStrategyMapping[tokens[i]]) == address(0))
+              revert InvalidZeroInput();
+
+          // set the strategy of the token
+          queuedWithdrawalParams[0].strategies[i] = tokenStrategyMapping[tokens[i]];
+
+          // set the equivalent shares for tokenAmount
+          queuedWithdrawalParams[0].shares[i] = tokenStrategyMapping[tokens[i]]
+              .underlyingToSharesView(tokenAmounts[i]); // <----------- @audit it will convert the tokenAmount to shares at the time of request
+                
+        ....
+
+        // set withdrawer as this contract address
+        queuedWithdrawalParams[0].withdrawer = address(this);
+
+        // track shares of tokens withdraw for TVL
+        queuedShares[address(tokens[i])] += queuedWithdrawalParams[0].shares[i];
+        unchecked {
+            ++i;
+        }
+    }
+
+    ...
+}
+```
+
+And then the shares that were saved in `queuedShares` will be withdrawn, but what if the exchange rate changes during the withdrawal delay has passed and be able to call `completeQueuedWithdrawal()`.
+
+ 
+
+1. Let's assume that `1 stETH` equals `1 EigenLayer-stETH` and the withdrawal buffer is full, so all deposits will be made to Eigen.
+2. Alice deposits `5e18` stETH.
+3. After some time, Bob deposits `100e18 stETH` and then requests an immediate withdrawal, and at the time of the request, the amount of his withdrawal shares will be `100e18 EigenLayer-stETH`.
+4. Now assume that the value of EigenLayer-stETH increases, meaning that 1 EigenLayer-stETH is now worth more stETH. This is expected behavior as EigenLayer-stETH is similar to an ERC4626 vault and value may increase over time.
+5. Let's say `1 EigenLayer-stETH` is now worth `1.1 stETH`.
+6. For the initial `100stETH` that bob deposited, now **only 90.9 EigenLayer-stETH** can be exchanged and plus the `5stETH` deposited by Alice gives us a total of `90.9 + 4.54 = 95.44`, but bob's request was for 100.
+
+This would mean that Bob's withdrawal request would not be fulfilled because there were changes in the exchange rate between the request and the claim.
+
+A similar finding was reported here: https://github.com/sherlock-audit/2024-02-rio-network-core-protocol-judging/issues/109
+
+**Recommendation:** 
+
+It is hard to give appropriate solution to this, because this is how EigenLayer shares works, but it can be something to check in `completeQueuedWithdrawal()`, if the initial shares are still the same and if the exchange rate was updated.
+
 
 ## Governance Risks
 
@@ -357,7 +444,7 @@ function updateWithdrawBufferTarget(
 
 When adding new `EigenLayer` strategy, the `tokenStrategyMapping` mapping is being updated, but there is no validation whether this strategy supports this particular token. If such a mismatch occur all the deposits with non-native tokens will be reverting and this part of the system will experience DoS until strategy token is being updated.
 
-We can see that there is such validation presented in `[OperatorDelegator::setTokenStrategy](https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Delegation/OperatorDelegator.sol#L106-L114)`:
+We can see that there is such validation presented in [`OperatorDelegator::setTokenStrategy`](https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Delegation/OperatorDelegator.sol#L106-L114):
 
 ```solidity
   function setTokenStrategy(
