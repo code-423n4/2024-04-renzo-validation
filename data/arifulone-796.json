@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "arifulone",
+  "risk": "3",
+  "title": "wrong arithmatic expression in `OperatorDelegator::getStakedETHBalance()`  will miscalculate Staked ETH , total TVL and related functions. severe distruption to the entire protocol",
+  "issueId": 796,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/796"
+}
