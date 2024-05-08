@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "BlockSails",
+  "risk": "2",
+  "title": "Chainlink oracle lookup division using hardcoded value instead of `pricefeed.decimals` may cause incorrect token look-up",
+  "issueId": 801,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/801"
+}
