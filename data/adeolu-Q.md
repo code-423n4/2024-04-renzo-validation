@@ -127,3 +127,24 @@ modify the `setTokenStrategy()`fcn to be like below
         emit TokenStrategyUpdated(_token, _strategy);
     }
 ```
+
+
+# [L-05] - using tx.gasprice in gas refunds calc can open protocol up to the possibily of rogue admin accounts stealing ether
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Deposits/DepositQueue.sol#L283C1-L290C1
+```
+    function _refundGas(uint256 initialGas) internal {
+        uint256 gasUsed = (initialGas - gasleft()) * tx.gasprice;
+        uint256 gasRefund = address(this).balance >= gasUsed ? gasUsed : address(this).balance;
+        (bool success, ) = payable(msg.sender).call{ value: gasRefund }("");
+        if (!success) revert TransferFailed();
+        emit GasRefunded(msg.sender, gasRefund);
+    }
+```
+
+post EIP1559, tx.gasprice is calculated as the block base fee plus the sender's priority fee. a malicious caller can use a high priority fee to inflate the value of tx.gasprice and manipulate the gas refunds calculations. This will cause the amount to be refunded to be higher and it will be deducted from the ether balance of the contract. 
+
+in depositQueue.sol, `_refundGas()` is used by admin functions [stakeEthFromQueue()](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Deposits/DepositQueue.sol#L205) and [stakeEthFromQueueMulti()](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Deposits/DepositQueue.sol#L249). Although these functions are admin functions and access is restricted. It is important to note this vuln as it could possibly cause loss of user funds in rare scenario case when admin address is compromisd. 
+
+## Recommended Mitigation 
+use oracles to fetch gas price or cap the priority fee 
