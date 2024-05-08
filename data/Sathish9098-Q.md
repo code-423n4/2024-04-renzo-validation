@@ -1,9 +1,49 @@
-##
+## LOW FINDINGS
+
+| Issue Number | Issue Title |
+|---------------|-------------|
+| [L-1] | ``block.timestamp - _withdrawRequest.createdAt < coolDownPeriod`` check breaks the intended functionality |
+| [L-2] | Timestamp Verification Discrepancies Between ``RenzoOracle`` and ``_deposit()`` Function |
+| [L-3] | Risk of Unchecked Oracle Price Anomalies in ``lookupTokenValue()`` function |
+| [L-4] | Risk of Suboptimal Delegator Selection Due to First-Match Approach in ``chooseOperatorDelegatorForDeposit()`` |
+| [L-5] | Replay Attacks and Stale Authorizations Due to Non-Expiring Signatures |
+| [L-6] | Risk of Imbalanced Load Distribution Due to Default Selection Bias ``chooseOperatorDelegatorForDeposit()`` function |
+| [L-7] | Unrestricted maximum value in ``coolDownPeriod()`` |
+| [L-8] | ``xReceive()`` become DOS when ``RestakeManager`` paused |
+| [L-9] | ``sweepBatchSize * bridgeFeeShare) / FEE_BASIS`` For large deposits protocol loss huge value since the fee calculation is fixed for deposit greater than 32ETH |
+| [L-10] | Inconsistency in Price Validation Between ``Oracle`` and ``CCIPReceiver`` |
+| [L-11] | Untracked ``bridgeRouterFeeBps`` Fees Compromise Protocol Accounting and Result in Losses |
+| [L-12] | Misguided Zero-Value Checks for uint256 |
+| [L-13] | Division by Zero in calculateRedeemAmount Function for Zero ezETH Supply |
+| [L-14] | Wrong Comment in ``setPaused()`` function |
+| [L-15] | The ``_allocationBasisPoints `` declaration contradict with actual implementation |
+| [L-16] | Lack of check for ``_transferId`` uniqueness in ``xReceive`` function |
+| [L-17] | Compromised ``WithdrawQueueAdmin`` Could Set Excessive ``coolDownPeriod`` |
+
+## [L-1] ``block.timestamp - _withdrawRequest.createdAt < coolDownPeriod`` check breaks the intended functionality
+
+The problem arises because the code allows a claim to be processed the exact moment the ``coolDownPeriod`` equals the time difference between the current time and the request creation time. Claims to be permitted only after the entire ``coolDownPeriod`` has fully elapsed. Current check ``block.timestamp - _withdrawRequest.createdAt < coolDownPeriod`` intented functionality. This will allow claims even the coolDownPeriod not fully elapsed .
+
+
+```solidity
+FILE: 2024-04-renzo/contracts/Withdraw/WithdrawQueue.sol
+
+287: if (block.timestamp - _withdrawRequest.createdAt < coolDownPeriod) revert EarlyClaim();
+
+```
+
+### Recommended Mitigation
+
+```solidity
+
+287: if (block.timestamp - _withdrawRequest.createdAt <= coolDownPeriod) revert EarlyClaim();
+
+```
 
 
 ##
 
-## [L-] Timestamp Verification Discrepancies Between ``RenzoOracle`` and ``_deposit()`` Function
+## [L-2] Timestamp Verification Discrepancies Between ``RenzoOracle`` and ``_deposit()`` Function
 
 The issue arises from a mismatch in staleness thresholds: the RenzoOracle uses a staleness check of "1 day + 60 seconds," whereas the _deposit function uses exactly "1 day." This inconsistency in timestamp verification can lead to contradictory behaviors between the two components. 
 
@@ -62,7 +102,7 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 ##
 
-## [L-] Risk of Suboptimal Delegator Selection Due to First-Match Approach in ``chooseOperatorDelegatorForDeposit()`` 
+## [L-4] Risk of Suboptimal Delegator Selection Due to First-Match Approach in ``chooseOperatorDelegatorForDeposit()`` 
 
 Multiple delegators have TVLs (Total Value Locked) below their respective thresholds, the function chooseOperatorDelegatorForDeposit will select and return the first delegator that meets this condition as it iterates through the list of delegators. This means that the function does not compare all delegators to find the one with the lowest TVL relative to their threshold but rather returns the first one it encounters that fits the criteria.
 
@@ -205,7 +245,7 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 ##
 
-## [L-] Risk of Imbalanced Load Distribution Due to Default Selection Bias ``chooseOperatorDelegatorForDeposit()`` function 
+## [L-6] Risk of Imbalanced Load Distribution Due to Default Selection Bias ``chooseOperatorDelegatorForDeposit()`` function 
 
 ### Impact
 
@@ -259,7 +299,7 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 ##
 
-## [L-] Unrestricted maximum value in ``coolDownPeriod()`` 
+## [L-7] Unrestricted maximum value in ``coolDownPeriod()`` 
 
 Currently the cooldown period is 7 days as per docs. If set maximum values uses can't withdraw their tokes. 
 
@@ -287,7 +327,7 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 ##
 
-## [L-] xReceive() become DOS when RestakeManager paused  
+## [L-8] ``xReceive()`` become DOS when ``RestakeManager`` paused  
 
 When RestakeManager is paused, attempting to call depositETH will lead to a revert, usually triggered by a require statement checking the paused state. This prevents any new funds from being accepted into the system, safeguarding users’ assets from being locked in a potentially compromised or unstable environment.
 
@@ -310,7 +350,7 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 ##
 
-## [L-] ``sweepBatchSize * bridgeFeeShare) / FEE_BASIS`` For large deposits protocol loss huge value since the fee calculation is fixed for deposit greater than 32ETH 
+## [L-9] ``sweepBatchSize * bridgeFeeShare) / FEE_BASIS`` For large deposits protocol loss huge value since the fee calculation is fixed for deposit greater than 32ETH 
 
 When a user deposits an amount significantly larger than 32 ETH, the system still only deducts the fee equivalent to what would be deducted for 32 ETH. This creates an imbalance where the system may not be collecting sufficient fees proportional to the amount being processed. This could potentially lead to revenue loss for the system if the cost of handling larger transactions (like security, operational costs) scales with the transaction size.
 
@@ -359,7 +399,7 @@ Implement the 0.05% percent invariant for all deposits
 
 ##
 
-## [L-] Inconsistency in Price Validation Between ``Oracle`` and ``CCIPReceiver``
+## [L-10] Inconsistency in Price Validation Between ``Oracle`` and ``CCIPReceiver``
 
 When fetching the price from RenzoOracleL2, the system strictly checks that the ezETH price is not less than 1 ether, reverting with InvalidOraclePrice() if it is. However, when updating ezETH via CCIPReceiver, there is no check to ensure that the price of ezETH meets this criterion. Technically, when fetching price data from CCIPReceiver, the lastPrice can be below 1 ETH. This represents an inconsistency in the price implementation.
 
@@ -429,7 +469,7 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 ##
 
-## [L-] Untracked ``bridgeRouterFeeBps`` Fees Compromise Protocol Accounting and Result in Losses
+## [L-11] Untracked ``bridgeRouterFeeBps`` Fees Compromise Protocol Accounting and Result in Losses
 
 The ``bridgeRouterFeeBps`` fee is deducted from ``amountNextWETH``, but it is not accounted for, and it is unclear what happens to that fee. Although the fee is subtracted from the amount, the protocol does not track this fee, nor is it claimed anywhere within the protocol. It remains unclear what happens to the fee once it is deducted from the amount. This will ``break`` the over all ``protocol accounting`` .
 
@@ -447,7 +487,7 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 ##
 
-## [L-1] Misguided Zero-Value Checks for uint256
+## [L-12] Misguided Zero-Value Checks for uint256
 
 Since ``uint256`` cannot be negative, the check ``_amount < 0`` is inherently impossible. This leaves only the possibility of _amount being equal to zero as a valid check.
 
@@ -468,7 +508,7 @@ if (_amount == 0) {
 
 ##
 
-## [L-] Division by Zero in calculateRedeemAmount Function for Zero ezETH Supply 
+## [L-13] Division by Zero in calculateRedeemAmount Function for Zero ezETH Supply 
 
 The operation (_currentValueInProtocol * _ezETHBeingBurned) / _existingEzETHSupply can lead to a division by zero if _existingEzETHSupply is zero. 
 
@@ -494,7 +534,7 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 ##
 
-## [L-] Wrong Comment in ``setPaused()`` function
+## [L-14] Wrong Comment in ``setPaused()`` function
 
 The comment suggest only restake manager admin to set the paused state. But in actual implementation ``onlyDepositWithdrawPauserAdmin `` set the paused state .
 
@@ -511,7 +551,7 @@ FILE: 2024-04-renzo/contracts/RestakeManager.sol
 
 ##
 
-## [L-] The ``_allocationBasisPoints `` declaration contradict with actual implementation
+## [L-15] The ``_allocationBasisPoints `` declaration contradict with actual implementation
 
 Declaration suggests this will accept uint256 range of the values . But in actual implementations this will revert if the value is greater than 10000.
 
@@ -527,7 +567,7 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 ##
 
-## [L-] Lack of check for ``_transferId`` uniqueness in ``xReceive`` function
+## [L-16] Lack of check for ``_transferId`` uniqueness in ``xReceive`` function
 
 Even though _transferId is generated using Keccak-256—a cryptographic hashing function—it's worth acknowledging that while extremely rare, the possibility of collisions (two distinct input sets producing the same hash output) theoretically exists. Despite the low probability, the possibility of a collision cannot be completely dismissed, especially as computational power increases or through a breakthrough in cryptographic research.
 
@@ -554,7 +594,7 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 ##
 
-## [L-] Compromised ``WithdrawQueueAdmin`` Could Set Excessive ``coolDownPeriod``
+## [L-17] Compromised ``WithdrawQueueAdmin`` Could Set Excessive ``coolDownPeriod``
 
 The function updateCoolDownPeriod allows a WithdrawQueueAdmin to change the cooldown period, which is a critical parameter affecting the operation of the claim() function. If this period is set to an excessively long duration maliciously or due to a compromise, it can effectively prevent users from claiming their withdrawals, resulting in a Denial of Service (DoS) for all users dependent on this functionality.
 
@@ -572,9 +612,23 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 ##
 
-## [L-] ``block.timestamp - _withdrawRequest.createdAt < coolDownPeriod`` check is wrong 
+## [L-18] Lack of Clarity in ``MAX_TIME_WINDOW`` Definition Extending to ``24 Hours and 60 Seconds`` in ``RenzoOracle``
 
-This will allow to claim even ``block.timestamp - _withdrawRequest.createdAt`` == coolDownPeriod meaning that the coolDownPeriod is still not fully end. So this will break the intended coolDownPeriod purpose . Claim only allowed the coolDownperiod fully expired.
+In the RenzoOracle implementation, the staleness threshold for price feeds is set to 1 day plus 1 minute (86460 seconds), deviating from the typical 1-day period commonly used in other oracles. This deviation is not clearly documented, potentially leading to confusion regarding the freshness criteria of data. Properly documenting and justifying the rationale for this additional 60 seconds is crucial to ensure transparency and prevent misunderstandings about the oracle's data validity period. Clear documentation is also essential for maintaining consistent expectations and operations across systems that depend on this oracle for timely and accurate data.
+
+```solidity
+FILE: 2024-04-renzo/contracts/Oracle/RenzoOracle.sol
+
+/// @dev The maxmimum staleness allowed for a price feed from chainlink
+    uint256 constant MAX_TIME_WINDOW = 86400 + 60; // 24 hours + 60 seconds
+
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Oracle/RenzoOracle.sol#L25-L26
+
+
+
+
+
 
 
 
