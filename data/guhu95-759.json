@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "guhu95",
+  "risk": "2",
+  "title": "DepositQueue's unset withdrawQueue address after an upgrade causes a loss of MEV rewards",
+  "issueId": 759,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/759"
+}
