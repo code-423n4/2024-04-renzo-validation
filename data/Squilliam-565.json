@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "3",
+  "title": "[H-23] `RenzoOracle::lookupTokenValue` Inaccuracies during flash crashes leading to mispricing of assets and fund loss",
+  "issueId": 565,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/565"
+}
