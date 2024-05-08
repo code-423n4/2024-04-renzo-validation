@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "NentoR",
+  "risk": "2",
+  "title": "`RenzoOracle` and `RenzoOracleL2` use same heartbeat for all feeds",
+  "issueId": 581,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/581"
+}
