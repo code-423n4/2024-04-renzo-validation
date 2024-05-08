@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "aman",
+  "risk": "2",
+  "title": "The `completeQueuedWithdrawal` can not be completed if `strategy` is removed for token",
+  "issueId": 926,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/926"
+}
