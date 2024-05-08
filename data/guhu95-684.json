@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "guhu95",
+  "risk": "2",
+  "title": "Newly added LSTs always have 0 TVL cap allowing arbitrary size deposits",
+  "issueId": 684,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/684"
+}
