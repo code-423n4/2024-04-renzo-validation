@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "ladboy233",
+  "risk": "2",
+  "title": "Malicious proxyAdmin can upgrade xerc20 token implementation and steal fund from user.",
+  "issueId": 770,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/770"
+}
