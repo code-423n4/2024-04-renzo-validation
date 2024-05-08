@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "MrxSnowden",
+  "risk": "2",
+  "title": "Unchecked Return Values in _forwardETH Function",
+  "issueId": 603,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/603"
+}
