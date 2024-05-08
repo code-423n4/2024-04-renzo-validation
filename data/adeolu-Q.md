@@ -195,3 +195,7 @@ In xRenzoDeposit.deposit() which also uses RenzoOracleL2.getMintRate() in its [x
 for example, user calls xRenzoDeposit.getMintRate() and gets back data which is checked to be fresh (not stale) by the xRenzoDeposit.getMintRate() logic. User thinks data is okay because there was no reverts and then proceeds to call xRenzoDeposit.deposit(). xRenzoDeposit.deposit() then reverts because its timestamp comparison with `1 days` fails while xRenzoDeposit.getMintRate() is a success because the returned chainlink timestamp is still within the accepted range of `86400 + 60`. 
 
 For clarity sake, it is better to use same conditions for staleness check across all logic, especially logic of contracts with  inter related  functions (functions that call the other). 
+
+
+## Recommended Mitigation 
+use same conditions for staleness check across affected functions. 
