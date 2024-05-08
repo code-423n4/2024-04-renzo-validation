@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Sancybars",
+  "risk": "3",
+  "title": "createdAt will default to zero allowing users to withdraw before the coolDown period ends.",
+  "issueId": 738,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/738"
+}
