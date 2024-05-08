@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "0xBeastBoy",
+  "risk": "2",
+  "title": "Absence of Division by Zero and Underflow Checks in calculateMintAmount Function",
+  "issueId": 600,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/600"
+}
