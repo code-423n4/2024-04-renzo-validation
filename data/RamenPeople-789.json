@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "RamenPeople",
+  "risk": "2",
+  "title": "Inability to deposit funds due to incorrect filling the withdraw buffer",
+  "issueId": 789,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/789"
+}
