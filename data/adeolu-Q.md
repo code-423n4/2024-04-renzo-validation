@@ -2,7 +2,7 @@
 
 https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/token/EzEthToken.sol#L36
 
-```
+```solidity
     function initialize(IRoleManager _roleManager) public initializer {
         if (address(_roleManager) == address(0x0)) revert InvalidZeroInput();
 
@@ -22,7 +22,7 @@ use `Renzo Restaked ETH` ezETH as input for parameter `name_` and use `ezETH` as
 
 https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L1/xRenzoBridge.sol#L134C1-L137C80
 
-```
+```solidity
      * @notice  WARNING: This function does NOT whitelist who can send funds from the L2 via Connext.  Users should NOT
      *          send funds directly to this contract.  A user who sends funds directly to this contract will cause
      *          the tokens on the L2 to become over collateralized and will be a "donation" to protocol.  Only use
@@ -31,7 +31,7 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 ```
 
 https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L1/xRenzoBridge.sol#L309C1-L313C34
-```
+```solidity
     /**
      * @notice Fallback function to handle ETH sent to the contract from unwrapping WETH
      * @dev Warning: users should not send ETH directly to this contract!
@@ -41,7 +41,7 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 The warnings above says that "users should not send ETH directly to this contract!" else the eth sent will become a "donation" to the protocol and the fallback should only be used for unwrapping WETH. But still to prevent/totally eliminate user error, mistakes etc a strict check can be put in the fallback logic to reject eth transfers made by addresses that are not the registered WETH contract. Something like the logic below should do. 
 
-```
+```solidity
     receive() external payable {
         //@audit: to enforce the warning you can do something like
         if (msg.sender != address(wETH)) revert();
@@ -52,7 +52,7 @@ This will eliminate all posibilities of users making any erroreous use of the co
 
 ## Recommended Mitigation
 modify the fallback to be like below
-```
+```solidity
     receive() external payable {
         //@audit: to enforce the warning you can do something like
         if (msg.sender != address(wETH)) revert();
@@ -67,7 +67,7 @@ messages sent via connext's xcall() function all have a `transferID` value which
 https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L1/xRenzoBridge.sol#L275C1-L280C15
 
 https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L1/xRenzoBridge.sol#L43C1-L48C7
-```
+```solidity
     event ConnextMessageSent(
         uint32 indexed destinationChainDomain, // The chain domain Id of the destination chain.
         address receiver, // The address of the receiver on the destination chain.
@@ -81,11 +81,12 @@ destinationChainDomain, receiver, exchangeRate, fees can be the same for two eve
 It is better to inclued the `transferID` value which is returned by the [xcall()](https://github.com/connext/monorepo/blob/8338d6506c609f9383d81133c3cb40cfb9e44392/packages/deployments/contracts/contracts/core/connext/facets/BridgeFacet.sol#L299C1-L307C59) fcn in the event parameters as well. This will make each event unique to each connext message and allow for easier identification/relationship between each message and their `ConnextMessageSent` events. For example, say relayer fee for the message is not enough for execution on L2, the `transfer ID` is used to to increase/bump up the fee paid as seen here --> https://docs.connext.network/developers/guides/estimating-fees#bumping-relayer-fees 
 Ignoring the `transferID` value makes it harder to track the failing message and troubleshoot any issues or add more relayer fees as in this case. 
 
+I also noticed that `xRenzoDeposit.sweep()` fcn has same issue, it does a connext xcall and doesnt save or emit the transferID too. see [here](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/xRenzoDeposit.sol#L434)
 
 ## Recommended Mitigation
 modify the `ConnextMessageSent` event to be like below
 
-```
+```solidity
     event ConnextMessageSent(
    bytes32 transferID //id of the connext cross chain message. 
         uint32 indexed destinationChainDomain, // The chain domain Id of the destination chain.
@@ -98,7 +99,7 @@ modify the `ConnextMessageSent` event to be like below
 # [L-04] -  OperatorDelegator.setTokenStrategy()  should check that each strategy address being set is whitelisted for deposit in eigenlayer strategy manager
 
 https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Delegation/OperatorDelegator.sol#L106C1-L115C1
-```
+```solidity
     /// @dev Sets the strategy for a given token - setting strategy to 0x0 removes the ability to deposit and withdraw token
     function setTokenStrategy(
         IERC20 _token,
@@ -117,7 +118,7 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 ## Recommended Mitigation
 modify the `setTokenStrategy()`fcn to be like below
 
-```
+```solidity
     function setTokenStrategy(
         IERC20 _token,
         IStrategy _strategy
@@ -134,7 +135,7 @@ modify the `setTokenStrategy()`fcn to be like below
 # [L-05] - using tx.gasprice in gas refunds calc can open protocol up to the possibily of rogue admin accounts stealing ether
 
 https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Deposits/DepositQueue.sol#L283C1-L290C1
-```
+```solidity
     function _refundGas(uint256 initialGas) internal {
         uint256 gasUsed = (initialGas - gasleft()) * tx.gasprice;
         uint256 gasRefund = address(this).balance >= gasUsed ? gasUsed : address(this).balance;
