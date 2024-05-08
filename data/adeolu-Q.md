@@ -78,7 +78,9 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 destinationChainDomain, receiver, exchangeRate, fees can be the same for two events. i.e if two transactions are made at the same time, bot events can have same value for timestamp,  destinationChainDomain, receiver, exchangeRate and fees. 
 
-It is better to inclued the `transferID` value which is returned by the [xcall()](https://github.com/connext/monorepo/blob/8338d6506c609f9383d81133c3cb40cfb9e44392/packages/deployments/contracts/contracts/core/connext/facets/BridgeFacet.sol#L299C1-L307C59) fcn in the event parameters as well. This will make each event unique to each connext message and allow for easier identification/relationship between each message and their `ConnextMessageSent` events.
+It is better to inclued the `transferID` value which is returned by the [xcall()](https://github.com/connext/monorepo/blob/8338d6506c609f9383d81133c3cb40cfb9e44392/packages/deployments/contracts/contracts/core/connext/facets/BridgeFacet.sol#L299C1-L307C59) fcn in the event parameters as well. This will make each event unique to each connext message and allow for easier identification/relationship between each message and their `ConnextMessageSent` events. For example, say relayer fee for the message is not enough for execution on L2, the `transfer ID` is used to to increase/bump up the fee paid as seen here --> https://docs.connext.network/developers/guides/estimating-fees#bumping-relayer-fees 
+Ignoring the `transferID` value makes it harder to track the failing message and troubleshoot any issues or add more relayer fees as in this case. 
+
 
 ## Recommended Mitigation
 modify the `ConnextMessageSent` event to be like below
