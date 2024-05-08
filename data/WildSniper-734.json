@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "WildSniper",
+  "risk": "3",
+  "title": "`WithdrawQueue::claim()` uses transfer for ERC20 transfers instead of safeTransfer suscepting the users for loss of funds and funds freeze",
+  "issueId": 734,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/734"
+}
