@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "0xAadi",
+  "risk": "2",
+  "title": "Incomplete Origin and Origin Sender Authentication in `xReceive` Function",
+  "issueId": 1011,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1011"
+}
