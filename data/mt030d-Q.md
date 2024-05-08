@@ -37,3 +37,6 @@ To improve contract consistency, consider adding the `whenNotPaused` modifier to
         withdrawRequests[msg.sender].pop();
 ```
 The `WithdrawQueue.claim()` function swaps the last element in `withdrawRequests` with the indexed one and then removes the last element. As a result, the element at the `withdrawRequestID` of `WithdrawRequestCreated` events may not match the original element. Users should be aware of this potential issue.
+
+# 4. Incorrect function name in `ConnextReceiver`
+The function `updateCCIPEthChainSelector()` in the `ConnextReceiver` contract is incorrectly named. It interacts with `ConnextEthChainSelector`, not `CCIPEthChainSelector`. Therefore, we should rename this function to reflect its actual operation.
