@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "JC",
+  "risk": "2",
+  "title": "Lack of Proper Input Validation in recoverNative() and recoverERC20() can lead to lost of funds for users",
+  "issueId": 1020,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1020"
+}
