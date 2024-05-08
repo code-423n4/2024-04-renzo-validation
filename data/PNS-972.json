@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "PNS",
+  "risk": "2",
+  "title": "`chooseOperatorDelegatorForDeposit` misinterprets allocation percentage",
+  "issueId": 972,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/972"
+}
