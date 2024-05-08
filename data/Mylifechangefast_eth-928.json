@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Mylifechangefast_eth",
+  "risk": "3",
+  "title": "Imported UPgReentrancy guard but not in use will cause cross function reentrancy attack",
+  "issueId": 928,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/928"
+}
