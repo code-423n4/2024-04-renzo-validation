@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "ReadyPlayer2",
+  "risk": "2",
+  "title": "Ambiguous abi encoding in OptimismMintableXERC20 factory leading to salt collision and deployment DOS for same user deployment",
+  "issueId": 800,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/800"
+}
