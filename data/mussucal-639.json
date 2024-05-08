@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "mussucal",
+  "risk": "3",
+  "title": "Flag withdrawQueueTokenBalanceRecorded is not cleared for each collateral Token in RestakeManager.calculateTVLs()",
+  "issueId": 639,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/639"
+}
