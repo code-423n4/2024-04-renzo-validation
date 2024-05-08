@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "ladboy233",
+  "risk": "3",
+  "title": "Token TVL is miss-calculated and inflated and count multiple times in  RestakeManager.",
+  "issueId": 737,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/737"
+}
