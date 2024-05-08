@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "0x73696d616f",
+  "risk": "2",
+  "title": "RestakeManager::depositETH() does not take into account deposit count in the Beacon Deposit Contract",
+  "issueId": 979,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/979"
+}
