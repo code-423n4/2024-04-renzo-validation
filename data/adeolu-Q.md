@@ -151,3 +151,35 @@ in depositQueue.sol, `_refundGas()` is used by admin functions [stakeEthFromQueu
 
 ## Recommended Mitigation 
 use oracles to fetch gas price or cap the priority fee 
+
+
+
+# [L-06] - External calls in an un-bounded for-loop which calls chainlink oracle price feed may result to OOG if array length is too long
+
+note: i add this because this specific function is not convered in the 4naly3er report. 
+
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Oracle/RenzoOracle.sol#L103C1-L119C6
+```solidity
+    function lookupTokenValues(
+        IERC20[] memory _tokens,
+        uint256[] memory _balances
+    ) external view returns (uint256) {
+        if (_tokens.length != _balances.length) revert MismatchedArrayLengths();
+
+        uint256 totalValue = 0;
+        uint256 tokenLength = _tokens.length;
+        for (uint256 i = 0; i < tokenLength; ) {
+            totalValue += lookupTokenValue(_tokens[i], _balances[i]);
+            unchecked {
+                ++i;
+            }
+        }
+
+        return totalValue;
+    }
+```
+
+unbounded loop here which will go on for as long for as many iterations  as the token array length. the external call to the chainlink api is in the [lookupTokenValue()](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Oracle/RenzoOracle.sol#L75) call. If array is too long this will revert with OOG. 
+
+## Recommended Mitigation 
+Consider limiting the max length of the parameter arrays supplied to the function. 
