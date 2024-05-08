@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "0xblackskull",
+  "risk": "2",
+  "title": "Incorrect modifier in WithdrawQueue::fillEthWithdrawBuffer",
+  "issueId": 829,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/829"
+}
