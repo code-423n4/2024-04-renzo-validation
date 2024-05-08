@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "jokr",
+  "risk": "3",
+  "title": "No check if L2 sequencer is down in `RenzoOracleL2`",
+  "issueId": 560,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/560"
+}
