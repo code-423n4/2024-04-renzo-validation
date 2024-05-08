@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "ihtishamsudo",
+  "risk": "2",
+  "title": "Missing Initialization of ReentrancyGuardUpgradeable In WIthdrawQueue Would Brick All The Reentrancy Protection And Break The Code Consistency ",
+  "issueId": 974,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/974"
+}
