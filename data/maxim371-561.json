@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "maxim371",
+  "risk": "3",
+  "title": "`xRenzoDeposit.sol::_recoverBridgeFee` some users will pay more fees",
+  "issueId": 561,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/561"
+}
