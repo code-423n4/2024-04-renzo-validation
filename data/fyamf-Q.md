@@ -1,4 +1,4 @@
-# Q1
+# Issue 1
 ## Impact
 When certain functions like `addOperatorDelegator`, `removeOperatorDelegator`, or `setOperatorDelegatorAllocation` are used, there's a problem. It doesn't properly check if the shares given to operator delegators are fair. This could mean some delegators get more than they should, which isn't right.
 
@@ -61,8 +61,7 @@ function updateAllocations() public {
 ```
 This function makes sure each delegator gets a fair share based on the total sum of allocations.
 
-
-# Q2
+# Issue 2
 
 ## Impact
 The role assigned to pause withdrawals is incorrect.
@@ -109,7 +108,9 @@ https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/Permissions/Role
 
 
 
-### Simplified Mitigation Steps
+## Tools Used
+
+## Recommended Mitigation Steps
 To align the implementation with the documentation, modify the modifier of the `pause()` and `unpause()` functions to `onlyDepositWithdrawPauserAdmin`.
 ```solidity
 /**
@@ -129,7 +130,7 @@ function unpause() external onlyDepositWithdrawPauserAdmin {
 }
 ```
 
-# Q3
+# Issue 3
 ## Impact
 The pausing mechanism defined in the WithdrawQueue contract is not utilized.
 
@@ -167,7 +168,7 @@ modifier notPaused() {
 }
 ```
 
-# Q4
+# Issue 4
 ## Impact
 There is a conflict between roles in setting the cooldown period to a large value.
 
@@ -202,7 +203,7 @@ function updateCoolDownPeriod(uint256 _newCoolDownPeriod) external onlyWithdrawQ
 }
 ```
 
-# Q5
+# Issue 5
 ## Impact
 The gas refund mechanism for the admin in the `DepositQueue` contract is not accurate.
 
@@ -262,6 +263,9 @@ function _refundGas(uint256 initialGas) internal {
     }
 ```
 
-# Q6
+# Issue 6
 The function `chooseOperatorDelegatorForWithdraw` is defined, but not used anywhere.
 https://github.com/code-423n4/2024-04-renzo/blob/main/contracts/RestakeManager.sol#L400
+
+
+
