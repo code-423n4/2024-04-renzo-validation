@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "jokr",
+  "risk": "3",
+  "title": "ETH queued in DelayedWithdrawalRouter is not considered for TVL",
+  "issueId": 577,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/577"
+}
