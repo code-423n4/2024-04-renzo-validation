@@ -327,7 +327,206 @@ https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e4
 
 ##
 
+## [L-] ``sweepBatchSize * bridgeFeeShare) / FEE_BASIS`` For large deposits protocol loss huge value since the fee calculation is fixed for deposit greater than 32ETH 
+
+When a user deposits an amount significantly larger than 32 ETH, the system still only deducts the fee equivalent to what would be deducted for 32 ETH. This creates an imbalance where the system may not be collecting sufficient fees proportional to the amount being processed. This could potentially lead to revenue loss for the system if the cost of handling larger transactions (like security, operational costs) scales with the transaction size.
+
+Let's recalculate the fee using the correct bridgeFeeShare of 0.05% for a 1000 ETH deposit, based on your specifications:
+
+### POC
+
+Lets assume,
+sweepBatchSize = 32 ETH
+bridgeFeeShare = 5 (which equates to 0.05% fee since FEE_BASIS is 10000)
+FEE_BASIS = 10000
+_amountIn = 1000 ETH
+
+As per implementation
+Fee = (32 ETH * 5) / 10000 = 160 / 10000 = 0.016 ETH - > 0.0016%
+
+As per original deposit
+Fee = (1000 ETH * 5) / 10000 = 5000 / 10000 = 0.5 ETH  - > 0.05%
+
+Loss to Protocol = Fee using proportional mechanism - Fee using current mechanism
+Loss to Protocol = 0.5 ETH - 0.016 ETH = 0.484 ETH
+
+Its very huge lose to protocol and This breaks the 0.05% fee invariants 
+
+```solidity
+FILE: 2024-04-renzo/contracts/Bridge/L2/xRenzoDeposit.sol
+
+/**
+     * @notice Function returns bridge fee share for deposit
+     * @param _amountIn deposit amount in terms of ETH
+     */
+    function getBridgeFeeShare(uint256 _amountIn) public view returns (uint256) {
+        // deduct bridge Fee share
+        if (_amountIn < sweepBatchSize) {
+            return (_amountIn * bridgeFeeShare) / FEE_BASIS;
+        } else {
+            return (sweepBatchSize * bridgeFeeShare) / FEE_BASIS;
+        }
+    }
+
+``` 
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/xRenzoDeposit.sol#L273C4-L284
+
+### Recommended Mitigation
+Implement the 0.05% percent invariant for all deposits 
+
+##
+
+## [L-] Inconsistency in Price Validation Between ``Oracle`` and ``CCIPReceiver``
+
+When fetching the price from RenzoOracleL2, the system strictly checks that the ezETH price is not less than 1 ether, reverting with InvalidOraclePrice() if it is. However, when updating ezETH via CCIPReceiver, there is no check to ensure that the price of ezETH meets this criterion. Technically, when fetching price data from CCIPReceiver, the lastPrice can be below 1 ETH. This represents an inconsistency in the price implementation.
+
+```solidity
+FILE: 2024-04-renzo/contracts/Bridge/L2/Oracle/RenzoOracleL2.sol
+
+55: if (_scaledPrice < 1 ether) revert InvalidOraclePrice();
+
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/Oracle/RenzoOracleL2.sol#L55
+
+```solidity
+FILE: 2024-04-renzo/contracts/Bridge/L2/xRenzoDeposit.sol
+
+ /**
+     * @notice  Updates the price feed
+     * @dev     This function will receive the price feed and timestamp from the L1 through CCIPReceiver middleware contract.
+     *          It should verify the origin of the call and only allow permissioned source to call.
+     * @param   _price The price of ezETH sent via L1.
+     * @param   _timestamp The timestamp at which L1 sent the price.
+     */
+    function updatePrice(uint256 _price, uint256 _timestamp) external override {
+        if (msg.sender != receiver) revert InvalidSender(receiver, msg.sender);
+        _updatePrice(_price, _timestamp);
+    }
+
+
+/**
+     * @notice  Internal function to update price
+     * @dev     Sanity checks input values and updates prices
+     * @param   _price  Current price of ezETH to ETH - 18 decimal precision
+     * @param   _timestamp  The timestamp of the price update
+     */
+    function _updatePrice(uint256 _price, uint256 _timestamp) internal {
+        // Check for 0
+        if (_price == 0) {
+            revert InvalidZeroInput();
+        }
+
+        // Check for price divergence - more than 10%
+        if (
+            (_price > lastPrice && (_price - lastPrice) > (lastPrice / 10)) ||
+            (_price < lastPrice && (lastPrice - _price) > (lastPrice / 10))
+        ) {
+            revert InvalidOraclePrice();
+        }
+
+        // Do not allow older price timestamps
+        if (_timestamp <= lastPriceTimestamp) {
+            revert InvalidTimestamp(_timestamp);
+        }
+
+        // Do not allow future timestamps
+        if (_timestamp > block.timestamp) {
+            revert InvalidTimestamp(_timestamp);
+        }
+
+        // Update values and emit event
+        lastPrice = _price;
+        lastPriceTimestamp = _timestamp;
+
+        emit PriceUpdated(_price, _timestamp);
+    }
+
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/xRenzoDeposit.sol#L330-L359
+
+##
+
+## [L-] Untracked ``bridgeRouterFeeBps`` Fees Compromise Protocol Accounting and Result in Losses
+
+The ``bridgeRouterFeeBps`` fee is deducted from ``amountNextWETH``, but it is not accounted for, and it is unclear what happens to that fee. Although the fee is subtracted from the amount, the protocol does not track this fee, nor is it claimed anywhere within the protocol. It remains unclear what happens to the fee once it is deducted from the amount. This will ``break`` the over all ``protocol accounting`` .
+
+```solidity
+FILE: 2024-04-renzo/contracts/Bridge/L2/xRenzoDeposit.sol
+
+ // Subtract the bridge router fee
+        if (bridgeRouterFeeBps > 0) {
+            uint256 fee = (amountNextWETH * bridgeRouterFeeBps) / 10_000;
+            amountNextWETH -= fee;
+        }
+
+```
+https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Bridge/L2/xRenzoDeposit.sol#L384-L388
+
+##
+
 ## [L-] 
+
+##
+
+## [L-] getMintRate() always reverts if the ``_scaledPrice < 1 ether`` this will fully block the ``deposit()`` become DOS 
+
+Here is the problem is when even oracle is set when _deposit function call the ``getMintRate()`` function . Then that function calls the ``oracle.getMintRate()`` to getting the ``ezETH`` . Here is the problem is if the ``_scaledPrice`` proce is less than 1 ETH the ``oracle.getMintRate()`` function reverts. 
+
+Here problem is there possible to fetch price using lastPrice , lastPriceTimestamp . But the problem is if oracle set and the ``ezETH`` price in oracle goes less than 1 ETH for external reason or hack still we can access the lastPrice , lastPriceTimestamp values because oracle.getMintRate() gets revert always and the deposit function become DOS .
+
+
+```solidity
+FILE: 2024-04-renzo/contracts/Bridge/L2/Oracle/RenzoOracleL2.sol
+
+function getMintRate() public view returns (uint256, uint256) {
+        (, int256 price, , uint256 timestamp, ) = oracle.latestRoundData();
+        if (timestamp < block.timestamp - MAX_TIME_WINDOW) revert OraclePriceExpired();
+        // scale the price to have 18 decimals
+        uint256 _scaledPrice = (uint256(price)) * 10 ** (18 - oracle.decimals());
+        if (_scaledPrice < 1 ether) revert InvalidOraclePrice();
+        return (_scaledPrice, timestamp);
+    }
+
+```
+
+```solidity
+FILE: 2024-04-renzo/contracts/Bridge/L2/xRenzoDeposit.sol
+
+  // Fetch price and timestamp of ezETH from the configured price feed
+        (uint256 _lastPrice, uint256 _lastPriceTimestamp) = getMintRate();
+
+
+
+/**
+     * @notice Fetch the price of ezETH from configured price feeds
+     */
+    function getMintRate() public view returns (uint256, uint256) {
+        // revert if PriceFeedNotAvailable
+        if (receiver == address(0) && address(oracle) == address(0)) revert PriceFeedNotAvailable();
+        if (address(oracle) != address(0)) {
+            (uint256 oraclePrice, uint256 oracleTimestamp) = oracle.getMintRate();
+            return
+                oracleTimestamp > lastPriceTimestamp
+                    ? (oraclePrice, oracleTimestamp)
+                    : (lastPrice, lastPriceTimestamp);
+        } else {
+            return (lastPrice, lastPriceTimestamp);
+        }
+    }
+
+```
+
+##
+
+## 
+
+ 
+
+
+
+
+
+
 
 
 
