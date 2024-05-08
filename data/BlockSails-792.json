@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "BlockSails",
+  "risk": "2",
+  "title": "MEV opportunity when refunding gas through `_refundGas()`",
+  "issueId": 792,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/792"
+}
