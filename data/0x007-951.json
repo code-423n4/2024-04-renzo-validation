@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "0x007",
+  "risk": "3",
+  "title": "WETH sent on xReceive failure can be recovered by untrusted BRIDGE_ADMIN",
+  "issueId": 951,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/951"
+}
