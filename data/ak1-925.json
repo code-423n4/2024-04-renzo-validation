@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "ak1",
+  "risk": "2",
+  "title": "LockboxAdapterBlast : bridgeTo could be used to drain the contract balance by sending the large _extraData",
+  "issueId": 925,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/925"
+}
