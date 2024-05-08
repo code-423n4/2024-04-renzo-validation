@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "0xBeastBoy",
+  "risk": "2",
+  "title": "Missing validation in __XERC20_init function of XERC20 contract",
+  "issueId": 566,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/566"
+}
