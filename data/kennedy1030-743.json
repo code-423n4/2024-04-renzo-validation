@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "kennedy1030",
+  "risk": "2",
+  "title": "The `RestakeManager.Deposit()` function may be unreasonably reverted due to issues with the allocation mechanism for `operatorDelegators`.",
+  "issueId": 743,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/743"
+}
