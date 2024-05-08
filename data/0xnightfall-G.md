@@ -1,0 +1,2 @@
+## `queuedWithdrawalParams[0].withdrawer` set multiple times
+In [Line 229](https://github.com/code-423n4/2024-04-renzo/blob/519e518f2d8dec9acf6482b84a181e403070d22d/contracts/Delegation/OperatorDelegator.sol#L229C13-L229C66) of the `OperatorDelegator::queueWithdrawals`, the variable `queuedWithdrawalParams[0].withdrawer` is set in every loop. When it just needs to be set once. and hence can be moved outside the loop.  
