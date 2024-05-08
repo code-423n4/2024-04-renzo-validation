@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "Squilliam",
+  "risk": "2",
+  "title": "[M-24] `withdrawQueue::withdraw` - Lack of Slippage Protection creates an opportunity for attackers to Sandwich Attack users, leading to financial losses for the users.",
+  "issueId": 542,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/542"
+}
