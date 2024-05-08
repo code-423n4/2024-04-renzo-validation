@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "jokr",
+  "risk": "3",
+  "title": "No mix/max circuit breaker check for chainlink oracle price ",
+  "issueId": 910,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/910"
+}
