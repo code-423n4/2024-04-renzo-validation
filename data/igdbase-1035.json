@@ -1,0 +1,8 @@
+{
+  "contest": 372,
+  "handle": "igdbase",
+  "risk": "2",
+  "title": "Protocol does not set native gas fees/USDB/WETH to claimable resulting in a loss of revenue for the protocol.",
+  "issueId": 1035,
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1035"
+}
