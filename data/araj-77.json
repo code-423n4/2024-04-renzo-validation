@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "`Wrong` parameter is passed while `retrieving` token balance from `strategy` in `OperatorDelegator ::getTokenBalanceFromStrategy`",
   "issueId": 77,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/77"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/77",
+  "validatedIssueId": 314,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/314"
 }
