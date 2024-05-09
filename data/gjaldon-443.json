@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Funds sent by the Restake Admin to the Delayed Withdrawal Router are prone to sandwiching",
   "issueId": 443,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/443"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/443",
+  "validatedIssueId": 146,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/146"
 }
