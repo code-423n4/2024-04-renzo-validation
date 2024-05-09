@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "DepositQueue#sweepERC20 can be sandwiched",
   "issueId": 275,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/275"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/275",
+  "validatedIssueId": 386,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/386"
 }
