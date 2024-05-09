@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Withdrawing stETH leaves the yield accrued in the cooldown period, disincentivizing users to withdraw stETH",
   "issueId": 94,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/94"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/94",
+  "validatedIssueId": 283,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/283"
 }
