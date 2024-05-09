@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Implementation of Slippage Protection in  Deposit Function",
   "issueId": 143,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/143"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/143",
+  "validatedIssueId": 343,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/343"
 }
