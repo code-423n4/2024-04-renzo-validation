@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "RestakeManager.calculateTVL does not calculate the TVL of withdrawQueue properly",
   "issueId": 470,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/470"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/470",
+  "validatedIssueId": 203,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/203"
 }
