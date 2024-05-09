@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "The total tvl returned in RestakeManager::calculateTvls is always wrong ",
   "issueId": 828,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/828"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/828",
+  "validatedIssueId": 158,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/158"
 }
