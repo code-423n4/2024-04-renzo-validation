@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Not possible to deposit ERC20 tokens when the deposit amount is less than the remaining buffer amount",
   "issueId": 255,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/255"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/255",
+  "validatedIssueId": 184,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/184"
 }
