@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "OperatorDelegator is susceptible to admin Reentrancy in `_refundGas()`",
   "issueId": 265,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/265"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/265",
+  "validatedIssueId": 105,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/105"
 }
