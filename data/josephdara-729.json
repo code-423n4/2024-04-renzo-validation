@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "``DEPOSIT_WITHDRAW_PAUSER`` can not pause withdrawals",
   "issueId": 729,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/729"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/729",
+  "validatedIssueId": 120,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/120"
 }
