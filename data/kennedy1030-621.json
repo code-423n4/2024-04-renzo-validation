@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "`queuedShares[address(this)] == 0` should be replaced to `queuedShares[address(token)] == 0` in `OperatorDelegator.getTokenBalanceFromStrategy()`.",
   "issueId": 621,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/621"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/621",
+  "validatedIssueId": 302,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/302"
 }
