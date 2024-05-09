@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Bridge router fees is not handled in L2 `xRenzoDeposit`",
   "issueId": 984,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/984"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/984",
+  "validatedIssueId": 284,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/284"
 }
