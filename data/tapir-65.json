@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Deposits lesser than buffer will revert",
   "issueId": 65,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/65"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/65",
+  "validatedIssueId": 190,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/190"
 }
