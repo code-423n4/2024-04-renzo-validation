@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "No access control in `XERC20` for mint/burn",
   "issueId": 584,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/584"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/584",
+  "validatedIssueId": 75,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/75"
 }
