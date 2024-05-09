@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Wrong index variable leads to `RestakeManager.calculateTVLs()` incorrectly calculating the value of `WithdrawQueue` balances",
   "issueId": 973,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/973"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/973",
+  "validatedIssueId": 147,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/147"
 }
