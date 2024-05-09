@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "If ezETH transfer is paused, funds cannot be withdrawn from the protocol.",
   "issueId": 757,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/757"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/757",
+  "validatedIssueId": 351,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/351"
 }
