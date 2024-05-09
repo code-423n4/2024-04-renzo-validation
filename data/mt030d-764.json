@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Lack of `whenNotPaused` modifier in the `WithdrawQueue` contract",
   "issueId": 764,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/764"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/764",
+  "validatedIssueId": 115,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/115"
 }
