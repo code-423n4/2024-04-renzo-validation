@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Potential Logic Issue with Deposit Amount Adjustment in RestakeManager contract",
   "issueId": 481,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/481"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/481",
+  "validatedIssueId": 205,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/205"
 }
