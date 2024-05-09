@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Incorrect loop index in calculateTVLs()",
   "issueId": 291,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/291"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/291",
+  "validatedIssueId": 278,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/278"
 }
