@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "`Deposit` in `RestakeManager` will revert if `_amount` is less than `bufferToFill`",
   "issueId": 31,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/31"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/31",
+  "validatedIssueId": 192,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/192"
 }
