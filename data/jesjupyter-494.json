@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Gas should refunded to `tx.origin` instead of `msg.sender`",
   "issueId": 494,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/494"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/494",
+  "validatedIssueId": 79,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/79"
 }
