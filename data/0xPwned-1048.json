@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Incorrect collateral token address may lead to inflated / deflated TVL value ",
   "issueId": 1048,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1048"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1048",
+  "validatedIssueId": 141,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/141"
 }
