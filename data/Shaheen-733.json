@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "All Collateral Tokens Deposits Less Than the `bufferToFill` Amount will Fail",
   "issueId": 733,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/733"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/733",
+  "validatedIssueId": 220,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/220"
 }
