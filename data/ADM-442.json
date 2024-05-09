@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Users will not be able to deposit < current bufferToFill amount.",
   "issueId": 442,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/442"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/442",
+  "validatedIssueId": 202,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/202"
 }
