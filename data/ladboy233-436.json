@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "WithdrawQueue::withdraw and WithdrawQueue::claim are missing whenNotPaused modifier which lets user call the functions even functionalities are paused.",
   "issueId": 436,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/436"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/436",
+  "validatedIssueId": 126,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/126"
 }
