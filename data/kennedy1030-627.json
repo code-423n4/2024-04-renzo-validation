@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "The amount of unclaimed assets should be excluded in the `maxDepositTVL` check.",
   "issueId": 627,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/627"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/627",
+  "validatedIssueId": 301,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/301"
 }
