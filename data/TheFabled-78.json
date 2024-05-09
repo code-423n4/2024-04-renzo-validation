@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Incorrect Token Address Used in Total Withdrawal Queue Value Calculation",
   "issueId": 78,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/78"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/78",
+  "validatedIssueId": 225,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/225"
 }
