@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "`calculateTVLs` will always return wrong `totalTVL` due to wrong indexed used to get collateral address",
   "issueId": 607,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/607"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/607",
+  "validatedIssueId": 174,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/174"
 }
