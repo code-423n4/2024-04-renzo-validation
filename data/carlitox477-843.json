@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Lack of slippage when minting ezETH",
   "issueId": 843,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/843"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/843",
+  "validatedIssueId": 348,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/348"
 }
