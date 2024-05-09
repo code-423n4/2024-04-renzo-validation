@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "The `WithdrawQueue` contract is never paused, but is PausableUpgradeable",
   "issueId": 1029,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1029"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1029",
+  "validatedIssueId": 112,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/112"
 }
