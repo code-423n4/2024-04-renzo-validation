@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "The TVL of the tokens held in `WithdrawQueue` is calculated incorrectly",
   "issueId": 682,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/682"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/682",
+  "validatedIssueId": 170,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/170"
 }
