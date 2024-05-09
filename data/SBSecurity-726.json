@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "`WithdrawQueue::amountToRedeem` can be inaccurate if the price changes between request and claim",
   "issueId": 726,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/726"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/726",
+  "validatedIssueId": 245,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/245"
 }
