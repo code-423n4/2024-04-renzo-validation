@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "No slippage in `RestakeManger::deposit` and `WithdrawQueue::withdraw`",
   "issueId": 225,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/225"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/225",
+  "validatedIssueId": 331,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/331"
 }
