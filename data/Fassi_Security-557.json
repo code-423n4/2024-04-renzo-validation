@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "`calculateTVLs` returns wrong TVL.",
   "issueId": 557,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/557"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/557",
+  "validatedIssueId": 177,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/177"
 }
