@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "If the validator gets slashed before its credentials are verified then the stakedButNotVerifiedEth will be an incorrect value, misleading the TVL",
   "issueId": 56,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/56"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/56",
+  "validatedIssueId": 357,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/357"
 }
