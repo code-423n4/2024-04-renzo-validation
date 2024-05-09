@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "`totalWithdrawalQueueValue` in `RestakeManager.sol: calculateTVLs` is calculated incorrectly",
   "issueId": 739,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/739"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/739",
+  "validatedIssueId": 163,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/163"
 }
