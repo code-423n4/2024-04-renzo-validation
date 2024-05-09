@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Deposit might revert",
   "issueId": 884,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/884"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/884",
+  "validatedIssueId": 207,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/207"
 }
