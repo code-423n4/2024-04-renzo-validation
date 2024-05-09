@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Potential Arbitrage Opportunity in the xRenzoDeposit L2 contract",
   "issueId": 852,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/852"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/852",
+  "validatedIssueId": 135,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/135"
 }
