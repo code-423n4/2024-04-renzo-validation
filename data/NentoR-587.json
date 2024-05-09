@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "`RestakeManager::calculateTVLs()` doesn't calculate `totalWithdrawalQueueValue` correctly",
   "issueId": 587,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/587"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/587",
+  "validatedIssueId": 281,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/281"
 }
