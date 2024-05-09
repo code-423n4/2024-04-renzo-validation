@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "User able to withdraw tokens when Renzo is paused",
   "issueId": 46,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/46"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/46",
+  "validatedIssueId": 131,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/131"
 }
