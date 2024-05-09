@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "`removeCollateralToken` function doesn't check Balance exist ",
   "issueId": 819,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/819"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/819",
+  "validatedIssueId": 102,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/102"
 }
