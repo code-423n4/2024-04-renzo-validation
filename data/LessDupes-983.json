@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Withdrawals of rebasing tokens can lead to insolvency and unfair distribution of protocol reserves",
   "issueId": 983,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/983"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/983",
+  "validatedIssueId": 282,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/282"
 }
