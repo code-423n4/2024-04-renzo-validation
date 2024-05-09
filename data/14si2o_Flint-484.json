@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "calculateTVLs does not correctly loop through all collateral tokens",
   "issueId": 484,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/484"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/484",
+  "validatedIssueId": 196,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/196"
 }
