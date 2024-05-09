@@ -4,5 +4,7 @@
   "risk": "3",
   "title": " Pausability not implemented on withdrawQueue.sol",
   "issueId": 655,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/655"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/655",
+  "validatedIssueId": 121,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/121"
 }
