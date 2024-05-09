@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "getTokenBalanceFromStrategy cannot record share in queue.",
   "issueId": 460,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/460"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/460",
+  "validatedIssueId": 306,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/306"
 }
