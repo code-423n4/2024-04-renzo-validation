@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "OperatorDelegator.completeQueuedWithdrawal will always revert due to access control",
   "issueId": 371,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/371"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/371",
+  "validatedIssueId": 85,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/85"
 }
