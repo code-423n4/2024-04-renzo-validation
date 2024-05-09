@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Sudden increases in TVL can be exploited for profit",
   "issueId": 681,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/681"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/681",
+  "validatedIssueId": 320,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/320"
 }
