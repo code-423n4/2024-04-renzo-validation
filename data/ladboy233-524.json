@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Withdraw queue TVL should be excluded when deposit calculating deposit limit.",
   "issueId": 524,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/524"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/524",
+  "validatedIssueId": 293,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/293"
 }
