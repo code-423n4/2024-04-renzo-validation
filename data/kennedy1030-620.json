@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "`RestakeManager.deposit()` always reverts when `_amount <= bufferToFill`.",
   "issueId": 620,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/620"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/620",
+  "validatedIssueId": 213,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/213"
 }
