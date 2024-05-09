@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Lack of slippage control on RestakeManager.deposit()",
   "issueId": 735,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/735"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/735",
+  "validatedIssueId": 340,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/340"
 }
