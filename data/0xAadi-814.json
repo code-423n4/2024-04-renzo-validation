@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "`removeCollateralToken()` Function Lacks Active Deposit Check Before Token Removal in `RestakeManager` contract",
   "issueId": 814,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/814"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/814",
+  "validatedIssueId": 97,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/97"
 }
