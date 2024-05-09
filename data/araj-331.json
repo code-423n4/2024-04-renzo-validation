@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "`bridgeRouterFeeBps` is also getting transfered in `xRenzoDeposit::sweep()`",
   "issueId": 331,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/331"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/331",
+  "validatedIssueId": 286,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/286"
 }
