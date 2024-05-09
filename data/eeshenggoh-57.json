@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "completeQueuedWithdrawal will always revert due to incorrect modifier implementation",
   "issueId": 57,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/57"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/57",
+  "validatedIssueId": 91,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/91"
 }
