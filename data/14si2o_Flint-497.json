@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Deposit will revert whenever bufferToFill >= amount deposited",
   "issueId": 497,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/497"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/497",
+  "validatedIssueId": 209,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/209"
 }
