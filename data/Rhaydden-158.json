@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "No slippage protection when depositing tokens into strategies",
   "issueId": 158,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/158"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/158",
+  "validatedIssueId": 329,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/329"
 }
