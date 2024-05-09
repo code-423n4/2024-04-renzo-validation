@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "ezETH is meant to be non-transferrable while withdrawals are functional, but this is impossible",
   "issueId": 450,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/450"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/450",
+  "validatedIssueId": 354,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/354"
 }
