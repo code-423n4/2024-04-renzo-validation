@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "getTokenBalanceFromStrategy functions check for queuedShares is incorrect",
   "issueId": 407,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/407"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/407",
+  "validatedIssueId": 308,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/308"
 }
