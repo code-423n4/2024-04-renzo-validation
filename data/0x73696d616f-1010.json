@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "The onlyNativeEthRestakeAdmin may never receive gas refunds from OperatorDelegator as anyone may forward the rewards to receive()",
   "issueId": 1010,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1010"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1010",
+  "validatedIssueId": 148,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/148"
 }
