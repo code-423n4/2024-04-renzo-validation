@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Users may not be able to use the deposit function of the RestakeManager contract to deposit ERC20 for a period of time",
   "issueId": 785,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/785"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/785",
+  "validatedIssueId": 227,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/227"
 }
