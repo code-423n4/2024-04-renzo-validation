@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Asynchronous flow between  withdraw and claim can cause bad debt of the protocol or inadequate renumeration for the user",
   "issueId": 727,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/727"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/727",
+  "validatedIssueId": 246,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/246"
 }
