@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "No slippage specifying parameters for RestakeManager#deposit will lead to users receiving less tokens ",
   "issueId": 97,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/97"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/97",
+  "validatedIssueId": 328,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/328"
 }
