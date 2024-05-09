@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "During deposit if buffer deficit is larger than deposit amount transactions will revert.",
   "issueId": 722,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/722"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/722",
+  "validatedIssueId": 219,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/219"
 }
