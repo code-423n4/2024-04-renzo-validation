@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Inconsistent Method of Refund Recording and Retrieval in OperatorDelegator Contract",
   "issueId": 509,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/509"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/509",
+  "validatedIssueId": 81,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/81"
 }
