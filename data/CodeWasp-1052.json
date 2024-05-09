@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Infinite inflation of 1 wei due to rounding upon minting",
   "issueId": 1052,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1052"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1052",
+  "validatedIssueId": 86,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/86"
 }
