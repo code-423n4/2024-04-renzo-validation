@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "DOS of `completeQueuedWithdrawal` when ERC20 buffer is filled",
   "issueId": 719,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/719"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/719",
+  "validatedIssueId": 87,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/87"
 }
