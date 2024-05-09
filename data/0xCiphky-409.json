@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "withdraws can’t be paused",
   "issueId": 409,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/409"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/409",
+  "validatedIssueId": 127,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/127"
 }
