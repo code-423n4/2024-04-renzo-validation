@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "First depositor is vulnerable to inflation attack",
   "issueId": 135,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/135"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/135",
+  "validatedIssueId": 59,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/59"
 }
