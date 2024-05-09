@@ -4,5 +4,7 @@
   "risk": "2",
   "title": " Impact of Inadequate Collateral Token Removal Handling on Token Minting and Redemption",
   "issueId": 521,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/521"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/521",
+  "validatedIssueId": 101,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/101"
 }
