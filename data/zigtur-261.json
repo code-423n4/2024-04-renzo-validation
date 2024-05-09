@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Total `WithdrawalQueue` value is incorrectly accounted in the total TVL due to variable confusion",
   "issueId": 261,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/261"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/261",
+  "validatedIssueId": 268,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/268"
 }
