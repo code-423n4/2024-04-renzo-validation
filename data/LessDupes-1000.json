@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Unhandled revert in `xRenzoBridge.xReceive()` can lead to stuck funds and xezETH insolvency",
   "issueId": 1000,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1000"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1000",
+  "validatedIssueId": 375,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/375"
 }
