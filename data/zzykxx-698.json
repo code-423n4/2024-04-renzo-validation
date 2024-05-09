@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Depositing tokens is not possible when the `WithdrawQueue` buffer deficit is bigger than the deposit",
   "issueId": 698,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/698"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/698",
+  "validatedIssueId": 216,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/216"
 }
