@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Missing MaxTokenTVL Check in `depositTokenRewardsFromProtocol` function in `RestakeManager` contract",
   "issueId": 867,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/867"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/867",
+  "validatedIssueId": 315,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/315"
 }
