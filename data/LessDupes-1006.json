@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Lockbox insolvency risk due to mint rate discrepancies between L1 and L2",
   "issueId": 1006,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1006"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1006",
+  "validatedIssueId": 132,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/132"
 }
