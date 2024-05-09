@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Wrong `collateralToken` is passed in `renzoOracle.lookupTokenValue()` while calculating TVLs",
   "issueId": 82,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/82"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/82",
+  "validatedIssueId": 226,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/226"
 }
