@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Staked ETH balance can be incorrect due to slashing",
   "issueId": 328,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/328"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/328",
+  "validatedIssueId": 360,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/360"
 }
