@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Lack of Slippage Protection in claim Function",
   "issueId": 642,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/642"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/642",
+  "validatedIssueId": 336,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/336"
 }
