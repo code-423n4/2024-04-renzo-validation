@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Lack of access control allow attacker to mint()  with other user’s wallet balance",
   "issueId": 340,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/340"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/340",
+  "validatedIssueId": 74,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/74"
 }
