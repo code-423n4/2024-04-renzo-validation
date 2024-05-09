@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Old Sweepers Could Steal Bridge Fees Through Front-Running Before Being Disallowed in ``setAllowedBridgeSweeper()``",
   "issueId": 676,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/676"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/676",
+  "validatedIssueId": 390,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/390"
 }
