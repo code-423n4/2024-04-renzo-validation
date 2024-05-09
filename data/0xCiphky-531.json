@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "No Slippage Protection On Deposits And Withdrawals",
   "issueId": 531,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/531"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/531",
+  "validatedIssueId": 334,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/334"
 }
