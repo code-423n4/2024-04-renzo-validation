@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Users are unable to deposit LST into Renzo unless the deposit amount exceeds the buffer deficit in the withdrawQueue",
   "issueId": 491,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/491"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/491",
+  "validatedIssueId": 206,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/206"
 }
