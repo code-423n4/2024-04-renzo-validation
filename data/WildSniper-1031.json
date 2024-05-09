@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "The current idea of ​​creating ezETH and accepting several different assets in it exposes users to losses",
   "issueId": 1031,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1031"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1031",
+  "validatedIssueId": 261,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/261"
 }
