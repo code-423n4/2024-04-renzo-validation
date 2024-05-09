@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Wrong ternary condition in `OperatorDelegator::getTokenBalanceFromStrategy()` ",
   "issueId": 593,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/593"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/593",
+  "validatedIssueId": 303,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/303"
 }
