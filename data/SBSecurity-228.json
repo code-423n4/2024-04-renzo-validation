@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "`DepositQueue::sweepERC20` needs to replenish the buffer",
   "issueId": 228,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/228"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/228",
+  "validatedIssueId": 319,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/319"
 }
