@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Strategic Deposit and Withdrawal for Unfair Gain in Renzo Protocol",
   "issueId": 931,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/931"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/931",
+  "validatedIssueId": 260,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/260"
 }
