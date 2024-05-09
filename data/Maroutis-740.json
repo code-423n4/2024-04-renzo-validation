@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Lack of slippage protection in `RestakeManager::deposit` function",
   "issueId": 740,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/740"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/740",
+  "validatedIssueId": 341,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/341"
 }
