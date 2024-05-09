@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "User can extract protocol value by sandwiching oracle and rebasing transactions",
   "issueId": 806,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/806"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/806",
+  "validatedIssueId": 325,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/325"
 }
