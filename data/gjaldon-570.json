@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Restake Admin's gas refunds can be blocked",
   "issueId": 570,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/570"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/570",
+  "validatedIssueId": 157,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/157"
 }
