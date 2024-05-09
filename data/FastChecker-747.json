@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Incorrect Logic in `RestakeManager.sol#calculateTVLs()` function",
   "issueId": 747,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/747"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/747",
+  "validatedIssueId": 162,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/162"
 }
