@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "During L2 native restaking, fewer xezETH are burned than needed, resulting in some xezETH being minted without corresponding asset-backed value",
   "issueId": 315,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/315"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/315",
+  "validatedIssueId": 136,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/136"
 }
