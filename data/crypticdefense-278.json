@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "`RestakeManager::calculateTVLs` is incorrect due to use of incorrect token value index",
   "issueId": 278,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/278"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/278",
+  "validatedIssueId": 279,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/279"
 }
