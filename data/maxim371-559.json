@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "`xRenzoDeposit::_trade` has no slippage protection",
   "issueId": 559,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/559"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/559",
+  "validatedIssueId": 391,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/391"
 }
