@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "RestakeManager's `CalculateTVLs(...)` Function Incorrectly Computes TVL",
   "issueId": 113,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/113"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/113",
+  "validatedIssueId": 262,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/262"
 }
