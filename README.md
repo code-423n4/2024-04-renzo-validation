@@ -6,6 +6,12 @@ Unless otherwise discussed, this repo will be made public after audit completion
 
 ## Instructions for Validators
 
+### View assigned issues
+
+To view your assigned issues, use the `Assignee` filter on the Issues screen, and type your username to located it. This should produce a filtered issue list that you can reference throughout the validation process.
+
+<img width="370" alt="image" src="https://github.com/code-423n4/2024-04-renzo-validation/assets/84729667/0def9e4f-c05d-407f-89fb-b61750a4ef40">
+
 ### Acting on an issue
 
 When a validator has been assigned to an issue, they have four different actions they can take.
