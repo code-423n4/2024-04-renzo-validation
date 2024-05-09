@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "`RestakeManager::deposit()` does not guarantee whether funds will go into operator delegator or withdraw queue",
   "issueId": 591,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/591"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/591",
+  "validatedIssueId": 212,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/212"
 }
