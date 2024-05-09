@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "calculateTVLs() fails to account for erc20 tokens in DepositQueue contract leading to incorrect TVL calculation",
   "issueId": 253,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/253"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/253",
+  "validatedIssueId": 387,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/387"
 }
