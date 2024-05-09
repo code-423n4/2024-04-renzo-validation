@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "`RestakeManager::calculateTVLs`  incorrectly calculates the withdraw queue balances, leading to heavily distorted TVL results",
   "issueId": 338,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/338"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/338",
+  "validatedIssueId": 275,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/275"
 }
