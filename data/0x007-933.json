@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "There would be undercollateralization or insolvency when L2 xezETH mints are greater than L1 ezETH locked",
   "issueId": 933,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/933"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/933",
+  "validatedIssueId": 140,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/140"
 }
