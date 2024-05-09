@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Inconsistent gas refunds in OperatorDelegator will leak ezETH yield",
   "issueId": 611,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/611"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/611",
+  "validatedIssueId": 84,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/84"
 }
