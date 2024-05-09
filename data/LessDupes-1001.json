@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Arbitrage risk due to price discrepancies between L1 and L2",
   "issueId": 1001,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1001"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1001",
+  "validatedIssueId": 134,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/134"
 }
