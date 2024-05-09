@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "ETH withdrawals from EigenLayer always fail due to `OperatorDelegator`'s nonReentrant `receive()`",
   "issueId": 987,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/987"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/987",
+  "validatedIssueId": 368,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/368"
 }
