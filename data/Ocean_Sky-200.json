@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "No slippage control in deposit function",
   "issueId": 200,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/200"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/200",
+  "validatedIssueId": 330,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/330"
 }
