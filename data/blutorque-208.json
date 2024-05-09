@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Incorrect TVL is returned by `calculateTVLs()` due to a typo",
   "issueId": 208,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/208"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/208",
+  "validatedIssueId": 264,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/264"
 }
