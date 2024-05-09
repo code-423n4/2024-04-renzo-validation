@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Reverts during Connext `xReceive` may prevent bridging from L2 to L1",
   "issueId": 732,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/732"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/732",
+  "validatedIssueId": 372,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/372"
 }
