@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "DepositQueue ERC20 Rewards Not Handled Correctly",
   "issueId": 532,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/532"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/532",
+  "validatedIssueId": 383,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/383"
 }
