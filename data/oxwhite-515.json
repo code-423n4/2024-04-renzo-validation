@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Removing collateral token may hinder users from claiming",
   "issueId": 515,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/515"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/515",
+  "validatedIssueId": 271,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/271"
 }
