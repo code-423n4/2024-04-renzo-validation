@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Wrong amount of TVL is produced, causing unfair underlying asset conversion",
   "issueId": 23,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/23"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/23",
+  "validatedIssueId": 208,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/208"
 }
