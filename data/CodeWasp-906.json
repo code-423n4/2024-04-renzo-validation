@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Unsafe removal of collateral tokens can lead to TVL loss",
   "issueId": 906,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/906"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/906",
+  "validatedIssueId": 98,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/98"
 }
