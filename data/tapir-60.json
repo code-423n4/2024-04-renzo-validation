@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Completing queued withdrawals from EigenLayer can be sandwiched to block withdrawals at least a week ",
   "issueId": 60,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/60"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/60",
+  "validatedIssueId": 317,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/317"
 }
