@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Dos in the `RestakeManager.deposit()` if the `_amount == bufferToFill`",
   "issueId": 775,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/775"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/775",
+  "validatedIssueId": 224,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/224"
 }
