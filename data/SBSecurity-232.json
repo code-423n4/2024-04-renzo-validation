@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "`RestakeManager::deposit` will revert always",
   "issueId": 232,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/232"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/232",
+  "validatedIssueId": 186,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/186"
 }
