@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "allowing any range of output tokens could put pressure on some tokens than others",
   "issueId": 953,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/953"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/953",
+  "validatedIssueId": 402,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/402"
 }
