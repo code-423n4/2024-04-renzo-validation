@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Funds get stuck and LRT rate drops when an operator is undelegated",
   "issueId": 171,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/171"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/171",
+  "validatedIssueId": 452,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/452"
 }
