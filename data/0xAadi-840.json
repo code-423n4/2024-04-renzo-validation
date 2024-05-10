@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "`removeOperatorDelegator()` Function Lacks Active Deposit Check Before OperatorDelegator Removal in `RestakeManager` contract",
   "issueId": 840,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/840"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/840",
+  "validatedIssueId": 412,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/412"
 }
