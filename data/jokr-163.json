@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Users can avoid slashing losses by front-running",
   "issueId": 163,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/163"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/163",
+  "validatedIssueId": 438,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/438"
 }
