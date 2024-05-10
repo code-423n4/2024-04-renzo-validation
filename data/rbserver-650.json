@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Calling `WithdrawQueue.pause` and `WithdrawQueue.unpause` functions are not effective",
   "issueId": 650,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/650"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/650",
+  "validatedIssueId": 564,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/564"
 }
