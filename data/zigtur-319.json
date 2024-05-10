@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "ezETH bridged price will be incorrect due to issue in totalTVL accounting",
   "issueId": 319,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/319"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/319",
+  "validatedIssueId": 446,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/446"
 }
