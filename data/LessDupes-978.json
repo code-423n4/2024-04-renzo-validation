@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Withdrawal queue balance included in TVL leads to inaccurate mint and redeem rates",
   "issueId": 978,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/978"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/978",
+  "validatedIssueId": 408,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/408"
 }
