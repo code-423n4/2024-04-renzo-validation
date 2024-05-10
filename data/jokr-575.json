@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Arbitrage using chainlink price discrepancy",
   "issueId": 575,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/575"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/575",
+  "validatedIssueId": 428,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/428"
 }
