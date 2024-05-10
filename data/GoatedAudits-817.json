@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Attacker can sandwich ETH received by the `OperatorDelegator` for a profit",
   "issueId": 817,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/817"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/817",
+  "validatedIssueId": 414,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/414"
 }
