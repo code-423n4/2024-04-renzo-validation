@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Incorrect Handling of Basis Points in Allocation Calculations",
   "issueId": 907,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/907"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/907",
+  "validatedIssueId": 530,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/530"
 }
