@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "TVL will drop when undelegating a staker creates MEV opportunity",
   "issueId": 404,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/404"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/404",
+  "validatedIssueId": 455,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/455"
 }
