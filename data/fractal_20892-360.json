@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "function updatePrice  does not check for significant deviation from the last price beyond a simple percentage",
   "issueId": 360,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/360"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/360",
+  "validatedIssueId": 489,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/489"
 }
