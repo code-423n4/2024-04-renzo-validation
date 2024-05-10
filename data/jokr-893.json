@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Incorrect TVL will be accounted if strategy of a token is updated",
   "issueId": 893,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/893"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/893",
+  "validatedIssueId": 477,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/477"
 }
