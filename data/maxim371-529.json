@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "`RestakeManager.sol::chooseOperatorDelegatorForDeposit` underestimate the threshhold calculation",
   "issueId": 529,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/529"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/529",
+  "validatedIssueId": 533,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/533"
 }
