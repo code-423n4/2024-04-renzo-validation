@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Complications if OperatorDelegator was removed with staked funds in Eigenlayer",
   "issueId": 83,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/83"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/83",
+  "validatedIssueId": 453,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/453"
 }
