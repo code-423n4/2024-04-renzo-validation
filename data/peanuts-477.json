@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Arbitrage opportunities arises when allowing different types of collateral with different price and heartbeat",
   "issueId": 477,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/477"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/477",
+  "validatedIssueId": 426,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/426"
 }
