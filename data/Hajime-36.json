@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "incorrect totalTVL value",
   "issueId": 36,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/36"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/36",
+  "validatedIssueId": 403,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/403"
 }
