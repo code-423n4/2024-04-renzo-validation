@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Withdrawal amount calculation timing causes yield leakage and asset imbalance",
   "issueId": 661,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/661"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/661",
+  "validatedIssueId": 466,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/466"
 }
