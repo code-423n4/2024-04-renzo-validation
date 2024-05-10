@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Calculating `amountToRedeem` inside `WithdrawQueue::withdraw()` instead of within `claim()` allows front-running a slashing event while also causing redemption of incorrect amount",
   "issueId": 124,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/124"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/124",
+  "validatedIssueId": 544,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/544"
 }
