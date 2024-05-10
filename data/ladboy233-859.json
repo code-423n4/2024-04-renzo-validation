@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Withdrawal queue TVL should be excluded when minting new ezETH token with `RestakeManager::deposit()`",
   "issueId": 859,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/859"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/859",
+  "validatedIssueId": 450,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/450"
 }
