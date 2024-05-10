@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Hardcoded heartbeat can cause the usage of stale prices",
   "issueId": 694,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/694"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/694",
+  "validatedIssueId": 562,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/562"
 }
