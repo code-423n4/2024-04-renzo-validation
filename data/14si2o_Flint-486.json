@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "removeCollateralToken breaks calculateTVLs function ",
   "issueId": 486,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/486"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/486",
+  "validatedIssueId": 404,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/404"
 }
