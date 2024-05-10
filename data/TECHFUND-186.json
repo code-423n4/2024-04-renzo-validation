@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "RestakeManager::calculateTVLs() can be incorrect due to admin of collateralTokens list ",
   "issueId": 186,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/186"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/186",
+  "validatedIssueId": 405,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/405"
 }
