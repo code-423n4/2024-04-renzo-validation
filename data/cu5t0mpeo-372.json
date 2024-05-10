@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "The user received less money than expected",
   "issueId": 372,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/372"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/372",
+  "validatedIssueId": 552,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/552"
 }
