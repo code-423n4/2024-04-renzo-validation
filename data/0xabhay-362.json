@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Failure of Deposit Function Due to WETH Allowance Handling on Certain Chains",
   "issueId": 362,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/362"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/362",
+  "validatedIssueId": 536,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/536"
 }
