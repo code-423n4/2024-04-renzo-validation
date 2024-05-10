@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "stETH Rebasing Token Issue: Minting and Redeeming Discrepancies",
   "issueId": 716,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/716"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/716",
+  "validatedIssueId": 509,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/509"
 }
