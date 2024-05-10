@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "The `totalWithdrawalQueueValue` will not be added to `TVL` in `RestakeManager.calculateTVLs()` after all `operatorDelegators` are removed.",
   "issueId": 625,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/625"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/625",
+  "validatedIssueId": 400,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/400"
 }
