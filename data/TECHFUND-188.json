@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "RestakeManager's admin functions for OperatorDelegator impacts the TVL calculation",
   "issueId": 188,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/188"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/188",
+  "validatedIssueId": 406,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/406"
 }
