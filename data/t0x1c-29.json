@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Incomplete implementation of pause functionality inside `WithdrawQueue.sol` results in it having no effect on the contract's methods",
   "issueId": 29,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/29"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/29",
+  "validatedIssueId": 565,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/565"
 }
