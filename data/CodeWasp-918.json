@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Unsafe removal of operator delegators can lead to TVL loss",
   "issueId": 918,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/918"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/918",
+  "validatedIssueId": 464,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/464"
 }
