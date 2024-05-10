@@ -4,5 +4,7 @@
   "risk": "Q",
   "title": "QA Report",
   "issueId": 851,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/851"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/851",
+  "validatedIssueId": 525,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/525"
 }
