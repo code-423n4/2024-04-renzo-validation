@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Malicious opeartors can undelegate themselves from the stakers, result in significant drops in TVL ",
   "issueId": 454,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/454"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/454",
+  "validatedIssueId": 456,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/456"
 }
