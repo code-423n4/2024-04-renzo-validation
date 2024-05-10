@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Protocol is not compatible with Weird tokens as it claims",
   "issueId": 80,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/80"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/80",
+  "validatedIssueId": 507,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/507"
 }
