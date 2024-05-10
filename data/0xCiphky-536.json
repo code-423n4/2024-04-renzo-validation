@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "METH Exchange Rate Method Can Lead To Major Losses ",
   "issueId": 536,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/536"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/536",
+  "validatedIssueId": 513,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/513"
 }
