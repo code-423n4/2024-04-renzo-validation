@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Completing a withdrawal reverts due to unexpected caller ",
   "issueId": 59,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/59"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/59",
+  "validatedIssueId": 566,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/566"
 }
