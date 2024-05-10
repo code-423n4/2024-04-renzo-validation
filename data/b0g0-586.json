@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Operator Delegator cannot recover any non-staked ETH from the EigenPod ",
   "issueId": 586,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/586"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/586",
+  "validatedIssueId": 494,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/494"
 }
