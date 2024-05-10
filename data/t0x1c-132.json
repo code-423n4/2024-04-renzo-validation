@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "totalTVL is incorrectly calculated due to the addition of DepositQueue's entire balance",
   "issueId": 132,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/132"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/132",
+  "validatedIssueId": 407,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/407"
 }
