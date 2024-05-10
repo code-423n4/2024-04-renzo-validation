@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Potential arbitrage chance because chainlink's price's update",
   "issueId": 297,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/297"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/297",
+  "validatedIssueId": 429,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/429"
 }
