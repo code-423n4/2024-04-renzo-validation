@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "ETH rewards can be partially stolen by sandwiching `forwardRewards`",
   "issueId": 815,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/815"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/815",
+  "validatedIssueId": 415,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/415"
 }
