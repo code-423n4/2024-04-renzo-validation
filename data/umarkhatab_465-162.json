@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Lack of slippage protection in `WithdrawQueue#withdraw` can lead users receiving less assetOut",
   "issueId": 162,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/162"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/162",
+  "validatedIssueId": 485,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/485"
 }
