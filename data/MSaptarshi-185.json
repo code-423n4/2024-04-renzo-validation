@@ -4,5 +4,7 @@
   "risk": "2",
   "title": " A part of ETH rewards can be stolen by sandwiching ",
   "issueId": 185,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/185"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/185",
+  "validatedIssueId": 421,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/421"
 }
