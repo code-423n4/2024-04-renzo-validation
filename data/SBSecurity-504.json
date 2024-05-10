@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Stakers can avoid slashing and penalties while making next claimers take the loss",
   "issueId": 504,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/504"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/504",
+  "validatedIssueId": 433,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/433"
 }
