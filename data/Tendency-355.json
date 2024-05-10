@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Stakers Can Avoid Validators Slashing Penalties By Frontrunning Eigen Layer Updates",
   "issueId": 355,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/355"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/355",
+  "validatedIssueId": 436,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/436"
 }
