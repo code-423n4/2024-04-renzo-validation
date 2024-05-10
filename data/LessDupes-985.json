@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Incorrect loop ordering allows minting ezETH at inflated rate",
   "issueId": 985,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/985"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/985",
+  "validatedIssueId": 447,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/447"
 }
