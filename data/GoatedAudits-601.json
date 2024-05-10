@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "All staked funds are un-redeemable when operator calls `DelegationManager.undelegate()`",
   "issueId": 601,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/601"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/601",
+  "validatedIssueId": 457,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/457"
 }
