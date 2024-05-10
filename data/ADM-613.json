@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Price Movements of more than 10% that don't recover will DoS xRenzoDeposits.",
   "issueId": 613,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/613"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/613",
+  "validatedIssueId": 491,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/491"
 }
