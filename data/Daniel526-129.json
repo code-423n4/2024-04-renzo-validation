@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Lack of Implementation for Earning Rewards in OperatorDelegator Contract",
   "issueId": 129,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/129"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/129",
+  "validatedIssueId": 495,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/495"
 }
