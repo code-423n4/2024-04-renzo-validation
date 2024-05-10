@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Lack of slippage and deadline during withdraw and deposit",
   "issueId": 347,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/347"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/347",
+  "validatedIssueId": 484,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/484"
 }
