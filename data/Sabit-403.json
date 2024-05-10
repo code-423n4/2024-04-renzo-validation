@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Inaccurate gas used calculation in stakeEthFromQueue function",
   "issueId": 403,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/403"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/403",
+  "validatedIssueId": 506,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/506"
 }
