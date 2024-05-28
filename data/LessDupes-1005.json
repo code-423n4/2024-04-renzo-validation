@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Unfair changes to cooldown period affect existing withdrawals",
   "issueId": 1005,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1005"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/1005",
+  "validatedIssueId": 607,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/607"
 }
