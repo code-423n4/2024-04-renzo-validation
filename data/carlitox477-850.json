@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Extending/reducing cooldown period affects already queued withdrawals",
   "issueId": 850,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/850"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/850",
+  "validatedIssueId": 609,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/609"
 }
