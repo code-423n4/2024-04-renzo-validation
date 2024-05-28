@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Changing coolDownPeriod will affect already queued withdrawals",
   "issueId": 882,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/882"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/882",
+  "validatedIssueId": 608,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/608"
 }
