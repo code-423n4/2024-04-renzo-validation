@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "OperatorDelegator::completeQueuedWithdrawal() will never finalize if EigenLayer dewhitelists one of the strategies for deposit",
   "issueId": 960,
-  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/960"
+  "issueUrl": "https://github.com/code-423n4/2024-04-renzo-validation/issues/960",
+  "validatedIssueId": 605,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-04-renzo-findings/issues/605"
 }
